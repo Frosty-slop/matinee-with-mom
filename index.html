@@ -39,9 +39,12 @@
     .suggest-btn:hover:not(:disabled) { background: var(--pink-deep); transform: translateY(-1px); }
     .suggest-btn:disabled { opacity: 0.5; cursor: not-allowed; }
     .section-header { display: flex; align-items: baseline; gap: 10px; margin-bottom: 1rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--border); }
+    .poster-section-header { display: flex; align-items: baseline; gap: 10px; margin-bottom: 1rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--border); }
     .section-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 400; font-style: italic; color: var(--text2); }
     .section-badge { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; background: var(--pink-light); color: var(--pink-dark); border: 1px solid var(--pink-mid); padding: 2px 9px; border-radius: 999px; font-weight: 500; }
-    .poster-grid { display: flex; gap: 14px; margin-bottom: 2.5rem; margin-left: calc(-1.5rem); margin-right: calc(-1.5rem); padding-left: 1.5rem; padding-right: 1.5rem; overflow-x: auto; padding-bottom: 12px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: var(--pink-mid) transparent; }
+    .poster-section { width: 100%; margin-bottom: 2rem; }
+    .poster-section-header { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; display: flex; align-items: baseline; gap: 10px; margin-bottom: 1rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--border); }
+    .poster-grid { display: flex; gap: 14px; width: 100%; overflow-x: auto; padding: 0 1.5rem 16px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: var(--pink-mid) transparent; }
     .poster-grid::-webkit-scrollbar { height: 4px; }
     .poster-grid::-webkit-scrollbar-track { background: transparent; }
     .poster-grid::-webkit-scrollbar-thumb { background: var(--pink-mid); border-radius: 999px; }
@@ -142,6 +145,7 @@
     .racy-legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--text3); }
     .racy-legend-dot { width: 8px; height: 8px; border-radius: 50%; }
     .detail-browse { border-top: 1px solid var(--border); background: var(--bg2); }
+    .detail-browse-inner-bottom { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem 4rem; }
     .detail-browse-inner { max-width: 1100px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; overflow: visible; }
   </style>
 </head>
@@ -192,20 +196,25 @@
         <input class="search-input" id="custom-input" type="text" placeholder="Anything specific? e.g. 'love stories', 'British humor', 'no sad endings'..." maxlength="140" />
         <button class="suggest-btn" id="suggest-btn" onclick="fetchSuggestions()">Suggest</button>
       </div>
-      <div class="section-header">
-        <span class="section-title">Movies</span>
-        <span class="section-badge">Now in theaters &amp; streaming</span>
-      </div>
-      <div class="poster-grid" id="movie-grid"></div>
-      <div class="section-header">
-        <span class="section-title">TV Shows</span>
-        <span class="section-badge">Currently airing</span>
-      </div>
-      <div class="poster-grid" id="tv-grid"></div>
       <div class="results-section" id="results-area">
         <div class="empty-state">Choose your filters above and hit Suggest</div>
       </div>
     </main>
+
+    <div class="poster-section">
+      <div class="poster-section-header">
+        <span class="section-title">Movies</span>
+        <span class="section-badge">Now in theaters &amp; streaming</span>
+      </div>
+      <div class="poster-grid" id="movie-grid"></div>
+    </div>
+    <div class="poster-section">
+      <div class="poster-section-header">
+        <span class="section-title">TV Shows</span>
+        <span class="section-badge">Currently airing</span>
+      </div>
+      <div class="poster-grid" id="tv-grid"></div>
+    </div>
     <footer>
       Data provided by<img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg" class="tmdb-logo" alt="TMDB" />
       &nbsp;|&nbsp; AI by <a href="https://www.anthropic.com" target="_blank">Anthropic Claude</a>
@@ -304,13 +313,23 @@
             <input class="search-input" id="d-custom-input" type="text" placeholder="Anything specific?..." maxlength="140" />
             <button class="suggest-btn" id="d-suggest-btn" onclick="fetchSuggestionsDetail()">Suggest</button>
           </div>
-          <div class="section-header"><span class="section-title">Movies</span><span class="section-badge">Now in theaters &amp; streaming</span></div>
+        </div><!-- /detail-browse-inner -->
+        <div class="poster-section">
+          <div class="poster-section-header" style="padding:0 1.5rem;">
+            <span class="section-title">Movies</span><span class="section-badge">Now in theaters &amp; streaming</span>
+          </div>
           <div class="poster-grid" id="d-movie-grid"></div>
-          <div class="section-header"><span class="section-title">TV Shows</span><span class="section-badge">Currently airing</span></div>
-          <div class="poster-grid" id="d-tv-grid"></div>
-          <div class="results-section" id="d-results-area"><div class="empty-state">Choose your filters above and hit Suggest</div></div>
         </div>
-      </div>
+        <div class="poster-section">
+          <div class="poster-section-header" style="padding:0 1.5rem;">
+            <span class="section-title">TV Shows</span><span class="section-badge">Currently airing</span>
+          </div>
+          <div class="poster-grid" id="d-tv-grid"></div>
+        </div>
+        <div class="detail-browse-inner-bottom">
+          <div class="results-section" id="d-results-area"><div class="empty-state">Choose your filters above and hit Suggest</div></div>
+        </div><!-- /detail-browse-inner-bottom -->
+      </div><!-- /detail-browse -->
     </div>
   </div>
 
