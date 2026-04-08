@@ -208,15 +208,17 @@ exports.handler = async (event) => {
       // Build TMDB endpoints based on era and type filters
       let movieEndpoint, showEndpoint;
 
+      console.log('ERA VALUE:', era, 'RANGE:', JSON.stringify(range));
       if (range) {
         // Use discover for era-filtered results
-        movieEndpoint = `/discover/movie?region=US&sort_by=popularity.desc&primary_release_date.gte=${range.gte}&primary_release_date.lte=${range.lte}&vote_count.gte=50`;
-        showEndpoint  = `/discover/tv?sort_by=popularity.desc&first_air_date.gte=${range.gte}&first_air_date.lte=${range.lte}&vote_count.gte=20`;
+        movieEndpoint = '/discover/movie?sort_by=popularity.desc&primary_release_date.gte=' + range.gte + '&primary_release_date.lte=' + range.lte + '&vote_count.gte=50';
+        showEndpoint  = '/discover/tv?sort_by=popularity.desc&first_air_date.gte=' + range.gte + '&first_air_date.lte=' + range.lte + '&vote_count.gte=20';
       } else {
         // Default: now playing / on air
         movieEndpoint = '/movie/now_playing?region=US&page=1';
         showEndpoint  = '/tv/on_the_air?page=1';
       }
+      console.log('MOVIE ENDPOINT:', movieEndpoint);
 
       const fetchMovies = type !== 'tv'  ? tmdb(movieEndpoint, KEY) : Promise.resolve({ results: [] });
       const fetchShows  = type !== 'movie' ? tmdb(showEndpoint, KEY)  : Promise.resolve({ results: [] });
