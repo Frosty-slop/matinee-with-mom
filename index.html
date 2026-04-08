@@ -319,8 +319,11 @@
     };
 
     async function tmdbCall(action, params) {
-      const qs = new URLSearchParams({ action, ...params }).toString();
-      const res = await fetch('/.netlify/functions/tmdb?' + qs);
+      var allParams = Object.assign({ action: action }, params || {});
+      var qs = Object.keys(allParams).map(function(k) {
+        return encodeURIComponent(k) + '=' + encodeURIComponent(allParams[k]);
+      }).join('&');
+      var res = await fetch('/.netlify/functions/tmdb?' + qs);
       if (!res.ok) throw new Error('TMDB error ' + res.status);
       return res.json();
     }
