@@ -363,7 +363,7 @@
       return card;
     }
 
-    async function buildPosterRows(movieGridId, tvGridId, era, type) {
+    async function buildPosterRows(movieGridId, tvGridId, era, type, mood) {
       era  = era  || 'any';
       type = type || 'both';
       var mGrid = document.getElementById(movieGridId);
@@ -378,7 +378,7 @@
       }
 
       try {
-        var data = await tmdbCall('trending', { era: era, type: type });
+        var data = await tmdbCall('trending', { era: era, type: type, mood: mood || 'any' });
         mGrid.innerHTML = ''; tGrid.innerHTML = '';
         if (type !== 'tv')    data.movies.forEach(function(m) { mGrid.appendChild(buildPosterCard(m)); });
         if (type !== 'movie') data.shows.forEach(function(s)  { tGrid.appendChild(buildPosterCard(s)); });
@@ -422,30 +422,30 @@
       btn.disabled = false;
     }
 
-    document.addEventListener('DOMContentLoaded', function() {
-      var inp = document.getElementById('d-custom-input');
-      if (inp) inp.addEventListener('keydown', function(e) { if (e.key === 'Enter') fetchSuggestionsDetail(); });
+    // Keydown listener for detail search input
+    document.getElementById('d-custom-input').addEventListener('keydown', function(e) { if (e.key === 'Enter') fetchSuggestionsDetail(); });
 
-      // Refresh poster rows when filters change on home page
-      function onHomeFilterChange() {
-        var era  = document.getElementById('era-select').value;
-        var type = document.getElementById('type-select').value;
-        buildPosterRows('movie-grid', 'tv-grid', era, type);
-      }
-      document.getElementById('era-select').addEventListener('change', onHomeFilterChange);
-      document.getElementById('type-select').addEventListener('change', onHomeFilterChange);
-      document.getElementById('mood-select').addEventListener('change', onHomeFilterChange);
+    // Refresh poster rows when filters change on home page
+    function onHomeFilterChange() {
+      var era  = document.getElementById('era-select').value;
+      var type = document.getElementById('type-select').value;
+      var mood = document.getElementById('mood-select').value;
+      buildPosterRows('movie-grid', 'tv-grid', era, type, mood);
+    }
+    document.getElementById('era-select').addEventListener('change', onHomeFilterChange);
+    document.getElementById('type-select').addEventListener('change', onHomeFilterChange);
+    document.getElementById('mood-select').addEventListener('change', onHomeFilterChange);
 
-      // Refresh poster rows when filters change on detail page
-      function onDetailFilterChange() {
-        var era  = document.getElementById('d-era-select').value;
-        var type = document.getElementById('d-type-select').value;
-        buildPosterRows('d-movie-grid', 'd-tv-grid', era, type);
-      }
-      document.getElementById('d-era-select').addEventListener('change', onDetailFilterChange);
-      document.getElementById('d-type-select').addEventListener('change', onDetailFilterChange);
-      document.getElementById('d-mood-select').addEventListener('change', onDetailFilterChange);
-    });
+    // Refresh poster rows when filters change on detail page
+    function onDetailFilterChange() {
+      var era  = document.getElementById('d-era-select').value;
+      var type = document.getElementById('d-type-select').value;
+      var mood = document.getElementById('d-mood-select').value;
+      buildPosterRows('d-movie-grid', 'd-tv-grid', era, type, mood);
+    }
+    document.getElementById('d-era-select').addEventListener('change', onDetailFilterChange);
+    document.getElementById('d-type-select').addEventListener('change', onDetailFilterChange);
+    document.getElementById('d-mood-select').addEventListener('change', onDetailFilterChange);
 
     async function fetchSuggestionsDetail() {
       var btn = document.getElementById('d-suggest-btn');
@@ -511,7 +511,7 @@
       window.scrollTo(0, 0);
       if (!document.getElementById('d-movie-grid').dataset.built) {
         document.getElementById('d-movie-grid').dataset.built = '1';
-        buildPosterRows('d-movie-grid', 'd-tv-grid', 'any', 'both');
+        buildPosterRows('d-movie-grid', 'd-tv-grid', 'any', 'both', 'any');
       }
     }
 
@@ -592,7 +592,7 @@
       }
     }
 
-    buildPosterRows('movie-grid', 'tv-grid', 'any', 'both');
+    buildPosterRows('movie-grid', 'tv-grid', 'any', 'both', 'any');
   </script>
 </body>
 </html>
