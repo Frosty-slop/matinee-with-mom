@@ -259,11 +259,11 @@ exports.handler = async (event) => {
       if (range) {
         // Use discover with certification filter for era-filtered results
         movieEndpoint = '/discover/movie?sort_by=popularity.desc&primary_release_date.gte=' + range.gte + '&primary_release_date.lte=' + range.lte + '&vote_count.gte=50&certification_country=US&certification.lte=PG-13&without_keywords=210024' + movieGenreFilter + movieExcludeFilter;
-        showEndpoint  = '/discover/tv?sort_by=popularity.desc&first_air_date.gte=' + range.gte + '&first_air_date.lte=' + range.lte + '&vote_count.gte=20&certification_country=US&certification.lte=TV-14' + tvKidsExclude + '&without_keywords=210024' + tvGenreFilter + tvExcludeFilter;
+        showEndpoint  = '/discover/tv?sort_by=popularity.desc&first_air_date.gte=' + range.gte + '&first_air_date.lte=' + range.lte + '&vote_count.gte=20' + tvKidsExclude + '&without_keywords=210024' + tvGenreFilter + tvExcludeFilter;
       } else {
         // Default: now playing / on air — use discover so we can filter by rating
         movieEndpoint = '/discover/movie?sort_by=popularity.desc&primary_release_date.gte=2024-01-01&vote_count.gte=50&certification_country=US&certification.lte=PG-13&without_keywords=210024' + movieGenreFilter + movieExcludeFilter;
-        showEndpoint  = '/discover/tv?sort_by=popularity.desc&first_air_date.gte=2024-01-01&vote_count.gte=20&certification_country=US&certification.lte=TV-14' + tvKidsExclude + '&without_keywords=210024' + tvGenreFilter + tvExcludeFilter;
+        showEndpoint  = '/discover/tv?sort_by=popularity.desc&first_air_date.gte=2024-01-01&vote_count.gte=20' + tvKidsExclude + '&without_keywords=210024' + tvGenreFilter + tvExcludeFilter;
       }
 
       const fetchMovies = type !== 'tv'    ? tmdb(movieEndpoint, KEY) : Promise.resolve({ results: [] });
@@ -271,18 +271,30 @@ exports.handler = async (event) => {
 
       const [movies, shows] = await Promise.all([fetchMovies, fetchShows]);
 
-      // Secondary safety filter in case TMDB certification data is incomplete
-      const blockedMovieRatings = ['R', 'NC-17', 'X'];
-      const blockedTvRatings    = ['TV-MA'];
-
       const safeMovies = (movies.results || [])
         .filter(i => !i.adult)
         .slice(0, 8)
         .map(i => mapItem(i, 'movie'));
 
-      const safeShows = (shows.results || [])
+      // For TV shows, fetch content ratings in parallel and filter out TV-MA
+      const showResults = (shows.results || []).slice(0, 12); // fetch extra so we have 8 after filtering
+      const showRatings = await Promise.all(
+        showResults.map(async show => {
+          try {
+            const details = await tmdb(`/tv/${show.id}/content_ratings`, KEY);
+            const usRating = (details.results || []).find(r => r.iso_3166_1 === 'US');
+            return { show, rating: usRating?.rating || null };
+          } catch {
+            return { show, rating: null };
+          }
+        })
+      );
+
+      const blockedTvRatings = ['TV-MA'];
+      const safeShows = showRatings
+        .filter(({ rating }) => !rating || !blockedTvRatings.includes(rating))
         .slice(0, 8)
-        .map(i => mapItem(i, 'tv'));
+        .map(({ show }) => mapItem(show, 'tv'));
 
       return {
         statusCode: 200,
