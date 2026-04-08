@@ -436,22 +436,20 @@
         var type = document.getElementById('type-select').value;
         tmdbPosterData = null; lastFilterKey = '';
         buildPosterRows('movie-grid', 'tv-grid', era, type);
-        fetchSuggestions();
       }
       document.getElementById('era-select').addEventListener('change', onHomeFilterChange);
       document.getElementById('type-select').addEventListener('change', onHomeFilterChange);
-      document.getElementById('mood-select').addEventListener('change', fetchSuggestions);
+      document.getElementById('mood-select').addEventListener('change', onHomeFilterChange);
 
       // Refresh poster rows when filters change on detail page
       function onDetailFilterChange() {
         var era  = document.getElementById('d-era-select').value;
         var type = document.getElementById('d-type-select').value;
         buildPosterRows('d-movie-grid', 'd-tv-grid', era, type);
-        fetchSuggestionsDetail();
       }
       document.getElementById('d-era-select').addEventListener('change', onDetailFilterChange);
       document.getElementById('d-type-select').addEventListener('change', onDetailFilterChange);
-      document.getElementById('d-mood-select').addEventListener('change', fetchSuggestionsDetail);
+      document.getElementById('d-mood-select').addEventListener('change', onDetailFilterChange);
     });
 
     async function fetchSuggestionsDetail() {
