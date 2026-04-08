@@ -276,8 +276,8 @@ exports.handler = async (event) => {
         .slice(0, 8)
         .map(i => mapItem(i, 'movie'));
 
-      // For TV shows, fetch content ratings in parallel and filter out TV-MA
-      const showResults = (shows.results || []).slice(0, 12); // fetch extra so we have 8 after filtering
+      // Fetch content ratings for TV shows and filter out confirmed TV-MA
+      const showResults = (shows.results || []).slice(0, 20);
       const showRatings = await Promise.all(
         showResults.map(async show => {
           try {
@@ -285,14 +285,14 @@ exports.handler = async (event) => {
             const usRating = (details.results || []).find(r => r.iso_3166_1 === 'US');
             return { show, rating: usRating?.rating || null };
           } catch {
-            return { show, rating: null };
+            return { show, rating: null }; // if rating fetch fails, include the show
           }
         })
       );
 
-      const blockedTvRatings = ['TV-MA'];
+      // Only block shows explicitly rated TV-MA — shows with no rating are allowed through
       const safeShows = showRatings
-        .filter(({ rating }) => !rating || !blockedTvRatings.includes(rating))
+        .filter(({ rating }) => rating !== 'TV-MA')
         .slice(0, 8)
         .map(({ show }) => mapItem(show, 'tv'));
 
