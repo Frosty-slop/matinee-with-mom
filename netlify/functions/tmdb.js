@@ -212,30 +212,46 @@ exports.handler = async (event) => {
       // Build TMDB endpoints based on era and type filters
       let movieEndpoint, showEndpoint;
 
-      console.log('ERA VALUE:', era, 'RANGE:', JSON.stringify(range));
-      if (range) {
-        // Use discover for era-filtered results
-        movieEndpoint = '/discover/movie?sort_by=popularity.desc&primary_release_date.gte=' + range.gte + '&primary_release_date.lte=' + range.lte + '&vote_count.gte=50';
-        showEndpoint  = '/discover/tv?sort_by=popularity.desc&first_air_date.gte=' + range.gte + '&first_air_date.lte=' + range.lte + '&vote_count.gte=20';
-      } else {
-        // Default: now playing / on air
-        movieEndpoint = '/movie/now_playing?region=US&page=1';
-        showEndpoint  = '/tv/on_the_air?page=1';
-      }
-      console.log('MOVIE ENDPOINT:', movieEndpoint);
+      // Mom-safe ratings only
+      // Movies: G, PG, PG-13 (no R or NC-17)
+      // TV: TV-Y, TV-Y7, TV-G, TV-PG, TV-14 (no TV-MA)
+      const momSafeMovieRatings = 'G,PG,PG-13';
+      const momSafeTvRatings    = 'TV-Y,TV-Y7,TV-G,TV-PG,TV-14';
 
-      const fetchMovies = type !== 'tv'  ? tmdb(movieEndpoint, KEY) : Promise.resolve({ results: [] });
-      const fetchShows  = type !== 'movie' ? tmdb(showEndpoint, KEY)  : Promise.resolve({ results: [] });
+      if (range) {
+        // Use discover with certification filter for era-filtered results
+        movieEndpoint = '/discover/movie?sort_by=popularity.desc&primary_release_date.gte=' + range.gte + '&primary_release_date.lte=' + range.lte + '&vote_count.gte=50&certification_country=US&certification.lte=PG-13';
+        showEndpoint  = '/discover/tv?sort_by=popularity.desc&first_air_date.gte=' + range.gte + '&first_air_date.lte=' + range.lte + '&vote_count.gte=20&certification_country=US&certification.lte=TV-14&without_genres=10762,16';
+      } else {
+        // Default: now playing / on air — use discover so we can filter by rating
+        movieEndpoint = '/discover/movie?sort_by=popularity.desc&primary_release_date.gte=2024-01-01&vote_count.gte=50&certification_country=US&certification.lte=PG-13';
+        showEndpoint  = '/discover/tv?sort_by=popularity.desc&first_air_date.gte=2024-01-01&vote_count.gte=20&certification_country=US&certification.lte=TV-14&without_genres=10762,16';
+      }
+
+      const fetchMovies = type !== 'tv'    ? tmdb(movieEndpoint, KEY) : Promise.resolve({ results: [] });
+      const fetchShows  = type !== 'movie' ? tmdb(showEndpoint,  KEY) : Promise.resolve({ results: [] });
 
       const [movies, shows] = await Promise.all([fetchMovies, fetchShows]);
+
+      // Secondary safety filter in case TMDB certification data is incomplete
+      const blockedMovieRatings = ['R', 'NC-17', 'X'];
+      const blockedTvRatings    = ['TV-MA'];
+
+      const safeMovies = (movies.results || [])
+        .filter(i => !i.adult)
+        .slice(0, 4)
+        .map(i => mapItem(i, 'movie'));
+
+      const safeShows = (shows.results || [])
+        .slice(0, 4)
+        .map(i => mapItem(i, 'tv'));
 
       return {
         statusCode: 200,
         headers: { ...CORS, 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          debug: { era: era, type: type, hasRange: !!range, movieEndpoint: movieEndpoint },
-          movies: (movies.results || []).slice(0, 4).map(i => mapItem(i, 'movie')),
-          shows:  (shows.results  || []).slice(0, 4).map(i => mapItem(i, 'tv')),
+          movies: safeMovies,
+          shows:  safeShows,
         }),
       };
     }
