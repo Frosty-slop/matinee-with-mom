@@ -176,8 +176,10 @@ exports.handler = async (event) => {
 
     // ── BROWSE: filter-aware poster rows ──
     if (action === 'trending') {
+      console.log('queryStringParameters:', JSON.stringify(event.queryStringParameters));
       const era  = event.queryStringParameters?.era  || 'any';
       const type = event.queryStringParameters?.type || 'both';
+      console.log('era:', era, 'type:', type);
 
       // Map era to TMDB date range
       const eraRanges = {
