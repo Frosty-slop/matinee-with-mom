@@ -9,101 +9,40 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --pink:       #D4537E;
-      --pink-dark:  #993556;
-      --pink-deep:  #72243E;
-      --pink-light: #FBEAF0;
-      --pink-mid:   #F4C0D1;
-      --bg:         #faf9f7;
-      --bg2:        #f3f0ec;
-      --text:       #1a1614;
-      --text2:      #5a4f4a;
-      --text3:      #9c8f89;
-      --border:     rgba(26,22,20,0.10);
-      --border2:    rgba(26,22,20,0.18);
-      --radius:     12px;
-      --radius-sm:  8px;
+      --pink: #D4537E; --pink-dark: #993556; --pink-deep: #72243E;
+      --pink-light: #FBEAF0; --pink-mid: #F4C0D1;
+      --bg: #faf9f7; --bg2: #f3f0ec; --text: #1a1614; --text2: #5a4f4a; --text3: #9c8f89;
+      --border: rgba(26,22,20,0.10); --border2: rgba(26,22,20,0.18);
+      --radius: 12px; --radius-sm: 8px;
     }
-
     html { scroll-behavior: smooth; }
     body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
-
-    /* ─── HOME ─── */
     #home-page.hidden { display: none; }
-
-    header {
-      text-align: center; padding: 4rem 2rem 3rem;
-      border-bottom: 1px solid var(--border); position: relative; overflow: hidden;
-    }
-    header::before {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(212,83,126,0.08) 0%, transparent 70%);
-      pointer-events: none;
-    }
+    header { text-align: center; padding: 4rem 2rem 3rem; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+    header::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(212,83,126,0.08) 0%, transparent 70%); pointer-events: none; }
     .eyebrow { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--pink); margin-bottom: 0.75rem; font-weight: 500; }
     h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 400; line-height: 1.1; margin-bottom: 0.6rem; }
     h1 em { font-style: italic; color: var(--pink); }
     .tagline { font-size: 16px; color: var(--text2); font-weight: 300; max-width: 400px; margin: 0 auto; }
-
-    #api-banner {
-      background: #fffbf0; border: 1px solid #f0d080; border-radius: var(--radius-sm);
-      padding: 16px 20px; margin: 1.5rem auto 0; max-width: 640px;
-      font-size: 13px; color: #7a5c00; display: flex; gap: 10px; text-align: left;
-    }
-    #api-banner.hidden { display: none; }
-    #api-key-input {
-      flex: 1; font-family: 'DM Sans', sans-serif; font-size: 13px;
-      padding: 6px 10px; border-radius: var(--radius-sm);
-      border: 1px solid #e0c060; background: white; color: var(--text); outline: none;
-    }
-    #api-key-save {
-      font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
-      padding: 6px 14px; border-radius: var(--radius-sm);
-      background: #7a5c00; color: white; border: none; cursor: pointer;
-    }
-    #api-key-save:hover { background: #5a4400; }
-
     main { max-width: 1100px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
-
     .controls-row { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 1rem; align-items: flex-end; }
     .select-group { display: flex; flex-direction: column; gap: 5px; flex: 1; min-width: 130px; }
     .select-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); font-weight: 500; }
-    select {
-      font-family: 'DM Sans', sans-serif; font-size: 14px; padding: 9px 36px 9px 12px;
-      border-radius: var(--radius-sm); border: 1px solid var(--border2);
-      background: white; color: var(--text); cursor: pointer; appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%239c8f89' d='M2 4l4 4 4-4'/%3E%3C/svg%3E");
-      background-repeat: no-repeat; background-position: right 12px center;
-      outline: none; transition: border-color 0.15s; width: 100%;
-    }
+    select { font-family: 'DM Sans', sans-serif; font-size: 14px; padding: 9px 36px 9px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border2); background: white; color: var(--text); cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%239c8f89' d='M2 4l4 4 4-4'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; outline: none; transition: border-color 0.15s; width: 100%; }
     select:focus, select:hover { border-color: var(--pink); }
-
     .search-row { display: flex; gap: 10px; align-items: center; margin-bottom: 2.5rem; }
-    .search-input {
-      flex: 1; font-family: 'DM Sans', sans-serif; font-size: 14px;
-      padding: 10px 16px; border-radius: var(--radius); border: 1px solid var(--border2);
-      background: white; color: var(--text); outline: none; transition: border-color 0.15s, box-shadow 0.15s;
-    }
+    .search-input { flex: 1; font-family: 'DM Sans', sans-serif; font-size: 14px; padding: 10px 16px; border-radius: var(--radius); border: 1px solid var(--border2); background: white; color: var(--text); outline: none; transition: border-color 0.15s, box-shadow 0.15s; }
     .search-input:focus { border-color: var(--pink); box-shadow: 0 0 0 3px rgba(212,83,126,0.10); }
     .search-input::placeholder { color: var(--text3); }
-    .suggest-btn {
-      font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500;
-      padding: 10px 24px; border-radius: var(--radius); background: var(--pink-dark);
-      color: var(--pink-light); border: none; cursor: pointer;
-      transition: background 0.15s, transform 0.1s; white-space: nowrap;
-    }
+    .suggest-btn { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; padding: 10px 24px; border-radius: var(--radius); background: var(--pink-dark); color: var(--pink-light); border: none; cursor: pointer; transition: background 0.15s, transform 0.1s; white-space: nowrap; }
     .suggest-btn:hover:not(:disabled) { background: var(--pink-deep); transform: translateY(-1px); }
     .suggest-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-
     .section-header { display: flex; align-items: baseline; gap: 10px; margin-bottom: 1rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--border); }
     .section-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 400; font-style: italic; color: var(--text2); }
     .section-badge { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; background: var(--pink-light); color: var(--pink-dark); border: 1px solid var(--pink-mid); padding: 2px 9px; border-radius: 999px; font-weight: 500; }
-
     .poster-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 2.5rem; }
     @media (max-width: 700px) { .poster-grid { grid-template-columns: repeat(2, 1fr); } }
-
     .poster-card { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); background: var(--bg2); cursor: pointer; position: relative; transition: border-color 0.15s, transform 0.2s, box-shadow 0.2s; }
     .poster-card:hover { border-color: var(--pink); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(212,83,126,0.15); }
     .poster-face { width: 100%; aspect-ratio: 2/3; position: relative; overflow: hidden; }
@@ -116,7 +55,6 @@
     .poster-name { font-family: 'Playfair Display', serif; font-size: 12px; font-weight: 600; color: white; line-height: 1.3; text-shadow: 0 1px 4px rgba(0,0,0,0.4); }
     .poster-year { font-size: 10px; color: rgba(255,255,255,0.65); margin-top: 2px; }
     .mom-badge { position: absolute; top: 8px; right: 8px; background: rgba(255,255,255,0.92); color: var(--pink-dark); font-size: 9px; font-weight: 600; padding: 3px 7px; border-radius: 999px; border: 1px solid var(--pink-mid); backdrop-filter: blur(4px); }
-
     .results-section { margin-top: 0.5rem; }
     .results-heading { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 400; font-style: italic; color: var(--text2); margin-bottom: 1rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--border); }
     .results-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
@@ -130,86 +68,63 @@
     .result-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 12px; }
     .result-click-hint { font-size: 11px; color: var(--pink); margin-top: 10px; font-weight: 500; }
     .tag { font-size: 11px; padding: 3px 10px; border-radius: 999px; background: var(--pink-light); color: var(--pink-dark); border: 1px solid var(--pink-mid); }
-
     .empty-state { text-align: center; padding: 4rem 2rem; color: var(--text3); font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.15rem; }
     .loading-state { text-align: center; padding: 4rem 2rem; display: flex; flex-direction: column; align-items: center; gap: 14px; color: var(--text2); font-size: 14px; }
     .spinner { width: 28px; height: 28px; border: 2.5px solid var(--border2); border-top-color: var(--pink); border-radius: 50%; animation: spin 0.75s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
     .error-state { background: #fff5f5; border: 1px solid #fcc; border-radius: var(--radius); padding: 1.2rem 1.5rem; color: #c0392b; font-size: 14px; text-align: center; }
-
-    footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border); font-size: 12px; color: var(--text3); }
+    footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border); font-size: 12px; color: var(--text3); line-height: 1.8; }
     footer a { color: var(--pink); text-decoration: none; }
     footer a:hover { text-decoration: underline; }
+    .tmdb-logo { height: 13px; vertical-align: middle; margin-left: 4px; }
 
-    /* ─── DETAIL PAGE ─── */
+    /* DETAIL */
     #detail-page { display: none; min-height: 100vh; background: var(--bg); }
     #detail-page.visible { display: block; }
-
-    .detail-nav {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(250,249,247,0.93); backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border); padding: 14px 2rem;
-      display: flex; align-items: center; gap: 16px;
-    }
-    .back-btn {
-      font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
-      color: var(--text2); background: none; border: 1px solid var(--border2);
-      padding: 6px 16px; border-radius: 999px; cursor: pointer; transition: all 0.15s;
-    }
+    .detail-nav { position: sticky; top: 0; z-index: 100; background: rgba(250,249,247,0.93); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 14px 2rem; display: flex; align-items: center; gap: 16px; }
+    .back-btn { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; color: var(--text2); background: none; border: 1px solid var(--border2); padding: 6px 16px; border-radius: 999px; cursor: pointer; transition: all 0.15s; }
     .back-btn:hover { border-color: var(--pink); color: var(--pink); }
     .detail-nav-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 400; font-style: italic; color: var(--text2); }
-
     #detail-loading { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 70vh; gap: 16px; color: var(--text2); font-size: 14px; }
     #detail-loading.hidden { display: none; }
     #detail-content { display: none; }
     #detail-content.visible { display: block; }
-
-    /* TRAILER */
     .detail-trailer { width: 100%; background: #080504; position: relative; padding-bottom: 56.25%; }
     .detail-trailer iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
     .trailer-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; color: rgba(255,255,255,0.4); font-size: 14px; }
     .trailer-placeholder .play-icon { font-size: 56px; }
-
-    /* DETAIL BODY */
-    .detail-body { max-width: 920px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
-
+    .detail-body { max-width: 920px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
     .detail-eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--pink); margin-bottom: 0.5rem; font-weight: 500; }
-    .detail-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 600; line-height: 1.1; margin-bottom: 0.5rem; }
+    .detail-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 600; line-height: 1.1; margin-bottom: 0.4rem; }
+    .detail-tagline { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1rem; color: var(--text3); margin-bottom: 0.6rem; }
     .detail-meta { font-size: 14px; color: var(--text3); display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 1.75rem; }
     .detail-meta-sep { color: var(--border2); }
-
-    /* SCORES */
     .scores-row { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 2rem; }
-    .score-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 20px; display: flex; align-items: center; gap: 12px; flex: 1; min-width: 150px; }
+    .score-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 20px; display: flex; align-items: center; gap: 12px; flex: 1; min-width: 150px; text-decoration: none; color: inherit; transition: border-color 0.15s; }
+    .score-card:hover { border-color: var(--pink); }
     .score-logo { font-size: 28px; line-height: 1; }
     .score-label { font-size: 10px; color: var(--text3); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 2px; }
     .score-value { font-family: 'Playfair Display', serif; font-size: 1.7rem; font-weight: 600; line-height: 1; }
-    .score-value.rt-color { color: #e74c3c; }
-    .score-value.imdb-color { color: #d4a017; }
-    .score-sub { font-size: 11px; color: var(--text3); margin-top: 2px; line-height: 1.4; max-width: 160px; }
+    .score-value.tmdb-color { color: #01b4e4; }
+    .score-sub { font-size: 11px; color: var(--text3); margin-top: 2px; }
     .rating-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 20px; display: flex; align-items: center; gap: 12px; }
-    .rating-badge { font-weight: 700; font-size: 18px; border: 2.5px solid var(--text); border-radius: 4px; padding: 2px 9px; letter-spacing: 0.04em; white-space: nowrap; }
-    .rating-desc { font-size: 12px; color: var(--text2); margin-top: 2px; max-width: 180px; line-height: 1.4; }
-
-    /* TWO COL */
+    .rating-badge { font-weight: 700; font-size: 18px; border: 2.5px solid var(--text); border-radius: 4px; padding: 2px 9px; letter-spacing: 0.04em; }
     .detail-cols { display: grid; grid-template-columns: 1fr 300px; gap: 2rem; margin-bottom: 2rem; }
     @media (max-width: 720px) { .detail-cols { grid-template-columns: 1fr; } }
     .detail-section-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text3); font-weight: 500; margin-bottom: 0.6rem; }
     .detail-synopsis { font-size: 15px; color: var(--text2); line-height: 1.8; font-weight: 300; }
-
+    .detail-cast { font-size: 13px; color: var(--text3); margin-top: 12px; line-height: 1.6; }
     .detail-sidebar { display: flex; flex-direction: column; gap: 14px; }
     .sidebar-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; }
-
     .streaming-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
-    .streaming-link { display: inline-flex; align-items: center; gap: 6px; padding: 7px 13px; border-radius: var(--radius-sm); border: 1px solid var(--border2); background: var(--bg2); font-size: 13px; font-weight: 500; color: var(--text); text-decoration: none; transition: all 0.15s; }
+    .streaming-link { display: inline-flex; align-items: center; gap: 7px; padding: 7px 13px; border-radius: var(--radius-sm); border: 1px solid var(--border2); background: var(--bg2); font-size: 13px; font-weight: 500; color: var(--text); text-decoration: none; transition: all 0.15s; }
     .streaming-link:hover { border-color: var(--pink); color: var(--pink); background: var(--pink-light); }
-
+    .streaming-link img { width: 20px; height: 20px; border-radius: 4px; object-fit: cover; }
     .mom-verdict-card { background: var(--pink-light); border: 1px solid var(--pink-mid); border-radius: var(--radius); padding: 16px 18px; }
     .verdict-hearts { font-size: 18px; letter-spacing: 3px; margin-bottom: 6px; color: var(--pink); }
     .verdict-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pink-dark); font-weight: 500; margin-bottom: 5px; }
     .verdict-text { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-style: italic; color: var(--pink-deep); line-height: 1.5; }
-
-    /* RACY SECTION */
+    .verdict-loading { font-size: 12px; color: var(--pink-dark); opacity: 0.7; font-style: italic; }
     .racy-section { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 24px; margin-bottom: 2rem; }
     .racy-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
     .racy-icon { font-size: 24px; }
@@ -217,66 +132,24 @@
     .racy-subtitle { font-size: 13px; color: var(--text3); margin-top: 2px; }
     .racy-item { display: flex; gap: 14px; padding: 12px 0; border-top: 1px solid var(--border); align-items: flex-start; }
     .racy-dot { flex-shrink: 0; width: 10px; height: 10px; border-radius: 50%; margin-top: 4px; }
-    .racy-low { background: #27ae60; }
-    .racy-medium { background: #f39c12; }
-    .racy-high { background: #e74c3c; }
+    .racy-low { background: #27ae60; } .racy-medium { background: #f39c12; } .racy-high { background: #e74c3c; }
     .racy-headline { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
     .racy-detail { font-size: 13px; color: var(--text2); line-height: 1.55; font-weight: 300; }
     .racy-legend { display: flex; gap: 16px; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border); }
     .racy-legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--text3); }
     .racy-legend-dot { width: 8px; height: 8px; border-radius: 50%; }
-
-    /* ─── DETAIL BROWSE SECTION ─── */
-    .detail-browse {
-      border-top: 1px solid var(--border);
-      background: var(--bg2);
-      margin-top: 0;
-    }
-    .detail-browse-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 2.5rem 1.5rem 4rem;
-    }
-    </style>
+    .detail-browse { border-top: 1px solid var(--border); background: var(--bg2); }
+    .detail-browse-inner { max-width: 1100px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+  </style>
 </head>
 <body>
 
-  <!-- ══ HOME PAGE ══ -->
   <div id="home-page">
     <header>
       <p class="eyebrow">Your Mom-Approved Cinema Guide</p>
       <h1>Matinee with <em>Mom</em></h1>
       <p class="tagline">Handpicked films &amp; shows mom will actually enjoy</p>
-      <div id="api-banner">
-        <div style="flex:1;">
-          <div style="font-weight:500;margin-bottom:10px;">🔑 Add your API keys to unlock all features</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-            <div>
-              <div style="font-size:11px;font-weight:500;margin-bottom:4px;">Anthropic (AI suggestions &amp; details)</div>
-              <div style="font-size:11px;opacity:0.75;margin-bottom:5px;"><a href="https://console.anthropic.com/account/keys" target="_blank" style="color:#7a5c00;">console.anthropic.com</a> → API Keys → Create Key</div>
-              <div style="display:flex;gap:6px;">
-                <input id="api-key-input" type="password" placeholder="sk-ant-api03-…" style="flex:1;" />
-              </div>
-            </div>
-            <div>
-              <div style="font-size:11px;font-weight:500;margin-bottom:4px;">YouTube (trailers)</div>
-              <div style="font-size:11px;opacity:0.75;margin-bottom:5px;"><a href="https://console.cloud.google.com/apis/credentials" target="_blank" style="color:#7a5c00;">console.cloud.google.com</a> → Create Credentials → API Key → enable YouTube Data API v3</div>
-              <div style="display:flex;gap:6px;">
-                <input id="yt-key-input" type="password" placeholder="AIza…" style="flex:1;" />
-              </div>
-            </div>
-          </div>
-          <div style="margin-top:10px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
-            <button id="api-key-save" onclick="saveKey()" style="font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;padding:7px 18px;border-radius:8px;background:#7a5c00;color:white;border:none;cursor:pointer;">Save Keys</button>
-            <span id="save-status" style="font-size:12px;color:#7a5c00;"></span>
-          </div>
-          <div style="margin-top:10px;padding:8px 10px;background:rgba(122,92,0,0.08);border-radius:6px;font-size:11px;line-height:1.5;">
-            🔒 <strong>Keep your keys private.</strong> Never share them in chat, email, or screenshots — treat them like passwords. These keys are stored only in your browser and sent directly to Anthropic and YouTube. This site never sees them.
-          </div>
-        </div>
-      </div>
     </header>
-
     <main>
       <div class="controls-row">
         <div class="select-group">
@@ -306,67 +179,58 @@
             <option value="80s">Rad Era (1980s)</option>
             <option value="90s">Totally Awesome (1990s)</option>
             <option value="2000s">Y2K Vibes (2000s)</option>
-            <option value="2010s">Peak TV Era (2010–2019)</option>
-            <option value="2020s">Post-Pandemic Picks (2020–2025)</option>
+            <option value="2010s">Peak TV Era (2010-2019)</option>
+            <option value="2020s">Post-Pandemic Picks (2020-2025)</option>
             <option value="new">Hot Off the Press (2026)</option>
           </select>
         </div>
       </div>
-
       <div class="search-row">
-        <input class="search-input" id="custom-input" type="text" placeholder="Anything specific? e.g. 'love stories', 'British humor', 'no sad endings'…" maxlength="140" />
-        <button class="suggest-btn" id="suggest-btn" onclick="fetchSuggestions()">Suggest ✦</button>
+        <input class="search-input" id="custom-input" type="text" placeholder="Anything specific? e.g. 'love stories', 'British humor', 'no sad endings'..." maxlength="140" />
+        <button class="suggest-btn" id="suggest-btn" onclick="fetchSuggestions()">Suggest</button>
       </div>
-
       <div class="section-header">
         <span class="section-title">Movies</span>
         <span class="section-badge">Now in theaters &amp; streaming</span>
       </div>
       <div class="poster-grid" id="movie-grid"></div>
-
       <div class="section-header">
         <span class="section-title">TV Shows</span>
         <span class="section-badge">Currently airing</span>
       </div>
       <div class="poster-grid" id="tv-grid"></div>
-
       <div class="results-section" id="results-area">
-        <div class="empty-state">Choose your filters above and hit Suggest ✦</div>
+        <div class="empty-state">Choose your filters above and hit Suggest</div>
       </div>
     </main>
-
     <footer>
-      Images via <a href="https://www.wikipedia.org" target="_blank">Wikipedia</a> (CC BY-SA).
-      AI powered by <a href="https://www.anthropic.com" target="_blank">Anthropic Claude</a>.
+      Data provided by<img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg" class="tmdb-logo" alt="TMDB" />
+      &nbsp;|&nbsp; AI by <a href="https://www.anthropic.com" target="_blank">Anthropic Claude</a>
     </footer>
   </div>
 
-  <!-- ══ DETAIL PAGE ══ -->
   <div id="detail-page">
     <nav class="detail-nav">
-      <button class="back-btn" onclick="goHome()">← Back</button>
+      <button class="back-btn" onclick="goHome()">Back</button>
       <span class="detail-nav-title" id="detail-nav-title"></span>
     </nav>
-
     <div id="detail-loading">
       <div class="spinner"></div>
-      <span>Researching this one for movie night…</span>
+      <span>Loading...</span>
     </div>
-
     <div id="detail-content">
       <div class="detail-trailer" id="detail-trailer"></div>
-
       <div class="detail-body">
         <div class="detail-eyebrow" id="d-eyebrow"></div>
         <div class="detail-title" id="d-title"></div>
+        <div class="detail-tagline" id="d-tagline"></div>
         <div class="detail-meta" id="d-meta"></div>
-
         <div class="scores-row" id="d-scores"></div>
-
         <div class="detail-cols">
           <div>
             <div class="detail-section-label">Synopsis</div>
             <div class="detail-synopsis" id="d-synopsis"></div>
+            <div class="detail-cast" id="d-cast"></div>
           </div>
           <div class="detail-sidebar">
             <div class="sidebar-card">
@@ -380,12 +244,11 @@
             </div>
           </div>
         </div>
-
-        <div class="racy-section" id="d-racy-section">
+        <div class="racy-section" id="d-racy-section" style="display:none;">
           <div class="racy-header">
-            <span class="racy-icon">🙈</span>
+            <span class="racy-icon">&#x1F648;</span>
             <div>
-              <div class="racy-title">Before You Press Play with Mom…</div>
+              <div class="racy-title">Before You Press Play with Mom...</div>
               <div class="racy-subtitle">A heads-up on anything that might raise an eyebrow</div>
             </div>
           </div>
@@ -396,16 +259,10 @@
             <div class="racy-legend-item"><div class="racy-legend-dot" style="background:#e74c3c"></div> Notable</div>
           </div>
         </div>
-
-      </div><!-- /detail-body -->
-
-      <!-- ── KEEP BROWSING ── -->
+      </div>
       <div class="detail-browse">
         <div class="detail-browse-inner">
-          <div class="detail-browse-header">
-            <p class="eyebrow" style="text-align:left;margin-bottom:1.5rem;">Keep browsing</p>
-          </div>
-
+          <p class="eyebrow" style="text-align:left;margin-bottom:1.5rem;">Keep browsing</p>
           <div class="controls-row">
             <div class="select-group">
               <label class="select-label" for="d-type-select">Type</label>
@@ -434,460 +291,274 @@
                 <option value="80s">Rad Era (1980s)</option>
                 <option value="90s">Totally Awesome (1990s)</option>
                 <option value="2000s">Y2K Vibes (2000s)</option>
-                <option value="2010s">Peak TV Era (2010–2019)</option>
-                <option value="2020s">Post-Pandemic Picks (2020–2025)</option>
+                <option value="2010s">Peak TV Era (2010-2019)</option>
+                <option value="2020s">Post-Pandemic Picks (2020-2025)</option>
                 <option value="new">Hot Off the Press (2026)</option>
               </select>
             </div>
           </div>
-
           <div class="search-row">
-            <input class="search-input" id="d-custom-input" type="text" placeholder="Anything specific? e.g. 'love stories', 'British humor', 'no sad endings'…" maxlength="140" />
-            <button class="suggest-btn" id="d-suggest-btn" onclick="fetchSuggestionsDetail()">Suggest ✶</button>
+            <input class="search-input" id="d-custom-input" type="text" placeholder="Anything specific?..." maxlength="140" />
+            <button class="suggest-btn" id="d-suggest-btn" onclick="fetchSuggestionsDetail()">Suggest</button>
           </div>
-
-          <div class="section-header">
-            <span class="section-title">Movies</span>
-            <span class="section-badge">Now in theaters &amp; streaming</span>
-          </div>
+          <div class="section-header"><span class="section-title">Movies</span><span class="section-badge">Now in theaters &amp; streaming</span></div>
           <div class="poster-grid" id="d-movie-grid"></div>
-
-          <div class="section-header">
-            <span class="section-title">TV Shows</span>
-            <span class="section-badge">Currently airing</span>
-          </div>
+          <div class="section-header"><span class="section-title">TV Shows</span><span class="section-badge">Currently airing</span></div>
           <div class="poster-grid" id="d-tv-grid"></div>
-
-          <div class="results-section" id="d-results-area">
-            <div class="empty-state">Choose your filters above and hit Suggest ✶</div>
-          </div>
+          <div class="results-section" id="d-results-area"><div class="empty-state">Choose your filters above and hit Suggest</div></div>
         </div>
-      </div><!-- /detail-browse -->
-
-    </div><!-- /detail-content -->
-  </div><!-- /detail-page -->
+      </div>
+    </div>
+  </div>
 
   <script>
-    // ── API KEY ──
-    let ANTHROPIC_KEY = localStorage.getItem('wwm_api_key') || '';
-    let YOUTUBE_KEY    = localStorage.getItem('wwm_yt_key')  || '';
-    if (ANTHROPIC_KEY && YOUTUBE_KEY) {
-      document.getElementById('api-banner').classList.add('hidden');
-    } else {
-      // Pre-fill whatever is already saved so users can see status at a glance
-      if (ANTHROPIC_KEY) document.getElementById('api-key-input').value = ANTHROPIC_KEY;
-      if (YOUTUBE_KEY)   document.getElementById('yt-key-input').value  = YOUTUBE_KEY;
-      const missing = [];
-      if (!ANTHROPIC_KEY) missing.push('Anthropic');
-      if (!YOUTUBE_KEY)   missing.push('YouTube');
-      document.getElementById('save-status').textContent = missing.length < 2
-        ? `✓ ${missing[0] === 'YouTube' ? 'Anthropic' : 'YouTube'} key saved. Still need: ${missing.join('')} key.`
-        : '';
+    const eraLabels = {
+      'any':'','pre70':' from before 1970','70s':' from the 1970s',
+      '80s':' from the 1980s','90s':' from the 1990s','2000s':' from the 2000s',
+      '2010s':' from 2010 to 2019','2020s':' from 2020 to 2025','new':' released in 2026'
+    };
+
+    async function tmdbCall(action, params) {
+      const qs = new URLSearchParams({ action, ...params }).toString();
+      const res = await fetch('/.netlify/functions/tmdb?' + qs);
+      if (!res.ok) throw new Error('TMDB error ' + res.status);
+      return res.json();
     }
 
-    function saveKey() {
-      const antVal = document.getElementById('api-key-input').value.trim();
-      const ytVal  = document.getElementById('yt-key-input').value.trim();
-      if (!antVal.startsWith('sk-')) { alert('Please enter a valid Anthropic API key (starts with sk-ant-…)'); return; }
-      ANTHROPIC_KEY = antVal;
-      localStorage.setItem('wwm_api_key', antVal);
-      if (ytVal) {
-        YOUTUBE_KEY = ytVal;
-        localStorage.setItem('wwm_yt_key', ytVal);
-      }
-      const missing = [];
-      if (!ANTHROPIC_KEY) missing.push('Anthropic');
-      if (!YOUTUBE_KEY) missing.push('YouTube');
-      if (missing.length === 0) {
-        document.getElementById('api-banner').classList.add('hidden');
-      } else {
-        document.getElementById('save-status').textContent = `✓ Saved! Still missing: ${missing.join(' & ')} key.`;
-      }
+    async function callClaude(body) {
+      const res = await fetch('/.netlify/functions/claude', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+      if (!res.ok) { const e = await res.json().catch(()=>({})); throw new Error(e.error || 'Error ' + res.status); }
+      const data = await res.json();
+      return data.content.map(b => b.text || '').join('');
     }
 
-    // ── TITLES ──
-    const movies = [
-      { title: 'Inside Out 2',                     year: '2024', wiki: 'Inside_Out_2',                           fallback: '🌀' },
-      { title: 'Wicked',                           year: '2024', wiki: 'Wicked_(2024_film)',                      fallback: '🌿' },
-      { title: 'The Wild Robot',                   year: '2024', wiki: 'The_Wild_Robot_(film)',                   fallback: '🌲' },
-      { title: 'Bridget Jones: Mad About the Boy', year: '2025', wiki: 'Bridget_Jones:_Mad_About_the_Boy_(film)', fallback: '💌' },
-    ];
-    const tvShows = [
-      { title: 'Bridgerton', year: '2020–',     wiki: 'Bridgerton_(TV_series)', fallback: '🌸' },
-      { title: 'Shrinking',  year: '2023–',     wiki: 'Shrinking_(TV_series)',  fallback: '🌻' },
-      { title: 'The Pitt',   year: '2025–',     wiki: 'The_Pitt',              fallback: '🏥' },
-      { title: 'Ted Lasso',  year: '2020–2023', wiki: 'Ted_Lasso',             fallback: '⚽' },
-    ];
+    let tmdbPosterData = null;
 
-    // ── WIKI IMAGES ──
-    async function fetchWikiThumb(wikiTitle) {
-      try {
-        const res = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(wikiTitle)}`, { headers: { 'Api-User-Agent': 'MatineeWithMom/1.0' } });
-        if (!res.ok) return null;
-        const d = await res.json();
-        return d.originalimage?.source || d.thumbnail?.source || null;
-      } catch { return null; }
-    }
-
-    // ── POSTER ROWS ──
     function makeSkeleton() {
       const c = document.createElement('div');
       c.className = 'poster-card';
-      c.innerHTML = `<div class="poster-face"><div class="poster-skeleton"></div></div>`;
+      c.innerHTML = '<div class="poster-face"><div class="poster-skeleton"></div></div>';
       return c;
     }
 
-    async function buildRow(items, gridId) {
-      const grid = document.getElementById(gridId);
-      grid.innerHTML = '';
-      const placeholders = items.map(() => { const c = makeSkeleton(); grid.appendChild(c); return c; });
-      await Promise.all(items.map(async (item, i) => {
-        const imgUrl = await fetchWikiThumb(item.wiki);
-        const card = document.createElement('div');
-        card.className = 'poster-card';
-        card.innerHTML = `
-          <div class="poster-face">
-            <div class="fallback">${item.fallback}</div>
-            ${imgUrl ? `<img src="${imgUrl}" alt="${item.title}" loading="lazy" onerror="this.style.display='none'">` : ''}
-            <div class="poster-overlay">
-              <div class="poster-name">${item.title}</div>
-              <div class="poster-year">${item.year}</div>
-            </div>
-          </div>
-          <div class="mom-badge">Mom ✓</div>`;
-        card.addEventListener('click', () => openDetail(item.title));
-        grid.replaceChild(card, placeholders[i]);
-      }));
+    function buildPosterCard(item) {
+      const card = document.createElement('div');
+      card.className = 'poster-card';
+      card.innerHTML =
+        '<div class="poster-face">' +
+        '<div class="fallback">&#127916;</div>' +
+        (item.poster ? '<img src="' + item.poster + '" alt="' + item.title + '" loading="lazy" onerror="this.style.display=\'none\'">' : '') +
+        '<div class="poster-overlay"><div class="poster-name">' + item.title + '</div><div class="poster-year">' + (item.year || '') + '</div></div>' +
+        '</div><div class="mom-badge">Mom</div>';
+      card.addEventListener('click', function() { openDetail(item.id, item.media_type, item.title); });
+      return card;
     }
 
-    // ── HOME SUGGESTIONS ──
-    document.getElementById('custom-input').addEventListener('keydown', e => { if (e.key === 'Enter') fetchSuggestions(); });
+    async function buildPosterRows(movieGridId, tvGridId) {
+      var mGrid = document.getElementById(movieGridId);
+      var tGrid = document.getElementById(tvGridId);
+      if (!mGrid || !tGrid) return;
+      mGrid.innerHTML = ''; tGrid.innerHTML = '';
+      for (var i = 0; i < 4; i++) { mGrid.appendChild(makeSkeleton()); tGrid.appendChild(makeSkeleton()); }
+      try {
+        if (!tmdbPosterData) tmdbPosterData = await tmdbCall('trending', {});
+        mGrid.innerHTML = ''; tGrid.innerHTML = '';
+        tmdbPosterData.movies.forEach(function(m) { mGrid.appendChild(buildPosterCard(m)); });
+        tmdbPosterData.shows.forEach(function(s) { tGrid.appendChild(buildPosterCard(s)); });
+      } catch(e) {
+        mGrid.innerHTML = '<div class="error-state" style="grid-column:1/-1">Could not load titles.</div>';
+        tGrid.innerHTML = '';
+      }
+    }
+
+    document.getElementById('custom-input').addEventListener('keydown', function(e) { if (e.key === 'Enter') fetchSuggestions(); });
 
     async function fetchSuggestions() {
-      if (!ANTHROPIC_KEY) {
-        document.getElementById('api-banner').classList.remove('hidden');
-        document.getElementById('results-area').innerHTML = `<div class="error-state">Please add your Anthropic API key above to get AI suggestions.</div>`;
-        return;
-      }
-      const btn  = document.getElementById('suggest-btn');
-      const area = document.getElementById('results-area');
-      const type   = document.getElementById('type-select').value;
-      const mood   = document.getElementById('mood-select').value;
-      const era    = document.getElementById('era-select').value;
-      const custom = document.getElementById('custom-input').value.trim();
+      var btn = document.getElementById('suggest-btn');
+      var area = document.getElementById('results-area');
+      var type = document.getElementById('type-select').value;
+      var mood = document.getElementById('mood-select').value;
+      var era = document.getElementById('era-select').value;
+      var custom = document.getElementById('custom-input').value.trim();
       btn.disabled = true;
-      area.innerHTML = `<div class="loading-state"><div class="spinner"></div><span>Finding perfect picks for movie night…</span></div>`;
-
-      const typeLabel  = type === 'both' ? 'movies and TV shows' : type === 'movie' ? 'movies' : 'TV shows';
-      const moodLabel  = mood === 'any' ? '' : ` that are ${mood}`;
-
-      const eraLabels = {
-        'any':   '',
-        'pre70': ' from before 1970',
-        '70s':   ' from the 1970s',
-        '80s':   ' from the 1980s',
-        '90s':   ' from the 1990s',
-        '2000s': ' from the 2000s',
-        '2010s': ' from 2010 to 2019',
-        '2020s': ' from 2020 to 2025',
-        'new':   ' released in 2026',
-      };
-      const eraLabel = eraLabels[era] || '';
-      const customNote = custom ? ` Additional preference: "${custom}".` : '';
-
-      const prompt = `Suggest 6 ${typeLabel}${moodLabel}${eraLabel} perfect to watch with mom — family-friendly, no graphic violence or explicit content.${customNote}
-
-Return ONLY a JSON array of 6 objects: title, year, type ("Movie"/"TV Show"), why (1–2 warm sentences), tags (2–3 short strings). Raw JSON only.`;
-
+      area.innerHTML = '<div class="loading-state"><div class="spinner"></div><span>Finding perfect picks for movie night...</span></div>';
+      var typeLabel = type === 'both' ? 'movies and TV shows' : type === 'movie' ? 'movies' : 'TV shows';
+      var moodLabel = mood === 'any' ? '' : ' that are ' + mood;
+      var eraLabel = eraLabels[era] || '';
       try {
-        const res = await callClaude(prompt, 1200);
-        const suggestions = JSON.parse(res.replace(/```json|```/g,'').trim());
+        var raw = await callClaude({ task: 'suggest', typeLabel: typeLabel, moodLabel: moodLabel, eraLabel: eraLabel, custom: custom });
+        var suggestions = JSON.parse(raw.replace(/```json|```/g, '').trim());
         if (!Array.isArray(suggestions) || !suggestions.length) throw new Error('No results');
-
-        area.innerHTML = `<p class="results-heading">Your picks for tonight</p><div class="results-grid" id="results-grid"></div>`;
-        const grid = document.getElementById('results-grid');
-        suggestions.forEach((s, i) => {
-          const card = document.createElement('div');
+        area.innerHTML = '<p class="results-heading">Your picks for tonight</p><div class="results-grid" id="results-grid"></div>';
+        var grid = document.getElementById('results-grid');
+        suggestions.forEach(function(s, i) {
+          var card = document.createElement('div');
           card.className = 'result-card';
-          card.style.animationDelay = `${i * 0.07}s`;
-          card.innerHTML = `
-            <div class="result-type">${s.type||'Film'}</div>
-            <div class="result-title">${s.title}</div>
-            <div class="result-year">${s.year}</div>
-            <div class="result-why">${s.why}</div>
-            <div class="result-tags">${(s.tags||[]).map(t=>`<span class="tag">${t}</span>`).join('')}</div>
-            <div class="result-click-hint">Tap for full details →</div>`;
-          card.addEventListener('click', () => openDetail(s.title));
+          card.style.animationDelay = (i * 0.07) + 's';
+          card.innerHTML = '<div class="result-type">' + (s.type || 'Film') + '</div><div class="result-title">' + s.title + '</div><div class="result-year">' + s.year + '</div><div class="result-why">' + s.why + '</div><div class="result-tags">' + (s.tags || []).map(function(t) { return '<span class="tag">' + t + '</span>'; }).join('') + '</div><div class="result-click-hint">Tap for full details</div>';
+          card.addEventListener('click', function() { openDetailByTitle(s.title); });
           grid.appendChild(card);
         });
       } catch(err) {
-        area.innerHTML = `<div class="error-state">Something went wrong: ${err.message}</div>`;
+        area.innerHTML = '<div class="error-state">Something went wrong: ' + err.message + '</div>';
       }
       btn.disabled = false;
     }
 
-    // ── CLAUDE HELPER ──
-    async function callClaude(prompt, maxTokens) {
-      const res = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': ANTHROPIC_KEY,
-          'anthropic-version': '2023-06-01',
-          'anthropic-dangerous-direct-browser-access': 'true',
-        },
-        body: JSON.stringify({ model: 'claude-sonnet-4-6', max_tokens: maxTokens, messages: [{ role: 'user', content: prompt }] })
-      });
-      if (!res.ok) { const e = await res.json().catch(()=>({})); throw new Error(e?.error?.message || `HTTP ${res.status}`); }
-      const data = await res.json();
-      return data.content.map(b => b.text||'').join('');
+    document.addEventListener('DOMContentLoaded', function() {
+      var inp = document.getElementById('d-custom-input');
+      if (inp) inp.addEventListener('keydown', function(e) { if (e.key === 'Enter') fetchSuggestionsDetail(); });
+    });
+
+    async function fetchSuggestionsDetail() {
+      var btn = document.getElementById('d-suggest-btn');
+      var area = document.getElementById('d-results-area');
+      var type = document.getElementById('d-type-select').value;
+      var mood = document.getElementById('d-mood-select').value;
+      var era = document.getElementById('d-era-select').value;
+      var custom = document.getElementById('d-custom-input').value.trim();
+      btn.disabled = true;
+      area.innerHTML = '<div class="loading-state"><div class="spinner"></div><span>Finding perfect picks...</span></div>';
+      var typeLabel = type === 'both' ? 'movies and TV shows' : type === 'movie' ? 'movies' : 'TV shows';
+      var moodLabel = mood === 'any' ? '' : ' that are ' + mood;
+      var eraLabel = eraLabels[era] || '';
+      try {
+        var raw = await callClaude({ task: 'suggest', typeLabel: typeLabel, moodLabel: moodLabel, eraLabel: eraLabel, custom: custom });
+        var suggestions = JSON.parse(raw.replace(/```json|```/g, '').trim());
+        if (!Array.isArray(suggestions) || !suggestions.length) throw new Error('No results');
+        area.innerHTML = '<p class="results-heading">Your picks for tonight</p><div class="results-grid" id="d-results-grid"></div>';
+        var grid = document.getElementById('d-results-grid');
+        suggestions.forEach(function(s, i) {
+          var card = document.createElement('div');
+          card.className = 'result-card';
+          card.style.animationDelay = (i * 0.07) + 's';
+          card.innerHTML = '<div class="result-type">' + (s.type || 'Film') + '</div><div class="result-title">' + s.title + '</div><div class="result-year">' + s.year + '</div><div class="result-why">' + s.why + '</div><div class="result-tags">' + (s.tags || []).map(function(t) { return '<span class="tag">' + t + '</span>'; }).join('') + '</div><div class="result-click-hint">Tap for full details</div>';
+          card.addEventListener('click', function() { openDetailByTitle(s.title); });
+          grid.appendChild(card);
+        });
+      } catch(err) {
+        area.innerHTML = '<div class="error-state">Something went wrong: ' + err.message + '</div>';
+      }
+      btn.disabled = false;
     }
 
-    // ── NAVIGATION ──
     function goHome() {
       document.getElementById('detail-page').classList.remove('visible');
       document.getElementById('home-page').classList.remove('hidden');
       window.scrollTo(0, 0);
     }
 
-    // ── DETAIL PAGE ──
-    async function openDetail(title) {
-      if (!ANTHROPIC_KEY) {
-        document.getElementById('api-banner').classList.remove('hidden');
-        alert('Please add your Anthropic API key first.');
-        return;
-      }
+    async function openDetail(id, mediaType, title) {
+      showDetailLoading(title);
+      try {
+        var data = await tmdbCall('detail', { id: id, media: mediaType });
+        await renderDetail(data);
+      } catch(err) { showDetailError(title, err.message); }
+    }
+
+    async function openDetailByTitle(title) {
+      showDetailLoading(title);
+      try {
+        var search = await tmdbCall('search', { title: title });
+        var data = await tmdbCall('detail', { id: search.id, media: search.media_type });
+        await renderDetail(data);
+      } catch(err) { showDetailError(title, err.message); }
+    }
+
+    function showDetailLoading(title) {
       document.getElementById('home-page').classList.add('hidden');
       document.getElementById('detail-page').classList.add('visible');
-      document.getElementById('detail-loading').style.display = 'flex';
-      buildDetailBrowse();
+      document.getElementById('detail-loading').classList.remove('hidden');
       document.getElementById('detail-content').classList.remove('visible');
       document.getElementById('detail-nav-title').textContent = title;
       window.scrollTo(0, 0);
-
-      const prompt = `You are a knowledgeable film and TV expert. Provide comprehensive details about "${title}" for a family movie recommendation website.
-
-Return ONLY this JSON object (no markdown, no explanation):
-
-{
-  "title": "exact title string",
-  "type": "Movie" or "TV Show",
-  "year": "e.g. 2024 or 2020-2023",
-  "genre": "e.g. Animated Comedy-Drama",
-  "rating": "US content rating e.g. PG, PG-13, TV-14",
-  "rating_desc": "brief official reason e.g. for thematic elements and mild language",
-  "runtime": "e.g. 1h 40m or 30 min/episode",
-  "imdb_score": "e.g. 7.9",
-  "imdb_votes": "e.g. 312k",
-  "rt_score": "e.g. 91%",
-  "rt_consensus": "one-sentence critics consensus from Rotten Tomatoes",
-  "youtube_trailer_id": null,
-  "synopsis": "3-4 engaging spoiler-light sentences",
-  "streaming": [{"name": "Service Name", "url": "direct link to this show on that service"}],
-  "mom_verdict": "a witty 1-sentence verdict on watching this with mom",
-  "mom_stars": 4,
-  "racy_items": [
-    {
-      "headline": "funny catchy headline about a content concern",
-      "detail": "factual 1-2 sentence description of the actual content in the show",
-      "severity": "low" or "medium" or "high"
-    }
-  ]
-}
-
-Rules:
-- streaming: only currently available US services with correct deep-link URLs
-- racy_items: 3-5 items; even family shows have minor notes; use witty headlines but factual details
-- mom_stars: 1-5 (5 = totally mom-safe, 1 = maybe watch alone first)
-- youtube_trailer_id: always set to null (trailers are fetched separately)
-- All scores should be accurate to your knowledge`;
-
-      try {
-        const raw = await callClaude(prompt, 2000);
-        const d = JSON.parse(raw.replace(/```json|```/g,'').trim());
-        // Fetch real trailer from YouTube in parallel
-        const trailerId = await fetchYouTubeTrailer(d.title);
-        if (trailerId) d.youtube_trailer_id = trailerId;
-        renderDetail(d);
-      } catch(err) {
-        document.getElementById('detail-loading').style.display = 'none';
-        document.getElementById('detail-content').innerHTML = `<div style="padding:3rem 2rem;text-align:center;" class="error-state">Couldn't load details for "${title}".<br><small>${err.message}</small></div>`;
-        document.getElementById('detail-content').classList.add('visible');
+      if (!document.getElementById('d-movie-grid').dataset.built) {
+        document.getElementById('d-movie-grid').dataset.built = '1';
+        buildPosterRows('d-movie-grid', 'd-tv-grid');
       }
     }
 
-
-    // ── YOUTUBE TRAILER FETCH ──
-    async function fetchYouTubeTrailer(title) {
-      if (!YOUTUBE_KEY) return null;
-      const query = encodeURIComponent(`${title} official trailer`);
-      const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${query}&type=video&videoEmbeddable=true&maxResults=3&key=${YOUTUBE_KEY}`;
-      try {
-        const res = await fetch(url);
-        if (!res.ok) return null;
-        const data = await res.json();
-        // Pick the first result whose title contains "trailer"
-        const items = data.items || [];
-        const match = items.find(i => i.snippet.title.toLowerCase().includes('trailer')) || items[0];
-        return match ? match.id.videoId : null;
-      } catch { return null; }
-    }
-
-        function renderDetail(d) {
-      // Trailer
-      const trailerEl = document.getElementById('detail-trailer');
-      if (d.youtube_trailer_id) {
-        trailerEl.innerHTML = `<iframe src="https://www.youtube.com/embed/${d.youtube_trailer_id}?rel=0" title="${d.title} Official Trailer" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>`;
-      } else {
-        trailerEl.innerHTML = `<div class="trailer-placeholder"><div class="play-icon">▶</div><div>Trailer not available</div></div>`;
-      }
-
-      // Title
-      document.getElementById('d-eyebrow').textContent = d.type || '';
-      document.getElementById('d-title').textContent = d.title || '';
-      document.getElementById('detail-nav-title').textContent = d.title || '';
-      const metaParts = [d.year, d.genre, d.runtime].filter(Boolean);
-      document.getElementById('d-meta').innerHTML = metaParts.map((p, i) =>
-        `<span>${p}</span>${i < metaParts.length - 1 ? '<span class="detail-meta-sep">·</span>' : ''}`
-      ).join('');
-
-      // Scores
-      let scoresHTML = '';
-      if (d.rt_score) {
-        const fresh = parseInt(d.rt_score) >= 60;
-        scoresHTML += `<div class="score-card"><div class="score-logo">${fresh ? '🍅' : '🫙'}</div><div><div class="score-label">Rotten Tomatoes</div><div class="score-value rt-color">${d.rt_score}</div><div class="score-sub">${d.rt_consensus || ''}</div></div></div>`;
-      }
-      if (d.imdb_score) {
-        scoresHTML += `<div class="score-card"><div class="score-logo">⭐</div><div><div class="score-label">IMDb</div><div class="score-value imdb-color">${d.imdb_score}<span style="font-size:1rem;color:var(--text3)">/10</span></div><div class="score-sub">${d.imdb_votes ? d.imdb_votes + ' ratings' : ''}</div></div></div>`;
-      }
-      if (d.rating) {
-        scoresHTML += `<div class="rating-card"><div class="rating-badge">${d.rating}</div><div><div class="score-label">Rating</div><div class="rating-desc">${d.rating_desc || ''}</div></div></div>`;
-      }
-      document.getElementById('d-scores').innerHTML = scoresHTML;
-
-      // Synopsis
-      document.getElementById('d-synopsis').textContent = d.synopsis || '';
-
-      // Streaming
-      const icons = { 'Netflix':'🎬','Disney+':'✨','Hulu':'💚','Max':'💜','HBO Max':'💜','Apple TV+':'🍎','Prime Video':'📦','Amazon Prime Video':'📦','Peacock':'🦚','Paramount+':'⭐' };
-      const streamEl = document.getElementById('d-streaming');
-      if (d.streaming && d.streaming.length) {
-        streamEl.innerHTML = d.streaming.map(s =>
-          `<a class="streaming-link" href="${s.url}" target="_blank" rel="noopener"><span style="font-size:15px">${icons[s.name]||'▶'}</span>${s.name}</a>`
-        ).join('');
-      } else {
-        streamEl.innerHTML = `<a class="streaming-link" href="https://www.justwatch.com/us/search?q=${encodeURIComponent(d.title)}" target="_blank" rel="noopener">🔍 Find on JustWatch</a>`;
-      }
-
-      // Mom verdict
-      const stars = Math.min(5, Math.max(1, d.mom_stars || 3));
-      document.getElementById('d-hearts').textContent = '♥'.repeat(stars) + '♡'.repeat(5 - stars);
-      document.getElementById('d-verdict').textContent = d.mom_verdict || '';
-
-      // Racy items — only show section if there's at least one medium or high severity item
-      const racyEl = document.getElementById('d-racy-items');
-      const notableItems = (d.racy_items || []).filter(item => item.severity === 'medium' || item.severity === 'high');
-      if (notableItems.length) {
-        racyEl.innerHTML = notableItems.map(item => `
-          <div class="racy-item">
-            <div class="racy-dot racy-${item.severity}"></div>
-            <div>
-              <div class="racy-headline">${item.headline}</div>
-              <div class="racy-detail">${item.detail}</div>
-            </div>
-          </div>`).join('');
-        document.getElementById('d-racy-section').style.display = 'block';
-      } else {
-        document.getElementById('d-racy-section').style.display = 'none';
-      }
-
-      // Show content
-      document.getElementById('detail-loading').style.display = 'none';
+    function showDetailError(title, msg) {
+      document.getElementById('detail-loading').classList.add('hidden');
+      document.getElementById('detail-content').innerHTML = '<div style="padding:3rem 2rem;text-align:center;" class="error-state">Could not load details for "' + title + '".<br><small>' + msg + '</small></div>';
       document.getElementById('detail-content').classList.add('visible');
     }
 
-
-
-    function buildDetailBrowse() {
-      // Only build once
-      if (document.getElementById('d-movie-grid').dataset.built) return;
-      document.getElementById('d-movie-grid').dataset.built = '1';
-      buildRow(movies, 'd-movie-grid');
-      buildRow(tvShows, 'd-tv-grid');
-    }
-
-        // ── DETAIL PAGE SUGGESTIONS ──
-    document.addEventListener('DOMContentLoaded', () => {
-      const inp = document.getElementById('d-custom-input');
-      if (inp) inp.addEventListener('keydown', e => { if (e.key === 'Enter') fetchSuggestionsDetail(); });
-    });
-
-    async function fetchSuggestionsDetail() {
-      if (!ANTHROPIC_KEY) {
-        document.getElementById('api-banner').classList.remove('hidden');
-        document.getElementById('d-results-area').innerHTML = '<div class="error-state">Please add your Anthropic API key to get suggestions.</div>';
-        return;
+    async function renderDetail(d) {
+      var trailerEl = document.getElementById('detail-trailer');
+      if (d.trailer_id) {
+        trailerEl.innerHTML = '<iframe src="https://www.youtube.com/embed/' + d.trailer_id + '?rel=0" title="' + d.title + ' Official Trailer" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>';
+      } else {
+        trailerEl.innerHTML = '<div class="trailer-placeholder"><div class="play-icon">&#9654;</div><div>Trailer not available</div></div>';
       }
-      const btn    = document.getElementById('d-suggest-btn');
-      const area   = document.getElementById('d-results-area');
-      const type   = document.getElementById('d-type-select').value;
-      const mood   = document.getElementById('d-mood-select').value;
-      const era    = document.getElementById('d-era-select').value;
-      const custom = document.getElementById('d-custom-input').value.trim();
-      btn.disabled = true;
-      area.innerHTML = '<div class="loading-state"><div class="spinner"></div><span>Finding perfect picks for movie night…</span></div>';
 
-      const typeLabel  = type === 'both' ? 'movies and TV shows' : type === 'movie' ? 'movies' : 'TV shows';
-      const moodLabel  = mood === 'any' ? '' : ` that are ${mood}`;
+      document.getElementById('d-eyebrow').textContent = d.media_type === 'tv' ? 'TV Show' : 'Movie';
+      document.getElementById('d-title').textContent = d.title || '';
+      document.getElementById('detail-nav-title').textContent = d.title || '';
+      var tagEl = document.getElementById('d-tagline');
+      tagEl.textContent = d.tagline || '';
+      tagEl.style.display = d.tagline ? 'block' : 'none';
 
-      const eraLabels = {
-        'any':   '',
-        'pre70': ' from before 1970',
-        '70s':   ' from the 1970s',
-        '80s':   ' from the 1980s',
-        '90s':   ' from the 1990s',
-        '2000s': ' from the 2000s',
-        '2010s': ' from 2010 to 2019',
-        '2020s': ' from 2020 to 2025',
-        'new':   ' released in 2026',
-      };
-      const eraLabel = eraLabels[era] || '';
-      const customNote = custom ? ` Additional preference: "${custom}".` : '';
+      var metaParts = [d.year, d.genre, d.runtime].filter(Boolean);
+      document.getElementById('d-meta').innerHTML = metaParts.map(function(p, i) {
+        return '<span>' + p + '</span>' + (i < metaParts.length - 1 ? '<span class="detail-meta-sep">·</span>' : '');
+      }).join('');
 
-      const prompt = `Suggest 6 ${typeLabel}${moodLabel}${eraLabel} perfect to watch with mom — family-friendly, no graphic violence or explicit content.${customNote}
+      var scoresHTML = '';
+      if (d.vote_average) {
+        scoresHTML += '<a class="score-card" href="' + (d.imdb_link || '#') + '" target="_blank" rel="noopener"><div class="score-logo">&#11088;</div><div><div class="score-label">TMDB Score</div><div class="score-value tmdb-color">' + d.vote_average + '<span style="font-size:1rem;color:var(--text3)">/10</span></div><div class="score-sub">' + (d.vote_count ? Number(d.vote_count).toLocaleString() + ' ratings' : '') + '</div></div></a>';
+      }
+      if (d.rating) {
+        scoresHTML += '<div class="rating-card"><div class="rating-badge">' + d.rating + '</div><div><div class="score-label">Content Rating</div></div></div>';
+      }
+      if (d.imdb_link) {
+        scoresHTML += '<a class="score-card" href="' + d.imdb_link + '" target="_blank" rel="noopener"><div style="font-size:16px;background:#f5c518;border-radius:4px;padding:4px 7px;font-weight:800;color:#000;font-family:sans-serif">IMDb</div><div><div class="score-label">View on IMDb</div><div style="font-size:12px;color:var(--text3);margin-top:2px;">Ratings &amp; reviews</div></div></a>';
+      }
+      document.getElementById('d-scores').innerHTML = scoresHTML;
 
-Return ONLY a JSON array of 6 objects: title, year, type ("Movie"/"TV Show"), why (1–2 warm sentences), tags (2–3 short strings). Raw JSON only.`;
+      document.getElementById('d-synopsis').textContent = d.synopsis || 'No synopsis available.';
+      var castEl = document.getElementById('d-cast');
+      if (d.cast && d.cast.length) {
+        castEl.innerHTML = '<span style="font-weight:500;">Starring:</span> ' + d.cast.join(', ') + (d.director ? '<br><span style="font-weight:500;">' + (d.media_type === 'tv' ? 'Created by' : 'Directed by') + ':</span> ' + d.director : '');
+      } else { castEl.textContent = ''; }
+
+      var streamEl = document.getElementById('d-streaming');
+      if (d.streaming && d.streaming.length) {
+        streamEl.innerHTML = d.streaming.map(function(s) {
+          return '<a class="streaming-link" href="' + s.url + '" target="_blank" rel="noopener">' + (s.logo ? '<img src="' + s.logo + '" alt="' + s.name + '">' : '&#9654;') + s.name + '</a>';
+        }).join('');
+      } else {
+        streamEl.innerHTML = '<a class="streaming-link" href="https://www.justwatch.com/us/search?q=' + encodeURIComponent(d.title) + '" target="_blank" rel="noopener">&#128269; Find on JustWatch</a>';
+      }
+
+      document.getElementById('d-hearts').textContent = '♡♡♡♡♡';
+      document.getElementById('d-verdict').innerHTML = '<span class="verdict-loading">Checking with mom...</span>';
+      document.getElementById('d-racy-section').style.display = 'none';
+      document.getElementById('detail-loading').classList.add('hidden');
+      document.getElementById('detail-content').classList.add('visible');
 
       try {
-        const raw = await callClaude(prompt, 1200);
-        const suggestions = JSON.parse(raw.replace(/\`\`\`json|\`\`\`/g,'').trim());
-        if (!Array.isArray(suggestions) || !suggestions.length) throw new Error('No results');
-
-        area.innerHTML = '<p class="results-heading">Your picks for tonight</p><div class="results-grid" id="d-results-grid"></div>';
-        const grid = document.getElementById('d-results-grid');
-        suggestions.forEach((s, i) => {
-          const card = document.createElement('div');
-          card.className = 'result-card';
-          card.style.animationDelay = `${i * 0.07}s`;
-          card.innerHTML = `
-            <div class="result-type">${s.type||'Film'}</div>
-            <div class="result-title">${s.title}</div>
-            <div class="result-year">${s.year}</div>
-            <div class="result-why">${s.why}</div>
-            <div class="result-tags">${(s.tags||[]).map(t=>'<span class="tag">'+t+'</span>').join('')}</div>
-            <div class="result-click-hint">Tap for full details →</div>`;
-          card.addEventListener('click', () => openDetail(s.title));
-          grid.appendChild(card);
-        });
-      } catch(err) {
-        area.innerHTML = `<div class="error-state">Something went wrong: ${err.message}</div>`;
+        var raw = await callClaude({ task: 'analyze', title: d.title, synopsis: d.synopsis, rating: d.rating, genre: d.genre, cast: d.cast });
+        var analysis = JSON.parse(raw.replace(/```json|```/g, '').trim());
+        var stars = Math.min(5, Math.max(1, analysis.mom_stars || 3));
+        document.getElementById('d-hearts').textContent = '♥'.repeat(stars) + '♡'.repeat(5 - stars);
+        document.getElementById('d-verdict').textContent = analysis.mom_verdict || '';
+        var notable = (analysis.racy_items || []).filter(function(i) { return i.severity === 'medium' || i.severity === 'high'; });
+        if (notable.length) {
+          document.getElementById('d-racy-items').innerHTML = notable.map(function(item) {
+            return '<div class="racy-item"><div class="racy-dot racy-' + item.severity + '"></div><div><div class="racy-headline">' + item.headline + '</div><div class="racy-detail">' + item.detail + '</div></div></div>';
+          }).join('');
+          document.getElementById('d-racy-section').style.display = 'block';
+        }
+      } catch(e) {
+        document.getElementById('d-verdict').textContent = 'Analysis unavailable.';
       }
-      btn.disabled = false;
     }
 
-        // ── INIT ──
-    buildRow(movies, 'movie-grid');
-    buildRow(tvShows, 'tv-grid');
+    buildPosterRows('movie-grid', 'tv-grid');
   </script>
 </body>
 </html>
