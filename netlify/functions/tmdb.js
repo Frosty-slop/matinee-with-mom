@@ -274,11 +274,11 @@ exports.handler = async (event) => {
 
       const safeMovies = (movies.results || [])
         .filter(i => !i.adult)
-        .slice(0, 4)
+        .slice(0, 8)
         .map(i => mapItem(i, 'movie'));
 
       const safeShows = (shows.results || [])
-        .slice(0, 4)
+        .slice(0, 8)
         .map(i => mapItem(i, 'tv'));
 
       return {
