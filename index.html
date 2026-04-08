@@ -54,7 +54,7 @@
     .poster-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(10,6,4,0.82) 0%, transparent 100%); padding: 28px 10px 10px; }
     .poster-name { font-family: 'Playfair Display', serif; font-size: 12px; font-weight: 600; color: white; line-height: 1.3; text-shadow: 0 1px 4px rgba(0,0,0,0.4); }
     .poster-year { font-size: 10px; color: rgba(255,255,255,0.65); margin-top: 2px; }
-    .mom-badge { position: absolute; top: 8px; right: 8px; background: rgba(255,255,255,0.92); color: var(--pink-dark); font-size: 9px; font-weight: 600; padding: 3px 7px; border-radius: 999px; border: 1px solid var(--pink-mid); backdrop-filter: blur(4px); }
+
     .results-section { margin-top: 0.5rem; }
     .results-heading { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 400; font-style: italic; color: var(--text2); margin-bottom: 1rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--border); }
     .results-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
@@ -148,7 +148,7 @@
     <header>
       <p class="eyebrow">Your Mom-Approved Cinema Guide</p>
       <h1>Matinee with <em>Mom</em></h1>
-      <p class="tagline">Handpicked films &amp; shows mom will actually enjoy</p>
+      <p class="tagline">Skip the cringe, keep the popcorn</p>
     </header>
     <main>
       <div class="controls-row">
@@ -352,7 +352,7 @@
         '<div class="fallback">&#127916;</div>' +
         (item.poster ? '<img src="' + item.poster + '" alt="' + item.title + '" loading="lazy" onerror="this.style.display=\'none\'">' : '') +
         '<div class="poster-overlay"><div class="poster-name">' + item.title + '</div><div class="poster-year">' + (item.year || '') + '</div></div>' +
-        '</div><div class="mom-badge">Mom</div>';
+        '</div>';
       card.addEventListener('click', function() { openDetail(item.id, item.media_type, item.title); });
       return card;
     }
