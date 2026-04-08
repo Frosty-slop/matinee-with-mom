@@ -199,8 +199,8 @@ exports.handler = async (event) => {
         'funny':        '35,10751',
         // Adventure-forward, mom-safe action — Adventure, Fantasy, Animation
         'exciting':     '12,14,16,28',
-        // Gentle Sunday afternoon — Romance, History, light Drama
-        'cozy':         '10749,36,10402',
+        // Gentle Sunday afternoon — Romance, Drama, History (use OR logic with pipe)
+        'cozy':         '10749|18|36|10402',
       };
       const moodTvGenres = {
         // Warm and uplifting — Drama, Romance, Family
@@ -209,8 +209,8 @@ exports.handler = async (event) => {
         'funny':        '35',
         // Engaging but not dark — Action & Adventure, Mystery
         'exciting':     '10759,9648',
-        // Relaxed and gentle — Romance, Drama, History
-        'cozy':         '10749,18,36',
+        // Relaxed and gentle — Romance, Drama, History (use OR logic with pipe)
+        'cozy':         '10749|18|36',
       };
       const movieGenreFilter = moodMovieGenres[mood] ? '&with_genres=' + moodMovieGenres[mood] : '';
       const tvGenreFilter    = moodTvGenres[mood]    ? '&with_genres=' + moodTvGenres[mood]    : '';
