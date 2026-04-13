@@ -169,13 +169,15 @@
 
     .poster-section-header {
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       gap: 20px;
       padding: 0 0 0 46px;
       border-bottom: 2px solid var(--ink);
-      height: 60px;
+      height: 104px;
       box-sizing: border-box;
     }
+    .poster-section-header .section-title,
+    .poster-section-header .section-badge { margin-bottom: 12px; }
     .section-title {
       font-family: var(--serif);
       font-size: 36px;
@@ -204,8 +206,7 @@
       width: 60px;
       height: 60px;
       border-radius: 0;
-      border: none;
-      border-left: 2px solid var(--ink);
+      border: 2px solid var(--ink);
       background: transparent;
       color: var(--ink);
       cursor: pointer;
@@ -218,6 +219,7 @@
       font-weight: 300;
       flex-shrink: 0;
     }
+    .nav-btn + .nav-btn { border-left: none; }
     .nav-btn:hover { background: var(--ink); color: var(--bg); }
 
     .poster-grid {
