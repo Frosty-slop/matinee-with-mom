@@ -51,16 +51,16 @@
       margin: 0 auto;
       display: grid;
       grid-template-columns: 480px 1fr;
+      grid-template-rows: 199px 102px;
       border: 2px solid var(--ink);
       background: var(--bg);
     }
     .header-brand {
-      padding: 33px 46px 33px 46px;
+      grid-column: 1;
+      grid-row: 1 / span 2;
       border-right: 2px solid var(--ink);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      gap: 58px;
+      display: grid;
+      grid-template-rows: 199px 1fr;
     }
     .brand-title {
       font-family: var(--sans);
@@ -69,6 +69,8 @@
       line-height: 0.9;
       color: var(--ink);
       letter-spacing: -0.04em;
+      padding: 33px 46px 0;
+      border-bottom: 2px solid var(--ink);
     }
     .brand-title .bt-row { display: block; }
     .brand-title .serif { font-family: var(--serif); font-weight: 400; letter-spacing: -0.02em; }
@@ -79,12 +81,20 @@
       color: var(--ink);
       line-height: 1.35;
       letter-spacing: 0.05em;
+      padding: 0 46px;
+      display: flex;
+      align-items: center;
     }
     .brand-tagline .serif { font-family: var(--serif); font-weight: 400; letter-spacing: 0; }
 
     .header-controls {
+      grid-column: 2;
+      grid-row: 1 / span 2;
       display: grid;
-      grid-template-rows: 100px 1fr;
+      grid-template-rows: 100px 99px 1fr;
+    }
+    .controls-empty {
+      border-bottom: 2px solid var(--ink);
     }
     .controls-row {
       display: grid;
@@ -97,7 +107,7 @@
       font-size: 16px;
       font-weight: 600;
       letter-spacing: 0.05em;
-      padding: 38px 56px 38px 46px;
+      padding: 36px 56px 36px 46px;
       border: none;
       background: transparent;
       color: var(--ink);
@@ -405,6 +415,7 @@
           <div class="brand-tagline">Your <span class="serif">mom-safe</span> cinema guide,<br>skip the cringe, keep the <span class="serif">popcorn</span>.</div>
         </div>
         <div class="header-controls">
+          <div class="controls-empty"></div>
           <div class="controls-row">
             <select id="type-select">
               <option value="both">all types</option>
