@@ -100,25 +100,51 @@
       border-bottom: 2px solid var(--ink);
     }
     .controls-row > * + * { border-left: 2px solid var(--ink); }
-    select {
+    .select-wrap {
+      position: relative;
+      min-height: 99px;
+      display: block;
+    }
+    .select-wrap select {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: transparent;
+      color: transparent;
+      font-family: var(--sans);
+      font-size: 16px;
+      appearance: none;
+      -webkit-appearance: none;
+      outline: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .select-wrap select option { color: var(--ink); }
+    .select-wrap:hover { background: rgba(91,9,69,0.06); }
+    .select-display {
+      pointer-events: none;
       font-family: var(--sans);
       font-size: 16px;
       font-weight: 600;
       letter-spacing: 0.05em;
-      padding: 36px 56px 36px 28px;
-      border: none;
-      background: transparent;
       color: var(--ink);
-      cursor: pointer;
-      appearance: none;
+      padding: 0 56px 0 28px;
+      min-height: 99px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      line-height: 1.2;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 23.5 13.5' fill='none'%3E%3Cpath d='M1.75 1.75L11.75 11.75L21.75 1.75' stroke='%235B0945' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: right 28px center;
       background-size: 24px 14px;
-      outline: none;
-      width: 100%;
     }
-    select:focus, select:hover { background-color: rgba(91,9,69,0.06); }
+    .select-display span { display: block; }
 
     .search-row {
       display: grid;
@@ -430,27 +456,36 @@
         <div class="header-controls">
           <div class="controls-empty"></div>
           <div class="controls-row">
-            <select id="type-select">
-              <option value="both">all types</option>
-              <option value="movie">movies</option>
-              <option value="tv">tv shows</option>
-            </select>
-            <select id="mood-select">
-              <option value="any">mood</option>
-              <option value="heartwarming">Heartwarming</option>
-              <option value="funny">Funny</option>
-              <option value="exciting">Exciting</option>
-              <option value="cozy">Cozy</option>
-            </select>
-            <select id="era-select">
-              <option value="any">era</option>
-              <option value="80s">Rad Era (1980s)</option>
-              <option value="90s">Totally Awesome (1990s)</option>
-              <option value="2000s">Y2K Vibes (2000s)</option>
-              <option value="2010s">Peak TV Era (2010-2019)</option>
-              <option value="2020s">Post-Pandemic Picks (2020-2025)</option>
-              <option value="new">Hot Off the Press (2026)</option>
-            </select>
+            <div class="select-wrap">
+              <div class="select-display"></div>
+              <select id="type-select">
+                <option value="both">all types</option>
+                <option value="movie">movies</option>
+                <option value="tv">tv shows</option>
+              </select>
+            </div>
+            <div class="select-wrap">
+              <div class="select-display"></div>
+              <select id="mood-select">
+                <option value="any">mood</option>
+                <option value="heartwarming">Heartwarming</option>
+                <option value="funny">Funny</option>
+                <option value="exciting">Exciting</option>
+                <option value="cozy">Cozy</option>
+              </select>
+            </div>
+            <div class="select-wrap">
+              <div class="select-display"></div>
+              <select id="era-select">
+                <option value="any">era</option>
+                <option value="80s">Rad Era (1980s)</option>
+                <option value="90s">Totally Awesome (1990s)</option>
+                <option value="2000s">Y2K Vibes (2000s)</option>
+                <option value="2010s">Peak TV Era (2010-2019)</option>
+                <option value="2020s">Post-Pandemic Picks (2020-2025)</option>
+                <option value="new">Hot Off the Press (2026)</option>
+              </select>
+            </div>
           </div>
           <div class="search-row">
             <input class="search-input" id="custom-input" type="text" placeholder="anything specific?" maxlength="140" />
@@ -558,27 +593,36 @@
         </div>
         <div class="detail-browse-controls">
           <div class="controls-row">
-            <select id="d-type-select">
-              <option value="both">All types</option>
-              <option value="movie">Movies</option>
-              <option value="tv">TV Shows</option>
-            </select>
-            <select id="d-mood-select">
-              <option value="any">mood</option>
-              <option value="heartwarming">Heartwarming</option>
-              <option value="funny">Funny</option>
-              <option value="exciting">Exciting</option>
-              <option value="cozy">Cozy</option>
-            </select>
-            <select id="d-era-select">
-              <option value="any">era</option>
-              <option value="80s">Rad Era (1980s)</option>
-              <option value="90s">Totally Awesome (1990s)</option>
-              <option value="2000s">Y2K Vibes (2000s)</option>
-              <option value="2010s">Peak TV Era (2010-2019)</option>
-              <option value="2020s">Post-Pandemic Picks (2020-2025)</option>
-              <option value="new">Hot Off the Press (2026)</option>
-            </select>
+            <div class="select-wrap">
+              <div class="select-display"></div>
+              <select id="d-type-select">
+                <option value="both">all types</option>
+                <option value="movie">movies</option>
+                <option value="tv">tv shows</option>
+              </select>
+            </div>
+            <div class="select-wrap">
+              <div class="select-display"></div>
+              <select id="d-mood-select">
+                <option value="any">mood</option>
+                <option value="heartwarming">Heartwarming</option>
+                <option value="funny">Funny</option>
+                <option value="exciting">Exciting</option>
+                <option value="cozy">Cozy</option>
+              </select>
+            </div>
+            <div class="select-wrap">
+              <div class="select-display"></div>
+              <select id="d-era-select">
+                <option value="any">era</option>
+                <option value="80s">Rad Era (1980s)</option>
+                <option value="90s">Totally Awesome (1990s)</option>
+                <option value="2000s">Y2K Vibes (2000s)</option>
+                <option value="2010s">Peak TV Era (2010-2019)</option>
+                <option value="2020s">Post-Pandemic Picks (2020-2025)</option>
+                <option value="new">Hot Off the Press (2026)</option>
+              </select>
+            </div>
           </div>
           <div class="search-row">
             <input class="search-input" id="d-custom-input" type="text" placeholder="anything specific?" maxlength="140" />
@@ -622,6 +666,27 @@
       '80s':' from the 1980s','90s':' from the 1990s','2000s':' from the 2000s',
       '2010s':' from 2010 to 2019','2020s':' from 2020 to 2025','new':' released in 2026'
     };
+
+    // ── CUSTOM SELECT DISPLAY (stacked, center-aligned) ──
+    function updateSelectDisplay(selectEl) {
+      var wrap = selectEl.closest('.select-wrap');
+      if (!wrap) return;
+      var display = wrap.querySelector('.select-display');
+      if (!display) return;
+      var text = selectEl.options[selectEl.selectedIndex].text;
+      var parenIdx = text.indexOf('(');
+      if (parenIdx > 0) {
+        var line1 = text.substring(0, parenIdx).trim();
+        var line2 = text.substring(parenIdx).trim();
+        display.innerHTML = '<span>' + line1 + '</span><span>' + line2 + '</span>';
+      } else {
+        display.innerHTML = '<span>' + text + '</span>';
+      }
+    }
+    document.querySelectorAll('.select-wrap select').forEach(function(s) {
+      updateSelectDisplay(s);
+      s.addEventListener('change', function() { updateSelectDisplay(s); });
+    });
 
     // ── SCROLL ONE CARD AT A TIME ──
     function scrollRow(gridId, direction) {
