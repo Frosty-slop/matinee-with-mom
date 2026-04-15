@@ -340,81 +340,301 @@
     #detail-page { display: none; min-height: 100vh; background: var(--bg); }
     #detail-page.visible { display: block; }
 
+    .detail-wrap {
+      padding: 72px 120px 0;
+      background: var(--bg);
+    }
+    @media (max-width: 1400px) { .detail-wrap { padding: 48px 40px 0; } }
+    @media (max-width: 900px)  { .detail-wrap { padding: 32px 20px 0; } }
+
+    .detail-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      border: 2px solid var(--ink);
+      background: var(--bg);
+    }
+
     .detail-nav {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(252,232,236,0.95);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      padding: 12px 2rem;
-      display: flex; align-items: center; gap: 16px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 20px;
+      border-bottom: 2px solid var(--ink);
+      box-sizing: border-box;
+      position: static;
+      background: transparent;
+      backdrop-filter: none;
     }
     .back-btn {
-      font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
-      color: var(--text2); background: none; border: 1px solid var(--border2);
-      padding: 5px 14px; border-radius: 999px; cursor: pointer; transition: all 0.15s;
+      width: 60px;
+      height: 60px;
+      border: 2px solid var(--ink);
+      background: transparent;
+      color: var(--ink);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      border-radius: 0;
+      transition: background 0.15s;
+      flex-shrink: 0;
     }
-    .back-btn:hover { border-color: var(--pink); color: var(--pink); }
-    .detail-nav-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 400; font-style: italic; color: var(--text2); }
+    .back-btn svg { width: 10px; height: 20px; display: block; }
+    .back-btn:hover { background: var(--ink); color: var(--bg); }
+    .detail-nav-title {
+      font-family: var(--sans);
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--ink);
+      font-style: normal;
+      padding-left: 14px;
+    }
 
-    #detail-loading { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 70vh; gap: 16px; color: var(--text2); font-size: 14px; }
+    #detail-loading {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      min-height: 60vh; gap: 16px; color: var(--ink); font-size: 14px;
+    }
     #detail-loading.hidden { display: none; }
     #detail-content { display: none; }
     #detail-content.visible { display: block; }
 
-    .detail-trailer { width: 100%; background: #0a0204; position: relative; padding-bottom: 56.25%; }
+    .detail-trailer {
+      width: 100%;
+      background: #cccccc;
+      position: relative;
+      padding-bottom: 56.25%;
+      border-bottom: 2px solid var(--ink);
+    }
     .detail-trailer iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
-    .trailer-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; color: rgba(255,255,255,0.35); font-size: 14px; }
+    .trailer-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; color: rgba(91,9,69,0.45); font-size: 14px; }
     .trailer-placeholder .play-icon { font-size: 52px; }
 
-    .detail-body { max-width: 960px; margin: 0 auto; padding: 2rem 2rem 3rem; }
-    .detail-eyebrow { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--pink); margin-bottom: 0.4rem; font-weight: 500; }
-    .detail-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; line-height: 1.1; margin-bottom: 0.4rem; }
-    .detail-tagline { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.95rem; color: var(--text3); margin-bottom: 0.6rem; }
-    .detail-meta { font-size: 13px; color: var(--text3); display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 1.5rem; }
-    .detail-meta-sep { color: var(--border2); }
+    .detail-body { max-width: none; margin: 0; padding: 0; }
+    .detail-info {
+      padding: 36px 46px 40px;
+      border-bottom: 2px solid var(--ink);
+    }
+    .detail-eyebrow {
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--ink);
+      margin-bottom: 18px;
+      text-transform: lowercase;
+    }
+    .detail-title {
+      font-family: var(--serif);
+      font-size: 72px;
+      font-weight: 400;
+      line-height: 1;
+      color: var(--ink);
+      margin-bottom: 14px;
+      font-style: normal;
+    }
+    .detail-tagline {
+      font-family: var(--sans);
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--ink);
+      margin-bottom: 14px;
+      font-style: normal;
+    }
+    .detail-meta {
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--ink);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+    .detail-meta-sep { color: var(--ink); opacity: 0.5; }
 
-    .scores-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 1.75rem; }
-    .score-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 18px; display: flex; align-items: center; gap: 10px; flex: 1; min-width: 140px; text-decoration: none; color: inherit; transition: border-color 0.15s; }
-    .score-card:hover { border-color: var(--pink); }
-    .score-logo { font-size: 24px; line-height: 1; }
-    .score-label { font-size: 9px; color: var(--text3); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 2px; }
-    .score-value { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 600; line-height: 1; }
-    .score-value.tmdb-color { color: #01b4e4; }
-    .score-sub { font-size: 10px; color: var(--text3); margin-top: 2px; }
-    .rating-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 18px; display: flex; align-items: center; gap: 10px; }
-    .rating-badge { font-weight: 700; font-size: 16px; border: 2px solid var(--text); border-radius: 4px; padding: 2px 8px; letter-spacing: 0.04em; }
+    /* Scores row: 3 equal columns with dividers */
+    .scores-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-bottom: 2px solid var(--ink);
+      margin: 0;
+      gap: 0;
+    }
+    .scores-row > * {
+      padding: 28px 32px;
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      display: block;
+      min-width: 0;
+      flex: none;
+      color: inherit;
+      text-decoration: none;
+    }
+    .scores-row > * + * { border-left: 2px solid var(--ink); }
+    .score-logo, .score-sub { display: none; }
+    .score-label {
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: 0.05em;
+      margin-bottom: 18px;
+      text-transform: lowercase;
+    }
+    .score-value {
+      font-family: var(--serif);
+      font-size: 32px;
+      font-weight: 400;
+      color: var(--ink) !important;
+      line-height: 1;
+    }
+    .score-value.tmdb-color { color: var(--ink) !important; }
+    .score-value span { display: none; }
+    .rating-badge {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 32px;
+      color: var(--ink);
+      border: none;
+      border-radius: 0;
+      padding: 0;
+      letter-spacing: 0;
+      display: block;
+    }
 
-    .detail-cols { display: grid; grid-template-columns: 1fr 280px; gap: 2rem; margin-bottom: 1.75rem; }
+    /* Content columns: synopsis + sidebar */
+    .detail-cols {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 0;
+      margin: 0;
+    }
     @media (max-width: 720px) { .detail-cols { grid-template-columns: 1fr; } }
-    .detail-section-label { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text3); font-weight: 500; margin-bottom: 0.5rem; }
-    .detail-synopsis { font-size: 14px; color: var(--text2); line-height: 1.8; font-weight: 300; }
-    .detail-cast { font-size: 12px; color: var(--text3); margin-top: 10px; line-height: 1.6; }
+    .detail-synopsis-col {
+      padding: 32px 46px;
+      border-right: 2px solid var(--ink);
+    }
+    @media (max-width: 720px) { .detail-synopsis-col { border-right: none; border-bottom: 2px solid var(--ink); } }
+    .detail-section-label {
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: 0.05em;
+      margin-bottom: 14px;
+      text-transform: lowercase;
+      display: block;
+    }
+    .detail-synopsis {
+      font-family: var(--sans);
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.55;
+    }
+    .detail-cast {
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--ink);
+      margin-top: 18px;
+      line-height: 1.6;
+    }
 
-    .detail-sidebar { display: flex; flex-direction: column; gap: 12px; }
-    .sidebar-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; }
-    .streaming-links { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
-    .streaming-link { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border2); background: var(--bg); font-size: 12px; font-weight: 500; color: var(--text); text-decoration: none; transition: all 0.15s; }
-    .streaming-link:hover { border-color: var(--pink); color: var(--pink); background: rgba(153,53,86,0.06); }
-    .streaming-link img { width: 18px; height: 18px; border-radius: 4px; object-fit: cover; }
+    .detail-sidebar { display: flex; flex-direction: column; }
+    .sidebar-card {
+      padding: 24px 32px;
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      border-bottom: 2px solid var(--ink);
+    }
+    .sidebar-card:last-child { border-bottom: none; }
 
-    .mom-verdict-card { background: rgba(153,53,86,0.07); border: 1px solid rgba(153,53,86,0.18); border-radius: var(--radius); padding: 14px 16px; }
-    .verdict-hearts { font-size: 16px; letter-spacing: 3px; margin-bottom: 5px; color: var(--pink); }
-    .verdict-label { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pink); font-weight: 500; margin-bottom: 4px; }
-    .verdict-text { font-family: 'Playfair Display', serif; font-size: 0.9rem; font-style: italic; color: var(--pink-dark); line-height: 1.5; }
-    .verdict-loading { font-size: 11px; color: var(--pink); opacity: 0.7; font-style: italic; }
+    .streaming-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .streaming-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 0;
+      border: 2px solid var(--ink);
+      background: transparent;
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--ink);
+      text-decoration: none;
+      transition: all 0.15s;
+    }
+    .streaming-link:hover { background: var(--ink); color: var(--bg); }
+    .streaming-link img { width: 16px; height: 16px; border-radius: 0; object-fit: cover; }
 
-    .racy-section { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; margin-bottom: 1.75rem; }
-    .racy-header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+    .mom-verdict-card { background: transparent; border: none; border-radius: 0; padding: 0; }
+    .verdict-hearts {
+      font-family: var(--sans);
+      font-size: 22px;
+      letter-spacing: 4px;
+      color: var(--ink);
+      line-height: 1;
+      margin-bottom: 0;
+    }
+    .verdict-label { display: none; }
+    .verdict-text {
+      font-family: var(--sans);
+      font-size: 14px;
+      font-style: normal;
+      color: var(--ink);
+      line-height: 1.55;
+      font-weight: 400;
+    }
+    .verdict-loading { font-size: 13px; color: var(--ink); opacity: 0.6; font-style: normal; }
+
+    .imdb-link {
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--ink);
+      text-decoration: none;
+      text-transform: lowercase;
+      display: block;
+    }
+    .imdb-link:hover { text-decoration: underline; }
+
+    .racy-section {
+      border-top: 2px solid var(--ink);
+      padding: 32px 46px;
+      background: transparent;
+      border-bottom: none;
+      border-left: none;
+      border-right: none;
+      border-radius: 0;
+      margin: 0;
+    }
+    .racy-header {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 14px; padding-bottom: 12px;
+      border-bottom: 2px solid var(--ink);
+    }
     .racy-icon { font-size: 20px; }
-    .racy-title { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 600; }
-    .racy-subtitle { font-size: 12px; color: var(--text3); margin-top: 2px; }
-    .racy-item { display: flex; gap: 12px; padding: 10px 0; border-top: 1px solid var(--border); align-items: flex-start; }
+    .racy-title { font-family: var(--serif); font-size: 20px; font-weight: 400; color: var(--ink); }
+    .racy-subtitle { font-size: 13px; color: var(--ink); opacity: 0.7; margin-top: 2px; }
+    .racy-item { display: flex; gap: 12px; padding: 10px 0; border-top: 2px solid var(--ink); align-items: flex-start; }
     .racy-dot { flex-shrink: 0; width: 8px; height: 8px; border-radius: 50%; margin-top: 5px; }
     .racy-low { background: #27ae60; } .racy-medium { background: #f39c12; } .racy-high { background: #e74c3c; }
-    .racy-headline { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
-    .racy-detail { font-size: 12px; color: var(--text2); line-height: 1.55; font-weight: 300; }
-    .racy-legend { display: flex; gap: 14px; margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--border); }
-    .racy-legend-item { display: flex; align-items: center; gap: 5px; font-size: 10px; color: var(--text3); }
+    .racy-headline { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+    .racy-detail { font-size: 13px; color: var(--ink); line-height: 1.55; font-weight: 400; }
+    .racy-legend { display: flex; gap: 14px; margin-top: 12px; padding-top: 10px; border-top: 2px solid var(--ink); }
+    .racy-legend-item { display: flex; align-items: center; gap: 5px; font-size: 12px; color: var(--ink); }
     .racy-legend-dot { width: 7px; height: 7px; border-radius: 50%; }
 
     /* DETAIL BROWSE SECTION */
@@ -535,10 +755,12 @@
 
   <!-- DETAIL PAGE -->
   <div id="detail-page">
-    <nav class="detail-nav">
-      <button class="back-btn" onclick="goHome()">&#8592; Back</button>
-      <span class="detail-nav-title" id="detail-nav-title"></span>
-    </nav>
+    <div class="detail-wrap">
+      <div class="detail-inner">
+        <nav class="detail-nav">
+          <button class="back-btn" onclick="goHome()" aria-label="Back"><svg viewBox="0 0 13.5 23.5" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.75 21.75L1.75 11.75L11.75 1.75" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <span class="detail-nav-title" id="detail-nav-title"></span>
+        </nav>
     <div id="detail-loading">
       <div class="spinner"></div>
       <span>Loading...</span>
@@ -546,26 +768,29 @@
     <div id="detail-content">
       <div class="detail-trailer" id="detail-trailer"></div>
       <div class="detail-body">
-        <div class="detail-eyebrow" id="d-eyebrow"></div>
-        <div class="detail-title" id="d-title"></div>
-        <div class="detail-tagline" id="d-tagline"></div>
-        <div class="detail-meta" id="d-meta"></div>
+        <div class="detail-info">
+          <div class="detail-eyebrow" id="d-eyebrow"></div>
+          <div class="detail-title" id="d-title"></div>
+          <div class="detail-tagline" id="d-tagline"></div>
+          <div class="detail-meta" id="d-meta"></div>
+        </div>
         <div class="scores-row" id="d-scores"></div>
         <div class="detail-cols">
-          <div>
-            <div class="detail-section-label">Synopsis</div>
+          <div class="detail-synopsis-col">
+            <div class="detail-section-label">synopsis</div>
             <div class="detail-synopsis" id="d-synopsis"></div>
             <div class="detail-cast" id="d-cast"></div>
           </div>
           <div class="detail-sidebar">
             <div class="sidebar-card">
-              <div class="detail-section-label">Where to watch</div>
+              <div class="verdict-text" id="d-verdict"></div>
+            </div>
+            <div class="sidebar-card">
+              <div class="detail-section-label">where to watch</div>
               <div class="streaming-links" id="d-streaming"></div>
             </div>
-            <div class="mom-verdict-card">
-              <div class="verdict-hearts" id="d-hearts"></div>
-              <div class="verdict-label">Mom Meter</div>
-              <div class="verdict-text" id="d-verdict"></div>
+            <div class="sidebar-card">
+              <a class="imdb-link" id="d-imdb-link" href="#" target="_blank" rel="noopener">view on IMDB</a>
             </div>
           </div>
         </div>
@@ -656,6 +881,8 @@
         <div class="detail-browse-inner-bottom">
           <div class="results-section" id="d-results-area"></div>
         </div>
+      </div>
+    </div>
       </div>
     </div>
   </div>
@@ -918,16 +1145,18 @@
       }).join('');
 
       var scoresHTML = '';
-      if (d.vote_average) {
-        scoresHTML += '<a class="score-card" href="'+(d.imdb_link||'#')+'" target="_blank" rel="noopener"><div class="score-logo">&#11088;</div><div><div class="score-label">TMDB Score</div><div class="score-value tmdb-color">'+d.vote_average+'<span style="font-size:0.9rem;color:var(--text3)">/10</span></div><div class="score-sub">'+(d.vote_count?Number(d.vote_count).toLocaleString()+' ratings':'')+'</div></div></a>';
-      }
-      if (d.rating) {
-        scoresHTML += '<div class="rating-card"><div class="rating-badge">'+d.rating+'</div><div><div class="score-label">Content Rating</div></div></div>';
-      }
-      if (d.imdb_link) {
-        scoresHTML += '<a class="score-card" href="'+d.imdb_link+'" target="_blank" rel="noopener"><div style="font-size:14px;background:#f5c518;border-radius:4px;padding:3px 6px;font-weight:800;color:#000;font-family:sans-serif">IMDb</div><div><div class="score-label">View on IMDb</div></div></a>';
-      }
+      scoresHTML += '<div class="score-card"><div class="score-label">TMDB score</div><div class="score-value">'+(d.vote_average ? d.vote_average+'/10' : '—')+'</div></div>';
+      scoresHTML += '<div class="rating-card"><div class="score-label">content rating</div><div class="rating-badge">'+(d.rating||'—')+'</div></div>';
+      scoresHTML += '<div class="mom-meter-card"><div class="score-label">mom meter</div><div class="verdict-hearts" id="d-hearts">\u2661\u2661\u2661\u2661\u2661</div></div>';
       document.getElementById('d-scores').innerHTML = scoresHTML;
+
+      var imdbEl = document.getElementById('d-imdb-link');
+      if (d.imdb_link) {
+        imdbEl.href = d.imdb_link;
+        imdbEl.style.display = 'block';
+      } else {
+        imdbEl.style.display = 'none';
+      }
 
       document.getElementById('d-synopsis').textContent = d.synopsis || 'No synopsis available.';
       var castEl = document.getElementById('d-cast');
@@ -944,7 +1173,7 @@
         streamEl.innerHTML = '<a class="streaming-link" href="https://www.justwatch.com/us/search?q='+encodeURIComponent(d.title)+'" target="_blank" rel="noopener">&#128269; Find on JustWatch</a>';
       }
 
-      document.getElementById('d-hearts').textContent = '&#9825;&#9825;&#9825;&#9825;&#9825;';
+      document.getElementById('d-hearts').textContent = '\u2661\u2661\u2661\u2661\u2661';
       document.getElementById('d-verdict').innerHTML = '<span class="verdict-loading">Checking with mom...</span>';
       document.getElementById('d-racy-section').style.display = 'none';
       document.getElementById('detail-loading').classList.add('hidden');
