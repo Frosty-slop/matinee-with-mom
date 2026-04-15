@@ -640,8 +640,19 @@
 
     /* DETAIL BROWSE SECTION */
     .detail-browse {
+      margin-top: 150px;
       border-top: 2px solid var(--ink);
       background: var(--bg);
+    }
+    .detail-browse-controls .controls-row {
+      grid-template-columns: 1fr 1fr 1fr 2fr;
+    }
+    .detail-browse-controls .controls-row .search-cell {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: stretch;
+      padding: 21px 28px 21px 0;
+      box-sizing: border-box;
     }
     .detail-browse-header {
       max-width: none;
@@ -861,10 +872,10 @@
                 <option value="new">Hot Off the Press (2026)</option>
               </select>
             </div>
-          </div>
-          <div class="search-row">
-            <input class="search-input" id="d-custom-input" type="text" placeholder="anything specific?" maxlength="140" />
-            <button class="suggest-btn" id="d-suggest-btn" onclick="fetchSuggestionsDetail()">suggest</button>
+            <div class="search-cell">
+              <input class="search-input" id="d-custom-input" type="text" placeholder="anything specific?" maxlength="140" />
+              <button class="suggest-btn" id="d-suggest-btn" onclick="fetchSuggestionsDetail()">suggest</button>
+            </div>
           </div>
         </div>
 
