@@ -645,14 +645,7 @@
       background: var(--bg);
     }
     .detail-browse-controls .controls-row {
-      grid-template-columns: auto 1fr 1fr 1fr 2fr;
-    }
-    .detail-browse-controls .controls-row .search-cell {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: stretch;
-      padding: 21px 28px 21px 0;
-      box-sizing: border-box;
+      grid-template-columns: auto 1fr 1fr 1fr;
     }
     .detail-browse-header { display: none; }
     .keep-browsing-title {
@@ -867,11 +860,8 @@
                 <option value="new">Hot Off the Press (2026)</option>
               </select>
             </div>
-            <div class="search-cell">
-              <input class="search-input" id="d-custom-input" type="text" placeholder="anything specific?" maxlength="140" />
-              <button class="suggest-btn" id="d-suggest-btn" onclick="fetchSuggestionsDetail()">suggest</button>
-            </div>
           </div>
+          <input type="hidden" id="d-custom-input" value="" />
         </div>
 
         <div class="poster-section" style="margin-top:1.5rem;">
@@ -1074,7 +1064,7 @@
       } catch(err) {
         area.innerHTML = '<div class="error-state">Something went wrong: '+err.message+'</div>';
       }
-      btn.disabled = false;
+      if (btn) btn.disabled = false;
     }
 
     // ── DETAIL SUGGESTIONS ──
@@ -1084,8 +1074,9 @@
       var type   = document.getElementById('d-type-select').value;
       var mood   = document.getElementById('d-mood-select').value;
       var era    = document.getElementById('d-era-select').value;
-      var custom = document.getElementById('d-custom-input').value.trim();
-      btn.disabled = true;
+      var customEl = document.getElementById('d-custom-input');
+      var custom = customEl ? customEl.value.trim() : '';
+      if (btn) btn.disabled = true;
       area.innerHTML = '<div class="loading-state"><div class="spinner"></div><span>Finding perfect picks...</span></div>';
       var typeLabel = type === 'both' ? 'movies and TV shows' : type === 'movie' ? 'movies' : 'TV shows';
       var moodLabel = mood === 'any' ? '' : ' that are ' + mood;
@@ -1107,7 +1098,7 @@
       } catch(err) {
         area.innerHTML = '<div class="error-state">Something went wrong: '+err.message+'</div>';
       }
-      btn.disabled = false;
+      if (btn) btn.disabled = false;
     }
 
     // ── NAVIGATION ──
