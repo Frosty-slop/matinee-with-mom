@@ -384,12 +384,16 @@
     .back-btn:hover { background: var(--ink); color: var(--bg); }
     .detail-nav-title {
       font-family: var(--sans);
-      font-size: 16px;
-      font-weight: 600;
-      letter-spacing: 0.05em;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
       color: var(--ink);
       font-style: normal;
       padding-left: 14px;
+    }
+    .detail-nav-title .serif {
+      font-family: var(--serif);
+      font-weight: 400;
     }
 
     #detail-loading {
@@ -807,7 +811,7 @@
       <div class="detail-inner">
         <nav class="detail-nav">
           <button class="back-btn" onclick="goHome()" aria-label="Back"><svg viewBox="0 0 13.5 23.5" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.75 21.75L1.75 11.75L11.75 1.75" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-          <span class="detail-nav-title" id="detail-nav-title"></span>
+          <span class="detail-nav-title"><span class="serif">Movies</span> with <span class="serif">Mom</span></span>
         </nav>
     <div id="detail-loading">
       <div class="spinner"></div>
@@ -1183,7 +1187,6 @@
       }
 
       document.getElementById('d-title').textContent = d.title || '';
-      document.getElementById('detail-nav-title').textContent = d.title || '';
       var tagEl = document.getElementById('d-tagline');
       tagEl.textContent = d.tagline || '';
       tagEl.style.display = d.tagline ? 'block' : 'none';
