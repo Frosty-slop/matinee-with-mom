@@ -510,6 +510,7 @@
     .detail-cols {
       position: relative;
       margin: 0;
+      padding-bottom: 150px;
     }
     .detail-synopsis-col {
       width: 66.6667%;
@@ -550,6 +551,7 @@
       position: absolute;
       top: 0;
       right: 0;
+      bottom: 0;
       width: 33.3333%;
       display: flex;
       flex-direction: column;
@@ -557,6 +559,7 @@
       box-sizing: border-box;
     }
     @media (max-width: 720px) {
+      .detail-cols { padding-bottom: 150px; }
       .detail-sidebar { position: static; width: 100%; border-left: none; }
     }
     .sidebar-card {
@@ -671,7 +674,6 @@
 
     /* DETAIL BROWSE SECTION */
     .detail-browse {
-      margin-top: 150px;
       border-top: 2px solid var(--ink);
       background: var(--bg);
     }
