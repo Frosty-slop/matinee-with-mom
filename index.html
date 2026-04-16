@@ -947,6 +947,29 @@
       return html;
     }
 
+    // ── MOM METER HEURISTIC (instant, no AI) ──
+    function momMeterHeuristic(rating, genre) {
+      var ratingScores = {
+        'G': 5, 'TV-Y': 5, 'TV-Y7': 5, 'TV-G': 5,
+        'PG': 4, 'TV-PG': 4,
+        'PG-13': 3, 'TV-14': 3,
+        'R': 2, 'TV-MA': 1, 'NC-17': 1
+      };
+      var stars = ratingScores[rating] || 3;
+      var g = (genre || '').toLowerCase();
+      if (/family|animation/.test(g) && stars < 5) stars++;
+      if (/horror|thriller/.test(g) && stars > 1) stars--;
+      stars = Math.max(1, Math.min(5, stars));
+      var verdicts = {
+        5: 'Perfect for movie night with mom! Family-friendly all the way.',
+        4: 'Great pick for mom — mostly clean with maybe a mild moment or two.',
+        3: 'Decent choice, but there might be a few eyebrow-raising moments.',
+        2: 'Proceed with caution — some content may be uncomfortable with mom around.',
+        1: 'Maybe save this one for when mom\'s not around.'
+      };
+      return { stars: stars, verdict: verdicts[stars] };
+    }
+
     // ── CUSTOM SELECT DISPLAY (stacked, center-aligned) ──
     function updateSelectDisplay(selectEl) {
       var wrap = selectEl.closest('.select-wrap');
@@ -1218,8 +1241,9 @@
         streamEl.innerHTML = '<a class="streaming-link-text" href="https://www.justwatch.com/us/search?q='+encodeURIComponent(d.title)+'" target="_blank" rel="noopener">&#128269; Find on JustWatch</a>';
       }
 
-      document.getElementById('d-hearts').innerHTML = heartsHTML(0);
-      document.getElementById('d-verdict').innerHTML = '<span class="verdict-loading">Checking with mom...</span>';
+      var heuristic = momMeterHeuristic(d.rating, d.genre);
+      document.getElementById('d-hearts').innerHTML = heartsHTML(heuristic.stars);
+      document.getElementById('d-verdict').textContent = heuristic.verdict;
       document.getElementById('d-racy-section').style.display = 'none';
       document.getElementById('detail-loading').classList.add('hidden');
       document.getElementById('detail-content').classList.add('visible');
@@ -1238,7 +1262,7 @@
           document.getElementById('d-racy-section').style.display = 'block';
         }
       } catch(e) {
-        document.getElementById('d-verdict').textContent = 'Analysis unavailable.';
+        // AI unavailable — heuristic already displayed, no action needed
       }
     }
 
