@@ -459,10 +459,10 @@
     .scores-row {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      border-bottom: 2px solid var(--ink);
       margin: 0;
       gap: 0;
     }
+    .scores-row > *:not(:last-child) { border-bottom: 2px solid var(--ink); }
     .scores-row > * {
       padding: 28px 32px;
       background: transparent;
@@ -802,9 +802,6 @@
             <div class="sidebar-card">
               <div class="detail-section-label">where to watch</div>
               <div class="streaming-links" id="d-streaming"></div>
-            </div>
-            <div class="sidebar-card">
-              <a class="imdb-link" id="d-imdb-link" href="#" target="_blank" rel="noopener">view on IMDB</a>
             </div>
           </div>
         </div>
@@ -1170,13 +1167,6 @@
       scoresHTML += '<div class="mom-meter-card"><div class="score-label">mom meter</div><div class="verdict-hearts" id="d-hearts">'+heartsHTML(0)+'</div></div>';
       document.getElementById('d-scores').innerHTML = scoresHTML;
 
-      var imdbEl = document.getElementById('d-imdb-link');
-      if (d.imdb_link) {
-        imdbEl.href = d.imdb_link;
-        imdbEl.style.display = 'block';
-      } else {
-        imdbEl.style.display = 'none';
-      }
 
       document.getElementById('d-synopsis').textContent = d.synopsis || 'No synopsis available.';
       var castEl = document.getElementById('d-cast');
