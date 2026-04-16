@@ -816,7 +816,6 @@
       <div class="detail-trailer" id="detail-trailer"></div>
       <div class="detail-body">
         <div class="detail-info">
-          <div class="detail-eyebrow" id="d-eyebrow"></div>
           <div class="detail-title" id="d-title"></div>
           <div class="detail-tagline" id="d-tagline"></div>
           <div class="detail-meta" id="d-meta"></div>
@@ -1182,7 +1181,6 @@
         trailerEl.innerHTML = '<div class="trailer-placeholder"><div class="play-icon">&#9654;</div><div>Trailer not available</div></div>';
       }
 
-      document.getElementById('d-eyebrow').textContent = d.media_type === 'tv' ? 'TV Show' : 'Movie';
       document.getElementById('d-title').textContent = d.title || '';
       document.getElementById('detail-nav-title').textContent = d.title || '';
       var tagEl = document.getElementById('d-tagline');
