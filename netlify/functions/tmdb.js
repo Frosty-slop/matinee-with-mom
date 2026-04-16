@@ -142,7 +142,7 @@ exports.handler = async (event) => {
       const usProviders = providers.results?.US?.flatrate || [];
       const streaming = usProviders.slice(0, 6).map(p => ({
         name: p.provider_name,
-        logo: `${IMG_BASE}/w45${p.logo_path}`,
+        logo: `${IMG_BASE}/w92${p.logo_path}`,
         url: providerLink(p.provider_name, detail.title || detail.name) || `https://www.justwatch.com/us/search?q=${encodeURIComponent(detail.title || detail.name)}`,
       }));
 
