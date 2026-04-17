@@ -270,13 +270,16 @@ exports.handler = async (event) => {
 
       const [movies, shows] = await Promise.all([fetchMovies, fetchShows]);
 
+      const ANIME_GENRE_T = 16;
       const safeMovies = (movies.results || [])
-        .filter(i => !i.adult)
+        .filter(i => !i.adult && i.original_language === 'en' && !(i.genre_ids || []).includes(ANIME_GENRE_T))
         .slice(0, 8)
         .map(i => mapItem(i, 'movie'));
 
       // Fetch content ratings for TV shows and filter out confirmed TV-MA
-      const showResults = (shows.results || []).slice(0, 20);
+      const showResults = (shows.results || [])
+        .filter(s => s.original_language === 'en' && !(s.genre_ids || []).includes(ANIME_GENRE_T))
+        .slice(0, 20);
       const showRatings = await Promise.all(
         showResults.map(async show => {
           try {
@@ -310,10 +313,10 @@ exports.handler = async (event) => {
       const query = params.query || '';
 
       const fetchMovies = type !== 'tv'
-        ? tmdb(`/search/movie?query=${encodeURIComponent(query)}&include_adult=false&page=1`, KEY)
+        ? tmdb(`/search/movie?query=${encodeURIComponent(query)}&include_adult=false&language=en-US&page=1`, KEY)
         : Promise.resolve({ results: [] });
       const fetchShows = type !== 'movie'
-        ? tmdb(`/search/tv?query=${encodeURIComponent(query)}&include_adult=false&page=1`, KEY)
+        ? tmdb(`/search/tv?query=${encodeURIComponent(query)}&include_adult=false&language=en-US&page=1`, KEY)
         : Promise.resolve({ results: [] });
 
       let [movies, shows] = await Promise.all([fetchMovies, fetchShows]);
@@ -332,12 +335,15 @@ exports.handler = async (event) => {
         });
       }
 
+      const ANIME_GENRE = 16;
       const safeMovies = (movies.results || [])
-        .filter(i => !i.adult)
+        .filter(i => !i.adult && i.original_language === 'en' && !(i.genre_ids || []).includes(ANIME_GENRE))
         .slice(0, 12)
         .map(i => mapItem(i, 'movie'));
 
-      const showResults = (shows.results || []).slice(0, 20);
+      const showResults = (shows.results || [])
+        .filter(s => s.original_language === 'en' && !(s.genre_ids || []).includes(ANIME_GENRE))
+        .slice(0, 20);
       const showRatings = await Promise.all(
         showResults.map(async show => {
           try {
