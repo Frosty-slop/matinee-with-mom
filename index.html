@@ -680,23 +680,29 @@
     /* ── SUGGEST PAGE ── */
     #suggest-page { display: none; min-height: 100vh; background: var(--bg); }
     #suggest-page.visible { display: block; }
+    .suggest-header-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 2px solid var(--ink);
+    }
     .suggest-context {
       padding: 20px 46px;
-      border-bottom: 2px solid var(--ink);
       font-family: var(--sans);
       font-size: 16px;
       font-weight: 400;
       color: var(--ink);
+      display: flex;
+      align-items: center;
     }
     .suggest-context .search-term {
       font-family: var(--serif);
       font-weight: 400;
     }
-    .suggest-search-row {
+    .suggest-search-cell {
       display: grid;
       grid-template-columns: 1fr auto;
       align-items: stretch;
-      border-bottom: 2px solid var(--ink);
+      border-left: 2px solid var(--ink);
     }
     .suggest-search-input {
       font-family: var(--sans);
@@ -711,9 +717,8 @@
     }
     .suggest-search-input:focus { background: rgba(91,9,69,0.04); }
     .suggest-search-input::placeholder { color: var(--ink); opacity: 0.5; }
-    .suggest-search-row .suggest-btn {
-      width: 160px;
-      height: auto;
+    .suggest-search-cell .suggest-btn {
+      padding: 18px 28px;
       border-left: 2px solid var(--ink);
     }
 
@@ -979,10 +984,12 @@
           <span class="detail-nav-title"><span class="serif">Movies</span> with <span class="serif">Mom</span></span>
         </nav>
 
-        <div class="suggest-context" id="suggest-context"></div>
-        <div class="suggest-search-row">
-          <input class="suggest-search-input" id="suggest-search-input" type="text" placeholder="search for something else..." maxlength="140" />
-          <button class="suggest-btn" onclick="suggestPageSearch()">search</button>
+        <div class="suggest-header-row">
+          <div class="suggest-context" id="suggest-context"></div>
+          <div class="suggest-search-cell">
+            <input class="suggest-search-input" id="suggest-search-input" type="text" placeholder="search for something else..." maxlength="140" />
+            <button class="suggest-btn" onclick="suggestPageSearch()">search</button>
+          </div>
         </div>
 
         <div class="poster-section">
