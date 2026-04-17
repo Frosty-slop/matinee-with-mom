@@ -346,7 +346,12 @@ exports.handler = async (event) => {
         }
       }
       const genreArr = [...impliedGenres];
-      const genreParam = genreArr.join('%7C');
+      const genreParam = genreArr.join(',');
+
+      const EXCLUDE_SCIFI_FANTASY = [878, 14, 16];
+      const needsExclude = genreArr.some(g => [28, 53, 80].includes(g));
+      const excludeParam = needsExclude
+        ? '&without_genres=' + EXCLUDE_SCIFI_FANTASY.join(',') : '';
       const themeLabel = matchedThemes.length
         ? matchedThemes.map(t => t[0].toUpperCase() + t.slice(1)).join(' ')
         : query;
@@ -371,12 +376,12 @@ exports.handler = async (event) => {
       // b) Keyword IDs for thematic discover
       const pKeywords = tmdb(`/search/keyword?query=${enc}&page=1`, KEY);
 
-      // c) Genre-implied discover (movies + TV)
+      // c) Genre-implied discover (AND logic + exclude sci-fi/fantasy for action themes)
       const pGenreMovies = genreArr.length > 0 && type !== 'tv'
-        ? tmdb(`/discover/movie?sort_by=popularity.desc&with_genres=${genreParam}&vote_count.gte=100&include_adult=false&language=en-US&certification_country=US&certification.lte=PG-13${eraMovieFilter}`, KEY)
+        ? tmdb(`/discover/movie?sort_by=popularity.desc&with_genres=${genreParam}&vote_count.gte=100&include_adult=false&language=en-US&certification_country=US&certification.lte=PG-13${excludeParam}${eraMovieFilter}`, KEY)
         : Promise.resolve({ results: [] });
       const pGenreShows = genreArr.length > 0 && type !== 'movie'
-        ? tmdb(`/discover/tv?sort_by=popularity.desc&with_genres=${genreParam}&vote_count.gte=50&language=en-US${eraTvFilter}`, KEY)
+        ? tmdb(`/discover/tv?sort_by=popularity.desc&with_genres=${genreParam}&vote_count.gte=50&language=en-US${excludeParam}${eraTvFilter}`, KEY)
         : Promise.resolve({ results: [] });
 
       const [titleMovies, titleShows, kwData, genreMovies, genreShows] =
