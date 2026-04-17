@@ -148,9 +148,8 @@
 
     .search-row {
       display: grid;
-      grid-template-columns: 1fr auto;
+      grid-template-columns: 2fr 1fr;
       align-items: stretch;
-      padding: 21px 28px 21px 0;
       box-sizing: border-box;
     }
     .search-input {
@@ -171,14 +170,14 @@
       font-size: 14px;
       font-weight: 600;
       letter-spacing: 0.05em;
-      width: 114px;
-      height: 60px;
       background: var(--ink);
       color: var(--bg);
       border: none;
+      border-left: 2px solid var(--ink);
       cursor: pointer;
       transition: background 0.15s;
       text-transform: lowercase;
+      padding: 18px 28px;
     }
     .suggest-btn:hover:not(:disabled) { background: var(--ink-dark); }
     .suggest-btn:disabled { opacity: 0.5; cursor: not-allowed; }
