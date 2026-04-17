@@ -483,8 +483,26 @@ exports.handler = async (event) => {
         }
       }
 
-      // TV: filter TV-MA
-      const tvCandidates = mergedShows.slice(0, 20);
+      // Movies: filter unrated and R/NC-17
+      const movieCandidates = mergedMovies.slice(0, 24);
+      const movieRatings = await Promise.all(
+        movieCandidates.map(async m => {
+          try {
+            const d = await tmdb(`/movie/${m.id}/release_dates`, KEY);
+            const us = (d.results || []).find(r => r.iso_3166_1 === 'US');
+            const cert = us?.release_dates?.find(r => r.certification)?.certification || null;
+            return { m, rating: cert };
+          } catch { return { m, rating: null }; }
+        })
+      );
+      const MOM_SAFE_MOVIE = ['G', 'PG', 'PG-13'];
+      const safeMovies = movieRatings
+        .filter(({ rating }) => rating && MOM_SAFE_MOVIE.includes(rating))
+        .slice(0, 12)
+        .map(({ m }) => m);
+
+      // TV: filter unrated and TV-MA
+      const tvCandidates = mergedShows.slice(0, 24);
       const tvRatings = await Promise.all(
         tvCandidates.map(async s => {
           try {
@@ -494,8 +512,9 @@ exports.handler = async (event) => {
           } catch { return { s, rating: null }; }
         })
       );
+      const MOM_SAFE_TV = ['TV-Y', 'TV-Y7', 'TV-G', 'TV-PG', 'TV-14'];
       const safeShows = tvRatings
-        .filter(({ rating }) => rating !== 'TV-MA')
+        .filter(({ rating }) => rating && MOM_SAFE_TV.includes(rating))
         .slice(0, 12)
         .map(({ s }) => s);
 
@@ -503,7 +522,7 @@ exports.handler = async (event) => {
         statusCode: 200,
         headers: { ...CORS, 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          movies: mergedMovies.slice(0, 12),
+          movies: safeMovies,
           shows: safeShows,
         }),
       };
