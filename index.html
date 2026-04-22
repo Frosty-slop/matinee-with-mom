@@ -751,9 +751,117 @@
     .detail-browse .poster-section { margin-top: 0 !important; }
     .detail-browse-inner-bottom { max-width: none; margin: 0; padding: 0; }
 
-    @media (max-width: 700px) {
-      .header-inner { flex-direction: column; gap: 1rem; }
-      .controls-row { flex-wrap: wrap; }
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      header { padding: 20px 10px 0; }
+      main { padding: 0 10px; }
+      footer { padding: 0 10px 20px; }
+      .detail-wrap { padding: 20px 10px 0; }
+
+      /* Header: stack brand above controls */
+      .header-inner {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+      }
+      .header-brand {
+        grid-column: 1;
+        grid-row: 1;
+        grid-template-rows: auto auto;
+        border-right: none;
+        border-bottom: 2px solid var(--ink);
+        padding: 20px 20px;
+        gap: 16px;
+      }
+      .brand-title { font-size: 48px; }
+      .brand-tagline { font-size: 14px; padding: 0; }
+
+      /* Controls: stack dropdowns vertically */
+      .header-controls {
+        grid-column: 1;
+        grid-row: 2;
+        grid-template-rows: auto auto;
+      }
+      .controls-empty { display: none; }
+      .controls-row {
+        grid-template-columns: 1fr !important;
+      }
+      .controls-row > * + * { border-left: none; border-top: 2px solid var(--ink); }
+      .select-wrap { min-height: 60px; }
+      .select-display { min-height: 60px; padding: 0 40px 0 20px; }
+      .search-row {
+        grid-template-columns: 1fr !important;
+      }
+      .suggest-btn { border-left: none; border-top: 2px solid var(--ink); padding: 16px 20px; }
+
+      /* Keep browsing row: stack title + dropdowns */
+      .keep-browsing-title { padding: 16px 20px; border-bottom: 2px solid var(--ink); }
+      .detail-browse-controls .controls-row {
+        grid-template-columns: 1fr !important;
+      }
+
+      /* Poster sections */
+      .poster-section-header {
+        height: auto;
+        padding: 16px 20px;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .poster-section-header .section-title { margin-bottom: 0; }
+      .poster-section-header .section-badge { margin-bottom: 0; }
+      .section-title { font-size: 28px; }
+      .section-badge { font-size: 12px; padding: 2px 14px; }
+      .nav-btn { width: 44px; height: 44px; }
+      .nav-btn svg { width: 8px; height: 16px; }
+
+      /* Poster grid: 2-up with wrapping */
+      .poster-grid {
+        flex-wrap: wrap;
+        padding: 20px;
+        gap: 20px;
+        overflow-x: visible;
+        scroll-snap-type: none;
+      }
+      .poster-card {
+        flex: 0 0 calc(50% - 10px) !important;
+      }
+
+      /* Footer */
+      .footer-inner { padding: 16px 20px; font-size: 12px; }
+
+      /* Detail page */
+      .detail-nav { padding: 12px; gap: 12px; }
+      .back-btn { width: 44px; height: 44px; }
+      .detail-nav-title { font-size: 20px; padding-left: 8px; }
+      .detail-info { padding: 24px 20px; }
+      .detail-title { font-size: 40px; }
+      .detail-tagline { font-size: 14px; }
+      .detail-meta { font-size: 12px; }
+
+      /* Scores: stack vertically */
+      .scores-row { grid-template-columns: 1fr !important; }
+      .scores-left { grid-template-columns: 1fr 1fr; border-bottom: 2px solid var(--ink); }
+      .scores-row .mom-meter-card { border-left: none; border-top: none; }
+
+      /* Synopsis + sidebar: stack */
+      .detail-cols { padding-bottom: 80px; }
+      .detail-synopsis-col { width: 100%; padding: 20px; }
+      .detail-sidebar {
+        position: static !important;
+        width: 100% !important;
+        border-left: none !important;
+        border-top: 2px solid var(--ink);
+      }
+      .sidebar-card { padding: 20px; }
+      .verdict-hearts .heart { width: 40px; height: 34px; }
+
+      .racy-section { padding: 20px; }
+
+      /* Suggest page */
+      .suggest-header-row { grid-template-columns: 1fr; }
+      .suggest-context { padding: 16px 20px; }
+      .suggest-search-cell { border-left: none; border-top: 2px solid var(--ink); }
+      .suggest-search-input { padding: 14px 20px; }
+      .suggest-search-cell .suggest-btn { padding: 14px 20px; }
     }
   </style>
 </head>
