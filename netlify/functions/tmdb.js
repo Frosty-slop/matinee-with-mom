@@ -252,17 +252,18 @@ exports.handler = async (event) => {
       const momSafeMovieRatings = 'G,PG,PG-13';
       const momSafeTvRatings    = 'TV-Y,TV-Y7,TV-G,TV-PG,TV-14';
 
-      // Only use without_genres on TV when no mood is selected (they conflict with with_genres)
-      const tvKidsExclude = mood === 'any' ? '&without_genres=10762,16' : '';
+      // Exclude horror (27) and thriller (53) from all results — not mom-safe
+      const momExcludeMovies = mood === 'any' ? '&without_genres=27,53' : (movieExcludeFilter ? '' : '&without_genres=27,53');
+      const momExcludeTv     = mood === 'any' ? '&without_genres=10762,16,27,53' : '&without_genres=27,53';
 
       if (range) {
         // Use discover with certification filter for era-filtered results
-        movieEndpoint = '/discover/movie?sort_by=popularity.desc&primary_release_date.gte=' + range.gte + '&primary_release_date.lte=' + range.lte + '&vote_count.gte=50&certification_country=US&certification.lte=PG-13&without_keywords=210024' + movieGenreFilter + movieExcludeFilter;
-        showEndpoint  = '/discover/tv?sort_by=popularity.desc&first_air_date.gte=' + range.gte + '&first_air_date.lte=' + range.lte + '&vote_count.gte=20' + tvKidsExclude + '&without_keywords=210024' + tvGenreFilter + tvExcludeFilter;
+        movieEndpoint = '/discover/movie?sort_by=popularity.desc&primary_release_date.gte=' + range.gte + '&primary_release_date.lte=' + range.lte + '&vote_count.gte=50&certification_country=US&certification.lte=PG-13&without_keywords=210024' + movieGenreFilter + (movieExcludeFilter || momExcludeMovies);
+        showEndpoint  = '/discover/tv?sort_by=popularity.desc&first_air_date.gte=' + range.gte + '&first_air_date.lte=' + range.lte + '&vote_count.gte=20' + momExcludeTv + '&without_keywords=210024' + tvGenreFilter;
       } else {
         // Default: now playing / on air — use discover so we can filter by rating
-        movieEndpoint = '/discover/movie?sort_by=popularity.desc&primary_release_date.gte=2024-01-01&vote_count.gte=50&certification_country=US&certification.lte=PG-13&without_keywords=210024' + movieGenreFilter + movieExcludeFilter;
-        showEndpoint  = '/discover/tv?sort_by=popularity.desc&first_air_date.gte=2024-01-01&vote_count.gte=20' + tvKidsExclude + '&without_keywords=210024' + tvGenreFilter + tvExcludeFilter;
+        movieEndpoint = '/discover/movie?sort_by=popularity.desc&primary_release_date.gte=2024-01-01&vote_count.gte=50&certification_country=US&certification.lte=PG-13&without_keywords=210024' + movieGenreFilter + (movieExcludeFilter || momExcludeMovies);
+        showEndpoint  = '/discover/tv?sort_by=popularity.desc&first_air_date.gte=2024-01-01&vote_count.gte=20' + momExcludeTv + '&without_keywords=210024' + tvGenreFilter;
       }
 
       const fetchMovies = type !== 'tv'    ? tmdb(movieEndpoint, KEY) : Promise.resolve({ results: [] });
@@ -416,8 +417,10 @@ exports.handler = async (event) => {
       }
 
       // Step 3: Merge, rank, deduplicate
+      const HORROR = 27, THRILLER = 53;
       function isValid(m) {
-        return !m.adult && m.original_language === 'en' && !(m.genre_ids || []).includes(ANIM);
+        const gids = m.genre_ids || [];
+        return !m.adult && m.original_language === 'en' && !gids.includes(ANIM) && !gids.includes(HORROR) && !gids.includes(THRILLER);
       }
       function eraOk(dateStr) {
         if (!range) return true;
