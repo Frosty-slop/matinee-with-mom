@@ -1017,7 +1017,6 @@
     <footer>
       <div class="footer-inner">
         Data provided by<img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg" class="tmdb-logo" alt="TMDB" />
-        &nbsp;|&nbsp; AI by <a href="https://www.anthropic.com" target="_blank" rel="noopener">Anthropic Claude<span class="sr-only"> (opens in new tab)</span></a>
       </div>
     </footer>
   </div>
@@ -1347,9 +1346,9 @@
       return res.json();
     }
 
-    // ── CLAUDE ──
-    async function callClaude(body) {
-      var res = await fetch('/.netlify/functions/claude', {
+    // ── AI ──
+    async function callAI(body) {
+      var res = await fetch('/.netlify/functions/ai', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body)
       });
@@ -1539,7 +1538,7 @@
       var moodLabel = mood === 'any' ? '' : ' that are ' + mood;
       var eraLabel  = eraLabels[era] || '';
       try {
-        var raw = await callClaude({ task: 'suggest', typeLabel: typeLabel, moodLabel: moodLabel, eraLabel: eraLabel, custom: custom });
+        var raw = await callAI({ task: 'suggest', typeLabel: typeLabel, moodLabel: moodLabel, eraLabel: eraLabel, custom: custom });
         var suggestions = JSON.parse(raw.replace(/```json|```/g,'').trim());
         if (!Array.isArray(suggestions) || !suggestions.length) throw new Error('No results');
         area.innerHTML = '<p class="results-heading">Your picks for tonight</p><div class="results-grid" id="d-results-grid"></div>';
@@ -1681,7 +1680,7 @@
       document.getElementById('detail-content').classList.add('visible');
 
       try {
-        var raw = await callClaude({ task:'analyze', title:d.title, synopsis:d.synopsis, rating:d.rating, genre:d.genre, cast:d.cast });
+        var raw = await callAI({ task:'analyze', title:d.title, synopsis:d.synopsis, rating:d.rating, genre:d.genre, cast:d.cast });
         var analysis = JSON.parse(raw.replace(/```json|```/g,'').trim());
         var stars = Math.min(5, Math.max(1, analysis.mom_stars||3));
         var heartsUpgrade = document.getElementById('d-hearts');

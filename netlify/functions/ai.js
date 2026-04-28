@@ -1,4 +1,4 @@
-// Rate limiter: 20 Claude requests per IP per hour
+// Rate limiter: 20 AI requests per IP per hour
 const rateLimitMap = new Map();
 const LIMIT = 20;
 const WINDOW_MS = 60 * 60 * 1000;
