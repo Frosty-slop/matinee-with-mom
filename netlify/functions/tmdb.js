@@ -271,10 +271,24 @@ exports.handler = async (event) => {
       const [movies, shows] = await Promise.all([fetchMovies, fetchShows]);
 
       const ANIME_GENRE_T = 16;
-      const safeMovies = (movies.results || [])
+      const MOM_SAFE_MOVIE_T = ['G', 'PG', 'PG-13'];
+      const movieCandidatesT = (movies.results || [])
         .filter(i => !i.adult && i.original_language === 'en' && !(i.genre_ids || []).includes(ANIME_GENRE_T))
+        .slice(0, 24);
+      const movieRatingsT = await Promise.all(
+        movieCandidatesT.map(async m => {
+          try {
+            const d = await tmdb(`/movie/${m.id}/release_dates`, KEY);
+            const us = (d.results || []).find(r => r.iso_3166_1 === 'US');
+            const cert = us?.release_dates?.find(r => r.certification)?.certification || null;
+            return { m, rating: cert };
+          } catch { return { m, rating: null }; }
+        })
+      );
+      const safeMovies = movieRatingsT
+        .filter(({ rating }) => rating && MOM_SAFE_MOVIE_T.includes(rating))
         .slice(0, 8)
-        .map(i => mapItem(i, 'movie'));
+        .map(({ m }) => mapItem(m, 'movie'));
 
       const MOM_SAFE_TV_T = ['TV-Y', 'TV-Y7', 'TV-G', 'TV-PG', 'TV-14'];
       const showResults = (shows.results || [])
