@@ -229,16 +229,16 @@
 
     /* POSTER SECTIONS */
     main {
-      padding: 0 120px;
+      padding: 0 120px 72px;
       background: var(--bg);
     }
-    @media (max-width: 1400px) { main { padding: 0 40px; } }
-    @media (max-width: 900px)  { main { padding: 0 20px; } }
+    @media (max-width: 1400px) { main { padding: 0 40px 48px; } }
+    @media (max-width: 900px)  { main { padding: 0 20px 32px; } }
     .main-inner {
       max-width: 1200px;
       margin: 0 auto;
-      border-left: 2px solid var(--ink);
-      border-right: 2px solid var(--ink);
+      border: 2px solid var(--ink);
+      border-top: none;
       background: var(--bg);
     }
 
@@ -253,8 +253,8 @@
       height: 104px;
       box-sizing: border-box;
     }
-    .poster-section-header .section-title { margin-bottom: 12px; }
-    .poster-section-header .section-badge { margin-bottom: 17px; }
+    .poster-section-header .section-title { margin-bottom: 0; }
+    .poster-section-header .section-badge { margin-bottom: 4px; }
     .section-title {
       font-family: var(--serif);
       font-size: 2.25rem;
@@ -358,17 +358,8 @@
     @keyframes spin { to { transform: rotate(360deg); } }
     .error-state { background: #fff0f0; border: 1px solid var(--pink-mid); border-radius: var(--radius); padding: 1rem 1.4rem; color: var(--pink-dark); font-size: 0.875rem; text-align: center; }
 
-    footer {
-      padding: 0 120px 72px;
-      background: var(--bg);
-    }
-    @media (max-width: 1400px) { footer { padding: 0 40px 48px; } }
-    @media (max-width: 900px)  { footer { padding: 0 20px 32px; } }
     .footer-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      border: 2px solid var(--ink);
-      border-top: none;
+      border-top: 2px solid var(--ink);
       padding: 22px 46px;
       text-align: center;
       font-family: var(--sans);
@@ -377,8 +368,8 @@
       color: var(--ink);
       letter-spacing: 0;
     }
-    footer a { color: var(--ink); text-decoration: underline; }
-    footer a:hover { text-decoration: none; }
+    .footer-inner a { color: var(--ink); text-decoration: underline; }
+    .footer-inner a:hover { text-decoration: none; }
     .tmdb-logo { height: 14px; vertical-align: middle; margin-left: 3px; }
 
     /* ── DETAIL PAGE ── */
@@ -793,7 +784,6 @@
     @media (max-width: 768px) {
       header { padding: 20px 10px 0; }
       main { padding: 0 10px; }
-      footer { padding: 0 10px 20px; }
       .detail-wrap { padding: 20px 10px 0; }
 
       /* Header: stack brand above controls */
@@ -1011,14 +1001,11 @@
         </div>
 
         <div class="results-section" id="results-area"></div>
+        <footer class="footer-inner">
+          Data provided by<img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg" class="tmdb-logo" alt="TMDB" />
+        </footer>
       </div>
     </main>
-
-    <footer>
-      <div class="footer-inner">
-        Data provided by<img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg" class="tmdb-logo" alt="TMDB" />
-      </div>
-    </footer>
   </div>
 
   <!-- DETAIL PAGE -->
