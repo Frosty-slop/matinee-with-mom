@@ -1303,8 +1303,12 @@
     function updateCarouselButtons(grid) {
       var section = grid.closest('.poster-section');
       if (!section) return;
+      var nav = section.querySelector('.section-nav');
       var btns = section.querySelectorAll('.nav-btn');
-      if (btns.length < 2) return;
+      if (!nav || btns.length < 2) return;
+      var hasCards = grid.querySelector('.poster-card') !== null;
+      nav.style.opacity = hasCards ? '' : '0';
+      nav.style.pointerEvents = hasCards ? '' : 'none';
       btns[0].disabled = grid.scrollLeft <= 0;
       btns[1].disabled = grid.scrollLeft + grid.clientWidth >= grid.scrollWidth - 2;
     }
