@@ -1,4 +1,4 @@
-# 🎬 Matinee with Mom
+# 🎬 Movies with Mom
 
 A movie and TV show recommendation site for finding the perfect thing to watch with your mom — heartwarming picks, zero awkward moments.
 
