@@ -221,7 +221,7 @@
       border-left: 2px solid var(--ink);
       cursor: pointer;
       transition: background 0.15s;
-      text-transform: lowercase;
+
       padding: 18px 28px;
     }
     .suggest-btn:hover:not(:disabled) { background: var(--ink-dark); }
@@ -261,7 +261,7 @@
       font-weight: 400;
       color: var(--ink);
       letter-spacing: 0;
-      text-transform: lowercase;
+
       line-height: 1;
     }
     .section-badge {
@@ -524,7 +524,7 @@
       color: var(--ink);
       letter-spacing: 0.05em;
       margin-bottom: 18px;
-      text-transform: lowercase;
+
     }
     .score-value {
       font-family: var(--serif);
@@ -565,7 +565,7 @@
       color: var(--ink);
       letter-spacing: 0.05em;
       margin-bottom: 14px;
-      text-transform: lowercase;
+
       display: block;
     }
     .detail-synopsis {
@@ -674,7 +674,7 @@
       letter-spacing: 0.05em;
       color: var(--ink);
       text-decoration: none;
-      text-transform: lowercase;
+
       display: block;
     }
     .imdb-link:hover { text-decoration: underline; }
@@ -938,15 +938,15 @@
             <div class="select-wrap">
               <div class="select-display"></div>
               <select id="type-select">
-                <option value="both">all types</option>
-                <option value="movie">movies</option>
-                <option value="tv">tv shows</option>
+                <option value="both">All Types</option>
+                <option value="movie">Movies</option>
+                <option value="tv">TV Shows</option>
               </select>
             </div>
             <div class="select-wrap">
               <div class="select-display"></div>
               <select id="mood-select">
-                <option value="any">mood</option>
+                <option value="any">Mood</option>
                 <option value="heartwarming">Heartwarming</option>
                 <option value="funny">Funny</option>
                 <option value="exciting">Exciting</option>
@@ -956,7 +956,7 @@
             <div class="select-wrap">
               <div class="select-display"></div>
               <select id="era-select">
-                <option value="any">era</option>
+                <option value="any">Era</option>
                 <option value="80s">Rad Era (1980s)</option>
                 <option value="90s">Totally Awesome (1990s)</option>
                 <option value="2000s">Y2K Vibes (2000s)</option>
@@ -967,8 +967,8 @@
             </div>
           </div>
           <div class="search-row">
-            <input class="search-input" id="custom-input" type="text" placeholder="anything specific?" maxlength="140" aria-label="Search for movies or TV shows" />
-            <button class="suggest-btn" id="suggest-btn" onclick="fetchSuggestions()">mom safe suggestion</button>
+            <input class="search-input" id="custom-input" type="text" placeholder="Anything specific?" maxlength="140" aria-label="Search for movies or TV shows" />
+            <button class="suggest-btn" id="suggest-btn" onclick="fetchSuggestions()">Mom safe suggestion</button>
           </div>
         </div>
       </div>
@@ -978,8 +978,8 @@
       <div class="main-inner">
         <div class="poster-section">
           <div class="poster-section-header">
-            <h2 class="section-title">movies</h2>
-            <span class="section-badge">now in theaters and streaming</span>
+            <h2 class="section-title">Movies</h2>
+            <span class="section-badge">Now in theaters and streaming</span>
             <div class="section-nav">
               <button class="nav-btn" onclick="scrollRow('movie-grid', -1)" aria-label="Previous movies" title="Previous"><svg viewBox="0 0 13.5 23.5" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.75 21.75L1.75 11.75L11.75 1.75" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
               <button class="nav-btn" onclick="scrollRow('movie-grid', 1)" aria-label="Next movies" title="Next"><svg viewBox="0 0 13.5 23.5" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.75 21.75L11.75 11.75L1.75 1.75" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -990,8 +990,8 @@
 
         <div class="poster-section">
           <div class="poster-section-header">
-            <h2 class="section-title">tv shows</h2>
-            <span class="section-badge">currently airing</span>
+            <h2 class="section-title">TV Shows</h2>
+            <span class="section-badge">Currently airing</span>
             <div class="section-nav">
               <button class="nav-btn" onclick="scrollRow('tv-grid', -1)" aria-label="Previous TV shows" title="Previous"><svg viewBox="0 0 13.5 23.5" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.75 21.75L1.75 11.75L11.75 1.75" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
               <button class="nav-btn" onclick="scrollRow('tv-grid', 1)" aria-label="Next TV shows" title="Next"><svg viewBox="0 0 13.5 23.5" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.75 21.75L11.75 11.75L1.75 1.75" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -1031,7 +1031,7 @@
         <div class="scores-row" id="d-scores"></div>
         <div class="detail-cols">
           <div class="detail-synopsis-col">
-            <h3 class="detail-section-label">synopsis</h3>
+            <h3 class="detail-section-label">Synopsis</h3>
             <div class="detail-synopsis" id="d-synopsis"></div>
             <div class="detail-cast" id="d-cast"></div>
           </div>
@@ -1040,7 +1040,7 @@
               <div class="verdict-text" id="d-verdict"></div>
             </div>
             <div class="sidebar-card">
-              <h3 class="detail-section-label">where to watch</h3>
+              <h3 class="detail-section-label">Where to watch</h3>
               <div class="streaming-links" id="d-streaming"></div>
             </div>
           </div>
@@ -1066,19 +1066,19 @@
       <div class="detail-browse">
         <div class="detail-browse-controls">
           <div class="controls-row">
-            <h2 class="keep-browsing-title">keep browsing</h2>
+            <h2 class="keep-browsing-title">Keep browsing</h2>
             <div class="select-wrap">
               <div class="select-display"></div>
               <select id="d-type-select">
-                <option value="both">all types</option>
-                <option value="movie">movies</option>
-                <option value="tv">tv shows</option>
+                <option value="both">All Types</option>
+                <option value="movie">Movies</option>
+                <option value="tv">TV Shows</option>
               </select>
             </div>
             <div class="select-wrap">
               <div class="select-display"></div>
               <select id="d-mood-select">
-                <option value="any">mood</option>
+                <option value="any">Mood</option>
                 <option value="heartwarming">Heartwarming</option>
                 <option value="funny">Funny</option>
                 <option value="exciting">Exciting</option>
@@ -1088,7 +1088,7 @@
             <div class="select-wrap">
               <div class="select-display"></div>
               <select id="d-era-select">
-                <option value="any">era</option>
+                <option value="any">Era</option>
                 <option value="80s">Rad Era (1980s)</option>
                 <option value="90s">Totally Awesome (1990s)</option>
                 <option value="2000s">Y2K Vibes (2000s)</option>
@@ -1103,7 +1103,7 @@
 
         <div class="poster-section" style="margin-top:1.5rem;">
           <div class="poster-section-header">
-            <h2 class="section-title">movies</h2>
+            <h2 class="section-title">Movies</h2>
             <span class="section-badge">Now in theaters &amp; streaming</span>
             <div class="section-nav">
               <button class="nav-btn" onclick="scrollRow('d-movie-grid', -1)" aria-label="Previous movies"><svg viewBox="0 0 13.5 23.5" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.75 21.75L1.75 11.75L11.75 1.75" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -1114,7 +1114,7 @@
         </div>
         <div class="poster-section">
           <div class="poster-section-header">
-            <h2 class="section-title">tv shows</h2>
+            <h2 class="section-title">TV Shows</h2>
             <span class="section-badge">Currently airing</span>
             <div class="section-nav">
               <button class="nav-btn" onclick="scrollRow('d-tv-grid', -1)" aria-label="Previous TV shows"><svg viewBox="0 0 13.5 23.5" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.75 21.75L1.75 11.75L11.75 1.75" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -1145,15 +1145,15 @@
         <div class="suggest-header-row" role="main">
           <div class="suggest-context" id="suggest-context"></div>
           <div class="suggest-search-cell">
-            <input class="suggest-search-input" id="suggest-search-input" type="text" placeholder="search for something else..." maxlength="140" aria-label="Search for movies or TV shows" />
-            <button class="suggest-btn" onclick="suggestPageSearch()">search</button>
+            <input class="suggest-search-input" id="suggest-search-input" type="text" placeholder="Search for something else..." maxlength="140" aria-label="Search for movies or TV shows" />
+            <button class="suggest-btn" onclick="suggestPageSearch()">Search</button>
           </div>
         </div>
 
         <div class="poster-section">
           <div class="poster-section-header">
-            <h2 class="section-title">movies</h2>
-            <span class="section-badge" id="s-movie-badge">matching your search</span>
+            <h2 class="section-title">Movies</h2>
+            <span class="section-badge" id="s-movie-badge">Matching your search</span>
             <div class="section-nav">
               <button class="nav-btn" onclick="scrollRow('s-movie-grid', -1)" aria-label="Previous movies" title="Previous"><svg viewBox="0 0 13.5 23.5" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.75 21.75L1.75 11.75L11.75 1.75" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
               <button class="nav-btn" onclick="scrollRow('s-movie-grid', 1)" aria-label="Next movies" title="Next"><svg viewBox="0 0 13.5 23.5" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.75 21.75L11.75 11.75L1.75 1.75" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -1164,8 +1164,8 @@
 
         <div class="poster-section">
           <div class="poster-section-header">
-            <h2 class="section-title">tv shows</h2>
-            <span class="section-badge" id="s-tv-badge">matching your search</span>
+            <h2 class="section-title">TV Shows</h2>
+            <span class="section-badge" id="s-tv-badge">Matching your search</span>
             <div class="section-nav">
               <button class="nav-btn" onclick="scrollRow('s-tv-grid', -1)" aria-label="Previous TV shows" title="Previous"><svg viewBox="0 0 13.5 23.5" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.75 21.75L1.75 11.75L11.75 1.75" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
               <button class="nav-btn" onclick="scrollRow('s-tv-grid', 1)" aria-label="Next TV shows" title="Next"><svg viewBox="0 0 13.5 23.5" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.75 21.75L11.75 11.75L1.75 1.75" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -1177,19 +1177,19 @@
         <div class="detail-browse" style="margin-top:150px;">
           <div class="detail-browse-controls">
             <div class="controls-row">
-              <h2 class="keep-browsing-title">keep browsing</h2>
+              <h2 class="keep-browsing-title">Keep browsing</h2>
               <div class="select-wrap">
                 <div class="select-display"></div>
                 <select id="s-type-select">
-                  <option value="both">all types</option>
-                  <option value="movie">movies</option>
-                  <option value="tv">tv shows</option>
+                  <option value="both">All Types</option>
+                  <option value="movie">Movies</option>
+                  <option value="tv">TV Shows</option>
                 </select>
               </div>
               <div class="select-wrap">
                 <div class="select-display"></div>
                 <select id="s-mood-select">
-                  <option value="any">mood</option>
+                  <option value="any">Mood</option>
                   <option value="heartwarming">Heartwarming</option>
                   <option value="funny">Funny</option>
                   <option value="exciting">Exciting</option>
@@ -1199,7 +1199,7 @@
               <div class="select-wrap">
                 <div class="select-display"></div>
                 <select id="s-era-select">
-                  <option value="any">era</option>
+                  <option value="any">Era</option>
                   <option value="80s">Rad Era (1980s)</option>
                   <option value="90s">Totally Awesome (1990s)</option>
                   <option value="2000s">Y2K Vibes (2000s)</option>
@@ -1213,8 +1213,8 @@
 
           <div class="poster-section">
             <div class="poster-section-header">
-              <h2 class="section-title">movies</h2>
-              <span class="section-badge">now in theaters and streaming</span>
+              <h2 class="section-title">Movies</h2>
+              <span class="section-badge">Now in theaters and streaming</span>
               <div class="section-nav">
                 <button class="nav-btn" onclick="scrollRow('s-browse-movie-grid', -1)" aria-label="Previous movies"><svg viewBox="0 0 13.5 23.5" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.75 21.75L1.75 11.75L11.75 1.75" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
                 <button class="nav-btn" onclick="scrollRow('s-browse-movie-grid', 1)" aria-label="Next movies"><svg viewBox="0 0 13.5 23.5" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.75 21.75L11.75 11.75L1.75 1.75" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -1224,8 +1224,8 @@
           </div>
           <div class="poster-section">
             <div class="poster-section-header">
-              <h2 class="section-title">tv shows</h2>
-              <span class="section-badge">currently airing</span>
+              <h2 class="section-title">TV Shows</h2>
+              <span class="section-badge">Currently airing</span>
               <div class="section-nav">
                 <button class="nav-btn" onclick="scrollRow('s-browse-tv-grid', -1)" aria-label="Previous TV shows"><svg viewBox="0 0 13.5 23.5" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.75 21.75L1.75 11.75L11.75 1.75" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
                 <button class="nav-btn" onclick="scrollRow('s-browse-tv-grid', 1)" aria-label="Next TV shows"><svg viewBox="0 0 13.5 23.5" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.75 21.75L11.75 11.75L1.75 1.75" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -1466,8 +1466,8 @@
       if (mood !== 'any') parts.push(mood);
       if (era !== 'any') parts.push((eraLabels[era] || '').trim());
       ctx.innerHTML = parts.length
-        ? 'showing results for <span class="search-term">' + parts.join(' &middot; ') + '</span>'
-        : 'showing popular picks';
+        ? 'Showing results for <span class="search-term">' + parts.join(' &middot; ') + '</span>'
+        : 'Showing popular picks';
 
       document.getElementById('suggest-search-input').value = query || '';
 
@@ -1639,10 +1639,10 @@
       }).join('');
 
       var scoresHTML = '<div class="scores-left">';
-      scoresHTML += '<div class="score-card"><div class="score-label">TMDB score</div><div class="score-value">'+(d.vote_average ? d.vote_average+'/10' : '—')+'</div></div>';
-      scoresHTML += '<div class="rating-card"><div class="score-label">content rating</div><div class="rating-badge">'+(d.rating||'—')+'</div></div>';
+      scoresHTML += '<div class="score-card"><div class="score-label">TMDB Score</div><div class="score-value">'+(d.vote_average ? d.vote_average+'/10' : '—')+'</div></div>';
+      scoresHTML += '<div class="rating-card"><div class="score-label">Content Rating</div><div class="rating-badge">'+(d.rating||'—')+'</div></div>';
       scoresHTML += '</div>';
-      scoresHTML += '<div class="mom-meter-card"><div class="score-label">mom meter</div><div class="verdict-hearts" id="d-hearts" role="img" aria-label="Mom meter: loading" title="1 = not mom-safe, 5 = perfect for mom">'+heartsHTML(0)+'</div></div>';
+      scoresHTML += '<div class="mom-meter-card"><div class="score-label">Mom Meter</div><div class="verdict-hearts" id="d-hearts" role="img" aria-label="Mom meter: loading" title="1 = not mom-safe, 5 = perfect for mom">'+heartsHTML(0)+'</div></div>';
       document.getElementById('d-scores').innerHTML = scoresHTML;
 
 
