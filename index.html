@@ -193,17 +193,19 @@
 
     .search-row {
       display: grid;
-      grid-template-columns: 2fr 1fr;
-      align-items: stretch;
+      grid-template-columns: 2fr auto;
+      align-items: center;
       box-sizing: border-box;
+      padding: 20px 28px;
     }
     .search-input {
       font-family: var(--sans);
       font-size: 1rem;
       font-weight: 600;
       letter-spacing: 0.05em;
-      padding: 0 0 0 28px;
+      padding: 8px 0;
       border: none;
+      border-bottom: 1px solid var(--ink);
       background: transparent;
       color: var(--ink);
       outline: none;
@@ -211,18 +213,17 @@
     .search-input:focus { background: rgba(91,9,69,0.04); }
     .search-input::placeholder { color: var(--ink); opacity: 0.85; }
     .suggest-btn {
-      font-family: var(--sans);
-      font-size: 0.875rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 400;
+      letter-spacing: 0.02em;
       background: var(--ink);
       color: var(--bg);
       border: none;
-      border-left: 2px solid var(--ink);
       cursor: pointer;
       transition: background 0.15s;
-
-      padding: 18px 28px;
+      padding: 14px 28px;
+      margin-left: 28px;
     }
     .suggest-btn:hover:not(:disabled) { background: var(--ink-dark); }
     .suggest-btn:disabled { opacity: 0.5; cursor: not-allowed; }
@@ -819,7 +820,8 @@
       .search-row {
         grid-template-columns: 1fr auto !important;
       }
-      .suggest-btn { border-left: 2px solid var(--ink); border-top: none; padding: 16px 20px; }
+      .search-row { padding: 16px 20px; }
+      .suggest-btn { padding: 12px 20px; }
 
       /* Keep browsing row: stack title + dropdowns */
       .keep-browsing-title {
@@ -968,7 +970,7 @@
           </div>
           <div class="search-row">
             <input class="search-input" id="custom-input" type="text" placeholder="Anything specific?" maxlength="140" aria-label="Search for movies or TV shows" />
-            <button class="suggest-btn" id="suggest-btn" onclick="fetchSuggestions()">Mom safe suggestion</button>
+            <button class="suggest-btn" id="suggest-btn" onclick="fetchSuggestions()">Mom Safe Suggestion</button>
           </div>
         </div>
       </div>
