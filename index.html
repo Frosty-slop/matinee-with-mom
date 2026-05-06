@@ -4,6 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Movies with Mom</title>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q1V5YWDCD1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Q1V5YWDCD1');
+  </script>
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="shortcut icon" href="/favicon.ico" />
@@ -1370,7 +1378,7 @@
         (item.poster ? '<img src="' + item.poster + '" alt="" loading="lazy" onerror="this.style.display=\'none\'">' : '') +
         '<div class="poster-overlay" aria-hidden="true"><div class="poster-name">' + item.title + '</div><div class="poster-year">' + (item.year||'') + '</div></div>' +
         '</div>';
-      function activate() { openDetail(item.id, item.media_type, item.title); }
+      function activate() { gtag('event', 'poster_click', { title: item.title, media_type: item.media_type, year: item.year }); openDetail(item.id, item.media_type, item.title); }
       card.addEventListener('click', activate);
       card.addEventListener('keydown', function(e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); } });
       return card;
@@ -1409,6 +1417,7 @@
       var era  = document.getElementById('era-select').value;
       var type = document.getElementById('type-select').value;
       var mood = document.getElementById('mood-select').value;
+      gtag('event', 'filter_change', { page: 'home', type: type, mood: mood, era: era });
       buildPosterRows('movie-grid', 'tv-grid', era, type, mood);
     }
     document.getElementById('era-select').addEventListener('change', onHomeFilterChange);
@@ -1419,6 +1428,7 @@
       var era  = document.getElementById('d-era-select').value;
       var type = document.getElementById('d-type-select').value;
       var mood = document.getElementById('d-mood-select').value;
+      gtag('event', 'filter_change', { page: 'detail', type: type, mood: mood, era: era });
       buildPosterRows('d-movie-grid', 'd-tv-grid', era, type, mood);
     }
     document.getElementById('d-era-select').addEventListener('change', onDetailFilterChange);
@@ -1429,6 +1439,7 @@
       var era  = document.getElementById('s-era-select').value;
       var type = document.getElementById('s-type-select').value;
       var mood = document.getElementById('s-mood-select').value;
+      gtag('event', 'filter_change', { page: 'suggest', type: type, mood: mood, era: era });
       buildPosterRows('s-browse-movie-grid', 's-browse-tv-grid', era, type, mood);
     }
     document.getElementById('s-era-select').addEventListener('change', onSuggestBrowseFilterChange);
@@ -1444,6 +1455,7 @@
       var mood   = document.getElementById('mood-select').value;
       var era    = document.getElementById('era-select').value;
       var custom = document.getElementById('custom-input').value.trim();
+      gtag('event', 'suggest_click', { query: custom, type: type, mood: mood, era: era });
       showSuggestPage(custom, type, mood, era);
       setTimeout(function() { btn.disabled = false; }, 1000);
     }
@@ -1451,6 +1463,7 @@
     function suggestPageSearch() {
       var query = document.getElementById('suggest-search-input').value.trim();
       if (!query) return;
+      gtag('event', 'suggest_search', { query: query });
       showSuggestPage(query, 'both', 'any', 'any');
     }
 
