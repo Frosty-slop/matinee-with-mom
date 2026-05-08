@@ -1,4 +1,4 @@
-const { getStore } = require('@netlify/blobs');
+const { getStore, connectLambda } = require('@netlify/blobs');
 
 // Rate limiter: 20 AI requests per IP per hour
 const rateLimitMap = new Map();
@@ -61,6 +61,9 @@ exports.handler = async (event) => {
       body: JSON.stringify({ error: 'Empty or invalid request body.' }),
     };
   }
+
+  // Connect blobs context for Lambda functions
+  connectLambda(event);
 
   const task = body.task;
   let prompt;
