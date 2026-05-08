@@ -964,7 +964,7 @@
       .suggest-search-input { padding: 14px 20px; }
       .suggest-search-cell .suggest-btn { padding: 14px 20px; }
     }
-    .tm { font-size: 0.4em; vertical-align: super; font-weight: 400; font-family: var(--sans); letter-spacing: 0; opacity: 0.6; }
+    .tm { font-size: 0.35em; vertical-align: super; font-weight: 400; font-family: var(--sans); letter-spacing: 0; opacity: 0.6; }
 
     /* Entrance animations */
     .fade-in-up {
@@ -996,9 +996,9 @@
         <div class="header-brand">
           <h1 class="brand-title">
             <span class="bt-row serif">Movies</span>
-            <span class="bt-row">with <span class="serif">Mom</span><sup class="tm">TM</sup></span>
+            <span class="bt-row">with <span class="serif">Mom</span><span class="tm">™</span></span>
           </h1>
-          <div class="brand-tagline">Your <span class="serif">mom-safe</span><sup class="tm">TM</sup> cinema guide,<br>skip the cringe, keep the <span class="serif">popcorn</span>.</div>
+          <div class="brand-tagline">Your <span class="serif">mom-safe</span><span class="tm">™</span> cinema guide,<br>skip the cringe, keep the <span class="serif">popcorn</span>.</div>
         </div>
         <div class="header-controls">
           <div class="controls-empty"></div>
@@ -1075,7 +1075,7 @@
     <div class="site-footer-wrap">
       <footer class="site-footer">
         <svg class="footer-heart" viewBox="0 0 39 33" xmlns="http://www.w3.org/2000/svg"><path d="M33.5026 0H21.8699V5.41289H17.125V0H5.49745V5.41289H0V16.8694H5.49745V22.2848H10.9924V27.7002H16.4235V33H22.5561V27.7002H28.0051V22.2848H33.5026V16.8694H39V5.41289H33.5026V0Z" fill="currentColor"/></svg>
-        <div class="footer-title"><span class="serif">Movies</span> with <span class="serif">Mom</span><sup class="tm">TM</sup></div>
+        <div class="footer-title"><span class="serif">Movies</span> with <span class="serif">Mom</span><span class="tm">™</span></div>
         <div class="footer-tagline">Made with <span class="serif">love</span>, for movie nights with <span class="serif">mom</span>.</div>
         <div class="footer-credit">Data provided by TMDB</div>
       </footer>
@@ -1088,7 +1088,7 @@
       <div class="detail-inner">
         <nav class="detail-nav">
           <button class="back-btn" onclick="goHome()" aria-label="Back"><svg viewBox="0 0 13.5 23.5" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.75 21.75L1.75 11.75L11.75 1.75" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-          <span class="detail-nav-title"><span class="serif">Movies</span> with <span class="serif">Mom</span><sup class="tm">TM</sup></span>
+          <span class="detail-nav-title"><span class="serif">Movies</span> with <span class="serif">Mom</span><span class="tm">™</span></span>
         </nav>
     <div id="detail-loading">
       <div class="spinner"></div>
@@ -1204,7 +1204,7 @@
     <div class="site-footer-wrap">
       <footer class="site-footer">
         <svg class="footer-heart" viewBox="0 0 39 33" xmlns="http://www.w3.org/2000/svg"><path d="M33.5026 0H21.8699V5.41289H17.125V0H5.49745V5.41289H0V16.8694H5.49745V22.2848H10.9924V27.7002H16.4235V33H22.5561V27.7002H28.0051V22.2848H33.5026V16.8694H39V5.41289H33.5026V0Z" fill="currentColor"/></svg>
-        <div class="footer-title"><span class="serif">Movies</span> with <span class="serif">Mom</span><sup class="tm">TM</sup></div>
+        <div class="footer-title"><span class="serif">Movies</span> with <span class="serif">Mom</span><span class="tm">™</span></div>
         <div class="footer-tagline">Made with <span class="serif">love</span>, for movie nights with <span class="serif">mom</span>.</div>
         <div class="footer-credit">Data provided by TMDB</div>
       </footer>
@@ -1217,7 +1217,7 @@
       <div class="detail-inner">
         <nav class="detail-nav">
           <button class="back-btn" onclick="goHome()" aria-label="Back"><svg viewBox="0 0 13.5 23.5" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.75 21.75L1.75 11.75L11.75 1.75" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-          <span class="detail-nav-title"><span class="serif">Movies</span> with <span class="serif">Mom</span><sup class="tm">TM</sup></span>
+          <span class="detail-nav-title"><span class="serif">Movies</span> with <span class="serif">Mom</span><span class="tm">™</span></span>
         </nav>
 
         <div class="suggest-header-row" role="main">
@@ -1725,7 +1725,7 @@
       scoresHTML += '<div class="score-card"><div class="score-label">TMDB Score</div><div class="score-value">'+(d.vote_average ? d.vote_average+'/10' : '—')+'</div></div>';
       scoresHTML += '<div class="rating-card"><div class="score-label">Content Rating</div><div class="rating-badge">'+(d.rating||'—')+'</div></div>';
       scoresHTML += '</div>';
-      scoresHTML += '<div class="mom-meter-card"><div class="score-label">Mom Meter<sup class="tm">TM</sup></div><div class="verdict-hearts" id="d-hearts" role="img" aria-label="Mom meter: loading" title="1 = not mom-safe, 5 = perfect for mom">'+heartsHTML(0)+'</div></div>';
+      scoresHTML += '<div class="mom-meter-card"><div class="score-label">Mom Meter<span class="tm">™</span></div><div class="verdict-hearts" id="d-hearts" role="img" aria-label="Mom meter: loading" title="1 = not mom-safe, 5 = perfect for mom">'+heartsHTML(0)+'</div></div>';
       document.getElementById('d-scores').innerHTML = scoresHTML;
 
 
