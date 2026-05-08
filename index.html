@@ -971,11 +971,6 @@
       .suggest-search-cell .suggest-btn { padding: 14px 20px; }
     }
     /* Entrance animations */
-    .fade-in {
-      opacity: 0;
-      transition: opacity 0.6s ease;
-    }
-    .fade-in.visible { opacity: 1; }
     .fade-in-right {
       opacity: 0;
       transform: translateX(20px);
@@ -1003,15 +998,15 @@
     <header>
       <div class="header-inner">
         <div class="header-brand">
-          <h1 class="brand-title fade-in" id="anim-brand">
+          <h1 class="brand-title">
             <span class="bt-row serif">Movies</span>
             <span class="bt-row">with <span class="serif">Mom</span></span>
           </h1>
-          <div class="brand-tagline fade-in" id="anim-tagline">Your <span class="serif">mom-safe</span> cinema guide,<br>skip the cringe, keep the <span class="serif">popcorn</span>.</div>
+          <div class="brand-tagline">Your <span class="serif">mom-safe</span> cinema guide,<br>skip the cringe, keep the <span class="serif">popcorn</span>.</div>
         </div>
-        <div class="header-controls" id="anim-controls">
+        <div class="header-controls">
           <div class="controls-empty"></div>
-          <div class="controls-row fade-in" id="anim-filters">
+          <div class="controls-row">
             <div class="select-wrap">
               <div class="select-display"></div>
               <select id="type-select">
@@ -1043,7 +1038,7 @@
               </select>
             </div>
           </div>
-          <div class="search-row fade-in" id="anim-search">
+          <div class="search-row">
             <input class="search-input" id="custom-input" type="text" placeholder="Anything specific?" maxlength="140" aria-label="Search for movies or TV shows" />
             <button class="suggest-btn" id="suggest-btn" onclick="fetchSuggestions()">Mom Safe Suggestion</button>
           </div>
@@ -1054,7 +1049,7 @@
     <main id="main-content">
       <div class="main-inner">
         <div class="poster-section" id="anim-movies">
-          <div class="poster-section-header fade-in">
+          <div class="poster-section-header">
             <h2 class="section-title">Movies</h2>
             <span class="section-badge">Now in theaters and streaming</span>
             <div class="section-nav">
@@ -1066,7 +1061,7 @@
         </div>
 
         <div class="poster-section" id="anim-tvshows">
-          <div class="poster-section-header fade-in">
+          <div class="poster-section-header">
             <h2 class="section-title">TV Shows</h2>
             <span class="section-badge">Currently airing</span>
             <div class="section-nav">
@@ -1811,42 +1806,6 @@
         if (hasNewCards) staggerPosters(gridId);
       }).observe(grid, { childList: true });
     }
-
-    // Scroll-triggered fade-in for TV section
-    var tvSection = document.getElementById('anim-tvshows');
-    var tvRevealed = false;
-    if (tvSection) {
-      var tvObserver = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting && !tvRevealed) {
-            tvRevealed = true;
-            var header = tvSection.querySelector('.poster-section-header.fade-in');
-            if (header) header.classList.add('visible');
-            staggerPosters('tv-grid');
-            tvObserver.disconnect();
-          }
-        });
-      }, { threshold: 0.15 });
-      tvObserver.observe(tvSection);
-    }
-
-    // Timed entrance sequence for homepage
-    setTimeout(function() {
-      var brand = document.getElementById('anim-brand');
-      if (brand) brand.classList.add('visible');
-      var tagline = document.getElementById('anim-tagline');
-      if (tagline) tagline.classList.add('visible');
-    }, 100);
-    setTimeout(function() {
-      var filters = document.getElementById('anim-filters');
-      if (filters) filters.classList.add('visible');
-      var search = document.getElementById('anim-search');
-      if (search) search.classList.add('visible');
-    }, 400);
-    setTimeout(function() {
-      var movieHeader = document.querySelector('#anim-movies .poster-section-header.fade-in');
-      if (movieHeader) movieHeader.classList.add('visible');
-    }, 700);
 
     observeGrid('movie-grid');
     observeGrid('tv-grid');
