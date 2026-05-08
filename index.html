@@ -1750,24 +1750,31 @@
       document.getElementById('detail-loading').classList.add('hidden');
       document.getElementById('detail-content').classList.add('visible');
 
-      try {
-        var raw = await callAI({ task:'analyze', title:d.title, synopsis:d.synopsis, rating:d.rating, genre:d.genre, cast:d.cast });
-        var analysis = JSON.parse(raw.replace(/```json|```/g,'').trim());
-        var stars = Math.min(5, Math.max(1, analysis.mom_stars||3));
-        var heartsUpgrade = document.getElementById('d-hearts');
-        heartsUpgrade.innerHTML = heartsHTML(stars);
-        heartsUpgrade.setAttribute('aria-label', 'Mom meter: ' + stars + ' out of 5 hearts');
-        document.getElementById('d-verdict').textContent = analysis.mom_verdict || '';
-        var notable = (analysis.racy_items||[]).filter(function(i){return i.severity==='medium'||i.severity==='high';});
-        if (notable.length) {
-          document.getElementById('d-racy-items').innerHTML = notable.map(function(item){
-            return '<div class="racy-item"><div class="racy-dot racy-'+item.severity+'"></div><div><div class="racy-headline">'+item.headline+'</div><div class="racy-detail">'+item.detail+'</div></div></div>';
-          }).join('');
-          document.getElementById('d-racy-section').style.display = 'block';
-        }
-      } catch(e) {
-        // AI unavailable — heuristic already displayed, no action needed
+      function tryLoadAnalysis(retries) {
+        callAI({ task:'analyze', title:d.title, synopsis:d.synopsis, rating:d.rating, genre:d.genre, cast:d.cast })
+          .then(function(raw) {
+            var analysis = JSON.parse(raw.replace(/```json|```/g,'').trim());
+            var stars = Math.min(5, Math.max(1, analysis.mom_stars||3));
+            var heartsUpgrade = document.getElementById('d-hearts');
+            heartsUpgrade.innerHTML = heartsHTML(stars);
+            heartsUpgrade.setAttribute('aria-label', 'Mom meter: ' + stars + ' out of 5 hearts');
+            document.getElementById('d-verdict').textContent = analysis.mom_verdict || '';
+            var notable = (analysis.racy_items||[]).filter(function(i){return i.severity==='medium'||i.severity==='high';});
+            if (notable.length) {
+              document.getElementById('d-racy-items').innerHTML = notable.map(function(item){
+                return '<div class="racy-item"><div class="racy-dot racy-'+item.severity+'"></div><div><div class="racy-headline">'+item.headline+'</div><div class="racy-detail">'+item.detail+'</div></div></div>';
+              }).join('');
+              document.getElementById('d-racy-section').style.display = 'block';
+            }
+          })
+          .catch(function(e) {
+            if (retries > 0) {
+              setTimeout(function() { tryLoadAnalysis(retries - 1); }, 2000);
+            }
+            // After retries exhausted, heuristic stays displayed
+          });
       }
+      tryLoadAnalysis(2);
     }
 
     // ── ENTRANCE ANIMATIONS ──
