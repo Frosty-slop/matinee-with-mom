@@ -263,13 +263,15 @@ exports.handler = async (event) => {
       } else {
         // Default: now playing / on air — use discover so we can filter by rating
         movieEndpoint = '/discover/movie?sort_by=popularity.desc&primary_release_date.gte=2024-01-01&vote_count.gte=50&certification_country=US&certification.lte=PG-13&without_keywords=210024' + movieGenreFilter + (movieExcludeFilter || momExcludeMovies);
-        showEndpoint  = '/discover/tv?sort_by=popularity.desc&first_air_date.gte=2024-01-01&vote_count.gte=20' + momExcludeTv + '&without_keywords=210024' + tvGenreFilter;
+        showEndpoint  = '/discover/tv?sort_by=popularity.desc&first_air_date.gte=2022-01-01&vote_count.gte=10' + momExcludeTv + '&without_keywords=210024' + tvGenreFilter;
       }
 
       const fetchMovies = type !== 'tv'    ? tmdb(movieEndpoint, KEY) : Promise.resolve({ results: [] });
       const fetchShows  = type !== 'movie' ? tmdb(showEndpoint,  KEY) : Promise.resolve({ results: [] });
+      const fetchShows2 = type !== 'movie' ? tmdb(showEndpoint + '&page=2', KEY) : Promise.resolve({ results: [] });
 
-      const [movies, shows] = await Promise.all([fetchMovies, fetchShows]);
+      const [movies, shows, shows2] = await Promise.all([fetchMovies, fetchShows, fetchShows2]);
+      shows.results = (shows.results || []).concat(shows2.results || []);
 
       const ANIME_GENRE_T = 16;
       const MOM_SAFE_MOVIE_T = ['G', 'PG', 'PG-13'];
@@ -294,7 +296,7 @@ exports.handler = async (event) => {
       const MOM_SAFE_TV_T = ['TV-Y', 'TV-Y7', 'TV-G', 'TV-PG', 'TV-14'];
       const showResults = (shows.results || [])
         .filter(s => s.original_language === 'en' && !(s.genre_ids || []).includes(ANIME_GENRE_T))
-        .slice(0, 40);
+        .slice(0, 60);
       const showRatings = await Promise.all(
         showResults.map(async show => {
           try {
