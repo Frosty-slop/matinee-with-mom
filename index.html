@@ -970,6 +970,20 @@
       .suggest-search-input { padding: 14px 20px; }
       .suggest-search-cell .suggest-btn { padding: 14px 20px; }
     }
+    /* Entrance animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .fade-in-right {
+      opacity: 0;
+      transform: translateX(20px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+    .fade-in-right.visible { opacity: 1; transform: translateX(0); }
+
     /* Reduced motion */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
@@ -989,14 +1003,14 @@
   <div id="home-page">
     <header>
       <div class="header-inner">
-        <div class="header-brand">
+        <div class="header-brand fade-in" id="anim-brand">
           <h1 class="brand-title">
             <span class="bt-row serif">Movies</span>
             <span class="bt-row">with <span class="serif">Mom</span></span>
           </h1>
           <div class="brand-tagline">Your <span class="serif">mom-safe</span> cinema guide,<br>skip the cringe, keep the <span class="serif">popcorn</span>.</div>
         </div>
-        <div class="header-controls">
+        <div class="header-controls fade-in" id="anim-controls">
           <div class="controls-empty"></div>
           <div class="controls-row">
             <div class="select-wrap">
@@ -1040,8 +1054,8 @@
 
     <main id="main-content">
       <div class="main-inner">
-        <div class="poster-section">
-          <div class="poster-section-header">
+        <div class="poster-section" id="anim-movies">
+          <div class="poster-section-header fade-in">
             <h2 class="section-title">Movies</h2>
             <span class="section-badge">Now in theaters and streaming</span>
             <div class="section-nav">
@@ -1052,8 +1066,8 @@
           <div class="poster-grid" id="movie-grid"></div>
         </div>
 
-        <div class="poster-section">
-          <div class="poster-section-header">
+        <div class="poster-section" id="anim-tvshows">
+          <div class="poster-section-header fade-in">
             <h2 class="section-title">TV Shows</h2>
             <span class="section-badge">Currently airing</span>
             <div class="section-nav">
@@ -1773,6 +1787,66 @@
         // AI unavailable — heuristic already displayed, no action needed
       }
     }
+
+    // ── ENTRANCE ANIMATIONS ──
+    function staggerPosters(gridId) {
+      var grid = document.getElementById(gridId);
+      if (!grid) return;
+      var cards = grid.querySelectorAll('.poster-card');
+      cards.forEach(function(card, i) {
+        card.classList.add('fade-in-right');
+        setTimeout(function() { card.classList.add('visible'); }, i * 80);
+      });
+    }
+
+    // Observe poster grids — trigger stagger when cards are inserted
+    function observeGrid(gridId) {
+      var grid = document.getElementById(gridId);
+      if (!grid) return;
+      new MutationObserver(function(mutations) {
+        var hasNewCards = mutations.some(function(m) {
+          return Array.from(m.addedNodes).some(function(n) {
+            return n.classList && n.classList.contains('poster-card') && !n.classList.contains('fade-in-right');
+          });
+        });
+        if (hasNewCards) staggerPosters(gridId);
+      }).observe(grid, { childList: true });
+    }
+
+    // Scroll-triggered fade-in for TV section
+    var tvSection = document.getElementById('anim-tvshows');
+    var tvRevealed = false;
+    if (tvSection) {
+      var tvObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting && !tvRevealed) {
+            tvRevealed = true;
+            var header = tvSection.querySelector('.poster-section-header.fade-in');
+            if (header) header.classList.add('visible');
+            staggerPosters('tv-grid');
+            tvObserver.disconnect();
+          }
+        });
+      }, { threshold: 0.15 });
+      tvObserver.observe(tvSection);
+    }
+
+    // Timed entrance sequence for homepage
+    setTimeout(function() {
+      var brand = document.getElementById('anim-brand');
+      if (brand) brand.classList.add('visible');
+    }, 100);
+    setTimeout(function() {
+      var controls = document.getElementById('anim-controls');
+      if (controls) controls.classList.add('visible');
+    }, 400);
+    setTimeout(function() {
+      var movieHeader = document.querySelector('#anim-movies .poster-section-header.fade-in');
+      if (movieHeader) movieHeader.classList.add('visible');
+    }, 700);
+
+    observeGrid('movie-grid');
+    observeGrid('tv-grid');
 
     // ── INIT ──
     buildPosterRows('movie-grid', 'tv-grid', 'any', 'both', 'any');
