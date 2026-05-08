@@ -256,11 +256,11 @@
 
     /* POSTER SECTIONS */
     main {
-      padding: 0 120px 150px;
+      padding: 0 120px 0;
       background: var(--bg);
     }
-    @media (max-width: 1400px) { main { padding: 0 40px 150px; } }
-    @media (max-width: 900px)  { main { padding: 0 20px 150px; } }
+    @media (max-width: 1400px) { main { padding: 0 40px 0; } }
+    @media (max-width: 900px)  { main { padding: 0 20px 0; } }
     .main-inner {
       max-width: 1200px;
       margin: 0 auto;
@@ -385,19 +385,43 @@
     @keyframes spin { to { transform: rotate(360deg); } }
     .error-state { background: #fff0f0; border: 1px solid var(--pink-mid); border-radius: var(--radius); padding: 1rem 1.4rem; color: var(--pink-dark); font-size: 0.875rem; text-align: center; }
 
-    .footer-inner {
-      border-top: 2px solid var(--ink);
-      padding: 22px 46px;
+    .site-footer {
+      background: var(--ink);
+      color: var(--pink-light);
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      font-family: var(--sans);
-      font-size: 0.875rem;
-      font-weight: 400;
-      color: var(--ink);
-      letter-spacing: 0;
+      position: relative;
     }
-    .footer-inner a { color: var(--ink); text-decoration: underline; }
-    .footer-inner a:hover { text-decoration: none; }
-    .tmdb-logo { height: 14px; vertical-align: middle; margin-left: 3px; }
+    .footer-heart { width: 28px; height: 24px; color: var(--pink-light); margin-bottom: 20px; }
+    .footer-title {
+      font-family: var(--serif);
+      font-size: 4.5rem;
+      font-weight: 400;
+      color: var(--pink-light);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .footer-tagline {
+      font-family: var(--sans);
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--pink-light);
+      opacity: 0.8;
+    }
+    .footer-tagline strong { font-weight: 700; }
+    .footer-credit {
+      position: absolute;
+      bottom: 28px;
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: var(--pink-light);
+      opacity: 0.5;
+    }
 
     /* ── DETAIL PAGE ── */
     #detail-page { display: none; min-height: 100vh; background: var(--bg); }
@@ -886,7 +910,8 @@
       }
 
       /* Footer */
-      .footer-inner { padding: 16px 20px; font-size: 0.75rem; }
+      .site-footer { height: 300px; }
+      .footer-title { font-size: 2.5rem; }
 
       /* Detail page */
       .detail-nav { padding: 12px 20px; gap: 12px; }
@@ -1029,11 +1054,15 @@
         </div>
 
         <div class="results-section" id="results-area"></div>
-        <footer class="footer-inner">
-          Data provided by<img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg" class="tmdb-logo" alt="TMDB" />
-        </footer>
       </div>
     </main>
+
+    <footer class="site-footer">
+      <svg class="footer-heart" viewBox="0 0 39 33" xmlns="http://www.w3.org/2000/svg"><path d="M33.5026 0H21.8699V5.41289H17.125V0H5.49745V5.41289H0V16.8694H5.49745V22.2848H10.9924V27.7002H16.4235V33H22.5561V27.7002H28.0051V22.2848H33.5026V16.8694H39V5.41289H33.5026V0Z" fill="currentColor"/></svg>
+      <div class="footer-title">Movies with Mom</div>
+      <div class="footer-tagline">Made with love, for movie nights with <strong>mom</strong>.</div>
+      <div class="footer-credit">Data provided by TMDB</div>
+    </footer>
   </div>
 
   <!-- DETAIL PAGE -->
