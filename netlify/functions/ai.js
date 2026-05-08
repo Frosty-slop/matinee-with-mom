@@ -1,3 +1,5 @@
+const { getStore } = require('@netlify/blobs');
+
 // Rate limiter: 20 AI requests per IP per hour
 const rateLimitMap = new Map();
 const LIMIT = 20;
@@ -119,6 +121,24 @@ Raw JSON only, no markdown.`;
     };
   }
 
+  // For analyze tasks, check cache first
+  if (task === 'analyze' && body.title) {
+    try {
+      const store = getStore('ai-analysis');
+      const cacheKey = (body.title + '-' + (body.rating || '')).toLowerCase().replace(/[^a-z0-9-]/g, '_');
+      const cached = await store.get(cacheKey);
+      if (cached) {
+        return {
+          statusCode: 200,
+          headers: { ...CORS, 'Content-Type': 'application/json' },
+          body: cached,
+        };
+      }
+    } catch (e) {
+      // Cache miss or store unavailable — continue to AI call
+    }
+  }
+
   try {
     const res = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
@@ -142,6 +162,17 @@ Raw JSON only, no markdown.`;
         headers: { ...CORS, 'Content-Type': 'application/json' },
         body: JSON.stringify({ error: data && data.error ? data.error.message : 'AI error.' }),
       };
+    }
+
+    // Cache successful analyze results
+    if (task === 'analyze' && body.title) {
+      try {
+        const store = getStore('ai-analysis');
+        const cacheKey = (body.title + '-' + (body.rating || '')).toLowerCase().replace(/[^a-z0-9-]/g, '_');
+        await store.set(cacheKey, JSON.stringify(data));
+      } catch (e) {
+        // Cache write failed — not critical, continue
+      }
     }
 
     return {
