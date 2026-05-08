@@ -1793,17 +1793,17 @@
       });
     }
 
-    // Observe poster grids — trigger stagger when cards are inserted
+    // Observe poster grids — trigger stagger only for real cards (not skeletons)
     function observeGrid(gridId) {
       var grid = document.getElementById(gridId);
       if (!grid) return;
       new MutationObserver(function(mutations) {
-        var hasNewCards = mutations.some(function(m) {
+        var hasRealCards = mutations.some(function(m) {
           return Array.from(m.addedNodes).some(function(n) {
-            return n.classList && n.classList.contains('poster-card') && !n.classList.contains('fade-in-up');
+            return n.classList && n.classList.contains('poster-card') && n.querySelector('.poster-overlay');
           });
         });
-        if (hasNewCards) staggerPosters(gridId);
+        if (hasRealCards) staggerPosters(gridId);
       }).observe(grid, { childList: true });
     }
 
