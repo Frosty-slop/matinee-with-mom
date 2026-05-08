@@ -742,29 +742,27 @@
     .imdb-link:hover { text-decoration: underline; }
 
     .racy-section {
-      border-top: 2px solid var(--ink);
       padding: 32px 46px;
       background: transparent;
-      border-bottom: none;
-      border-left: none;
-      border-right: none;
+      border: none;
       border-radius: 0;
       margin: 0;
+      width: 66.6667%;
+      box-sizing: border-box;
     }
     .racy-header {
       display: flex; align-items: center; gap: 10px;
-      margin-bottom: 14px; padding-bottom: 12px;
-      border-bottom: 2px solid var(--ink);
+      margin-bottom: 14px; padding-bottom: 0;
     }
     .racy-icon { font-size: 1.25rem; }
     .racy-title { font-family: var(--serif); font-size: 1.25rem; font-weight: 400; color: var(--ink); }
     .racy-subtitle { font-size: 0.8125rem; color: var(--ink); opacity: 0.7; margin-top: 2px; }
-    .racy-item { display: flex; gap: 12px; padding: 10px 0; border-top: 2px solid var(--ink); align-items: flex-start; }
+    .racy-item { display: flex; gap: 12px; padding: 10px 0; align-items: flex-start; }
     .racy-dot { flex-shrink: 0; width: 8px; height: 8px; border-radius: 50%; margin-top: 5px; }
     .racy-low { background: #27ae60; } .racy-medium { background: #f39c12; } .racy-high { background: #e74c3c; }
     .racy-headline { font-size: 0.875rem; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
     .racy-detail { font-size: 0.8125rem; color: var(--ink); line-height: 1.55; font-weight: 400; }
-    .racy-legend { display: flex; gap: 14px; margin-top: 12px; padding-top: 10px; border-top: 2px solid var(--ink); }
+    .racy-legend { display: flex; gap: 14px; margin-top: 12px; padding-top: 10px; }
     .racy-legend-item { display: flex; align-items: center; gap: 5px; font-size: 0.75rem; color: var(--ink); }
     .racy-legend-dot { width: 7px; height: 7px; border-radius: 50%; }
 
@@ -961,7 +959,7 @@
       .sidebar-card { padding: 20px; }
       .verdict-hearts .heart { width: 40px; height: 34px; }
 
-      .racy-section { padding: 20px; }
+      .racy-section { padding: 20px; width: 100%; }
 
       /* Suggest page */
       .suggest-header-row { grid-template-columns: 1fr; }
