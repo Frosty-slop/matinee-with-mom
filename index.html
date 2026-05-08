@@ -398,13 +398,15 @@
     }
     .footer-heart { width: 28px; height: 24px; color: var(--pink-light); margin-bottom: 20px; }
     .footer-title {
-      font-family: var(--serif);
+      font-family: var(--sans);
       font-size: 4.5rem;
-      font-weight: 400;
+      font-weight: 700;
       color: var(--pink-light);
       line-height: 1;
       margin-bottom: 16px;
+      letter-spacing: -0.03em;
     }
+    .footer-title .serif { font-family: var(--serif); font-weight: 400; letter-spacing: -0.01em; }
     .footer-tagline {
       font-family: var(--sans);
       font-size: 1rem;
@@ -412,7 +414,7 @@
       color: var(--pink-light);
       opacity: 0.8;
     }
-    .footer-tagline strong { font-weight: 700; }
+    .footer-tagline .serif { font-family: var(--serif); font-weight: 400; }
     .footer-credit {
       position: absolute;
       bottom: 28px;
@@ -1059,8 +1061,8 @@
 
     <footer class="site-footer">
       <svg class="footer-heart" viewBox="0 0 39 33" xmlns="http://www.w3.org/2000/svg"><path d="M33.5026 0H21.8699V5.41289H17.125V0H5.49745V5.41289H0V16.8694H5.49745V22.2848H10.9924V27.7002H16.4235V33H22.5561V27.7002H28.0051V22.2848H33.5026V16.8694H39V5.41289H33.5026V0Z" fill="currentColor"/></svg>
-      <div class="footer-title">Movies with Mom</div>
-      <div class="footer-tagline">Made with love, for movie nights with <strong>mom</strong>.</div>
+      <div class="footer-title"><span class="serif">Movies</span> with <span class="serif">Mom</span></div>
+      <div class="footer-tagline">Made with <span class="serif">love</span>, for movie nights with <span class="serif">mom</span>.</div>
       <div class="footer-credit">Data provided by TMDB</div>
     </footer>
   </div>
