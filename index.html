@@ -965,6 +965,7 @@
       .suggest-search-cell .suggest-btn { padding: 14px 20px; }
     }
     .tm { font-size: 0.35em; vertical-align: super; font-weight: 400; font-family: Helvetica, Arial, sans-serif; letter-spacing: 0; text-decoration: none; }
+    .tm-sm { font-size: 0.7em; vertical-align: super; font-weight: 400; font-family: Helvetica, Arial, sans-serif; letter-spacing: 0; text-decoration: none; }
 
     /* Entrance animations */
     .fade-in-up {
@@ -998,7 +999,7 @@
             <span class="bt-row serif">Movies</span>
             <span class="bt-row">with <span class="serif">Mom</span><span class="tm">™</span></span>
           </h1>
-          <div class="brand-tagline">Your <span class="serif">mom-safe</span><span class="tm">™</span> cinema guide,<br>skip the cringe, keep the <span class="serif">popcorn</span>.</div>
+          <div class="brand-tagline">Your <span class="serif">mom-safe</span><span class="tm-sm">™</span> cinema guide,<br>skip the cringe, keep the <span class="serif">popcorn</span>.</div>
         </div>
         <div class="header-controls">
           <div class="controls-empty"></div>
@@ -1725,7 +1726,7 @@
       scoresHTML += '<div class="score-card"><div class="score-label">TMDB Score</div><div class="score-value">'+(d.vote_average ? d.vote_average+'/10' : '—')+'</div></div>';
       scoresHTML += '<div class="rating-card"><div class="score-label">Content Rating</div><div class="rating-badge">'+(d.rating||'—')+'</div></div>';
       scoresHTML += '</div>';
-      scoresHTML += '<div class="mom-meter-card"><div class="score-label">Mom Meter<span class="tm">™</span></div><div class="verdict-hearts" id="d-hearts" role="img" aria-label="Mom meter: loading" title="1 = not mom-safe, 5 = perfect for mom">'+heartsHTML(0)+'</div></div>';
+      scoresHTML += '<div class="mom-meter-card"><div class="score-label">Mom Meter<span class="tm-sm">™</span></div><div class="verdict-hearts" id="d-hearts" role="img" aria-label="Mom meter: loading" title="1 = not mom-safe, 5 = perfect for mom">'+heartsHTML(0)+'</div></div>';
       document.getElementById('d-scores').innerHTML = scoresHTML;
 
 
