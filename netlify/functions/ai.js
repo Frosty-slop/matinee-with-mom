@@ -63,7 +63,13 @@ exports.handler = async (event) => {
   }
 
   // Connect blobs context for Lambda functions
-  connectLambda(event);
+  let blobsAvailable = false;
+  try {
+    connectLambda(event);
+    blobsAvailable = true;
+  } catch (e) {
+    // Blobs not available in this environment
+  }
 
   const task = body.task;
   let prompt;
@@ -124,12 +130,23 @@ Raw JSON only, no markdown.`;
     };
   }
 
+  // Helper: race a promise against a timeout
+  function withTimeout(promise, ms) {
+    return Promise.race([
+      promise,
+      new Promise(function(_, reject) { setTimeout(function() { reject(new Error('timeout')); }, ms); })
+    ]);
+  }
+
   // For analyze tasks, check cache first
-  if (task === 'analyze' && body.title) {
+  const cacheKey = (task === 'analyze' && body.title)
+    ? (body.title + '-' + (body.rating || '')).toLowerCase().replace(/[^a-z0-9-]/g, '_')
+    : null;
+
+  if (cacheKey && blobsAvailable) {
     try {
       const store = getStore('ai-analysis');
-      const cacheKey = (body.title + '-' + (body.rating || '')).toLowerCase().replace(/[^a-z0-9-]/g, '_');
-      const cached = await store.get(cacheKey);
+      const cached = await withTimeout(store.get(cacheKey), 3000);
       if (cached) {
         return {
           statusCode: 200,
@@ -138,7 +155,7 @@ Raw JSON only, no markdown.`;
         };
       }
     } catch (e) {
-      // Cache miss or store unavailable — continue to AI call
+      // Cache miss, timeout, or store unavailable — continue to AI call
     }
   }
 
@@ -167,15 +184,10 @@ Raw JSON only, no markdown.`;
       };
     }
 
-    // Cache successful analyze results
-    if (task === 'analyze' && body.title) {
-      try {
-        const store = getStore('ai-analysis');
-        const cacheKey = (body.title + '-' + (body.rating || '')).toLowerCase().replace(/[^a-z0-9-]/g, '_');
-        await store.set(cacheKey, JSON.stringify(data));
-      } catch (e) {
-        // Cache write failed — not critical, continue
-      }
+    // Cache successful analyze results (fire and forget — don't block response)
+    if (cacheKey && blobsAvailable) {
+      const store = getStore('ai-analysis');
+      withTimeout(store.set(cacheKey, JSON.stringify(data)), 3000).catch(function() {});
     }
 
     return {
