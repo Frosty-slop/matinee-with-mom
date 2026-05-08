@@ -742,19 +742,14 @@
     .imdb-link:hover { text-decoration: underline; }
 
     .racy-section {
-      padding: 32px 0 0 0;
+      padding: 32px 0 70px 0;
       background: transparent;
       border: none;
       border-radius: 0;
       margin: 0;
     }
-    .racy-header {
-      display: flex; align-items: center; gap: 10px;
-      margin-bottom: 14px; padding-bottom: 0;
-    }
-    .racy-icon { font-size: 1.25rem; }
     .racy-title { font-family: var(--serif); font-size: 1.25rem; font-weight: 400; color: var(--ink); }
-    .racy-subtitle { font-size: 0.8125rem; color: var(--ink); opacity: 0.7; margin-top: 2px; }
+    .racy-subtitle { font-size: 0.8125rem; color: var(--ink); opacity: 0.7; margin-top: 2px; margin-bottom: 14px; }
     .racy-item { display: flex; gap: 12px; padding: 10px 0; align-items: flex-start; }
     .racy-dot { flex-shrink: 0; width: 8px; height: 8px; border-radius: 50%; margin-top: 5px; }
     .racy-low { background: #27ae60; } .racy-medium { background: #f39c12; } .racy-high { background: #e74c3c; }
@@ -1109,13 +1104,8 @@
             <div class="detail-synopsis" id="d-synopsis"></div>
             <div class="detail-cast" id="d-cast"></div>
             <div class="racy-section" id="d-racy-section" style="display:none;">
-              <div class="racy-header">
-                <span class="racy-icon">&#x1F648;</span>
-                <div>
-                  <h3 class="racy-title">Before You Press Play with Mom...</h3>
-                  <div class="racy-subtitle">A heads-up on anything that might raise an eyebrow</div>
-                </div>
-              </div>
+              <h3 class="racy-title">Before You Press Play with Mom...</h3>
+              <div class="racy-subtitle">A heads-up on anything that might raise an eyebrow</div>
               <div id="d-racy-items"></div>
               <div class="racy-legend">
                 <div class="racy-legend-item"><div class="racy-legend-dot" style="background:#27ae60"></div> Minor</div>
