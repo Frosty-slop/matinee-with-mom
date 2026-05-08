@@ -742,13 +742,11 @@
     .imdb-link:hover { text-decoration: underline; }
 
     .racy-section {
-      padding: 32px 46px;
+      padding: 32px 0 0 0;
       background: transparent;
       border: none;
       border-radius: 0;
       margin: 0;
-      width: 66.6667%;
-      box-sizing: border-box;
     }
     .racy-header {
       display: flex; align-items: center; gap: 10px;
@@ -959,7 +957,7 @@
       .sidebar-card { padding: 20px; }
       .verdict-hearts .heart { width: 40px; height: 34px; }
 
-      .racy-section { padding: 20px; width: 100%; }
+      .racy-section { padding: 20px 0 0 0; }
 
       /* Suggest page */
       .suggest-header-row { grid-template-columns: 1fr; }
@@ -1110,6 +1108,21 @@
             <h3 class="detail-section-label">Synopsis</h3>
             <div class="detail-synopsis" id="d-synopsis"></div>
             <div class="detail-cast" id="d-cast"></div>
+            <div class="racy-section" id="d-racy-section" style="display:none;">
+              <div class="racy-header">
+                <span class="racy-icon">&#x1F648;</span>
+                <div>
+                  <h3 class="racy-title">Before You Press Play with Mom...</h3>
+                  <div class="racy-subtitle">A heads-up on anything that might raise an eyebrow</div>
+                </div>
+              </div>
+              <div id="d-racy-items"></div>
+              <div class="racy-legend">
+                <div class="racy-legend-item"><div class="racy-legend-dot" style="background:#27ae60"></div> Minor</div>
+                <div class="racy-legend-item"><div class="racy-legend-dot" style="background:#f39c12"></div> Moderate</div>
+                <div class="racy-legend-item"><div class="racy-legend-dot" style="background:#e74c3c"></div> Notable</div>
+              </div>
+            </div>
           </div>
           <div class="detail-sidebar">
             <div class="sidebar-card">
@@ -1119,21 +1132,6 @@
               <h3 class="detail-section-label">Where to watch</h3>
               <div class="streaming-links" id="d-streaming"></div>
             </div>
-          </div>
-        </div>
-        <div class="racy-section" id="d-racy-section" style="display:none;">
-          <div class="racy-header">
-            <span class="racy-icon">&#x1F648;</span>
-            <div>
-              <h3 class="racy-title">Before You Press Play with Mom...</h3>
-              <div class="racy-subtitle">A heads-up on anything that might raise an eyebrow</div>
-            </div>
-          </div>
-          <div id="d-racy-items"></div>
-          <div class="racy-legend">
-            <div class="racy-legend-item"><div class="racy-legend-dot" style="background:#27ae60"></div> Minor</div>
-            <div class="racy-legend-item"><div class="racy-legend-dot" style="background:#f39c12"></div> Moderate</div>
-            <div class="racy-legend-item"><div class="racy-legend-dot" style="background:#e74c3c"></div> Notable</div>
           </div>
         </div>
       </div>
