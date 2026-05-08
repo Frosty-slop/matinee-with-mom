@@ -437,16 +437,18 @@
     #detail-page.visible { display: block; }
 
     .detail-wrap {
-      padding: 72px 120px 150px;
+      padding: 72px 120px 0;
       background: var(--bg);
     }
-    @media (max-width: 1400px) { .detail-wrap { padding: 48px 40px 150px; } }
-    @media (max-width: 900px)  { .detail-wrap { padding: 32px 20px 150px; } }
+    @media (max-width: 1400px) { .detail-wrap { padding: 48px 40px 0; } }
+    @media (max-width: 900px)  { .detail-wrap { padding: 32px 20px 0; } }
 
     .detail-inner {
       max-width: 1200px;
       margin: 0 auto;
-      border: 2px solid var(--ink);
+      border-left: 2px solid var(--ink);
+      border-right: 2px solid var(--ink);
+      border-top: 2px solid var(--ink);
       background: var(--bg);
     }
 
