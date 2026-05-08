@@ -385,7 +385,14 @@
     @keyframes spin { to { transform: rotate(360deg); } }
     .error-state { background: #fff0f0; border: 1px solid var(--pink-mid); border-radius: var(--radius); padding: 1rem 1.4rem; color: var(--pink-dark); font-size: 0.875rem; text-align: center; }
 
+    .site-footer-wrap {
+      padding: 0 120px;
+    }
+    @media (max-width: 1400px) { .site-footer-wrap { padding: 0 40px; } }
+    @media (max-width: 900px)  { .site-footer-wrap { padding: 0 20px; } }
     .site-footer {
+      max-width: 1200px;
+      margin: 0 auto;
       background: var(--ink);
       color: var(--pink-light);
       height: 400px;
@@ -1059,12 +1066,14 @@
       </div>
     </main>
 
-    <footer class="site-footer">
-      <svg class="footer-heart" viewBox="0 0 39 33" xmlns="http://www.w3.org/2000/svg"><path d="M33.5026 0H21.8699V5.41289H17.125V0H5.49745V5.41289H0V16.8694H5.49745V22.2848H10.9924V27.7002H16.4235V33H22.5561V27.7002H28.0051V22.2848H33.5026V16.8694H39V5.41289H33.5026V0Z" fill="currentColor"/></svg>
-      <div class="footer-title"><span class="serif">Movies</span> with <span class="serif">Mom</span></div>
-      <div class="footer-tagline">Made with <span class="serif">love</span>, for movie nights with <span class="serif">mom</span>.</div>
-      <div class="footer-credit">Data provided by TMDB</div>
-    </footer>
+    <div class="site-footer-wrap">
+      <footer class="site-footer">
+        <svg class="footer-heart" viewBox="0 0 39 33" xmlns="http://www.w3.org/2000/svg"><path d="M33.5026 0H21.8699V5.41289H17.125V0H5.49745V5.41289H0V16.8694H5.49745V22.2848H10.9924V27.7002H16.4235V33H22.5561V27.7002H28.0051V22.2848H33.5026V16.8694H39V5.41289H33.5026V0Z" fill="currentColor"/></svg>
+        <div class="footer-title"><span class="serif">Movies</span> with <span class="serif">Mom</span></div>
+        <div class="footer-tagline">Made with <span class="serif">love</span>, for movie nights with <span class="serif">mom</span>.</div>
+        <div class="footer-credit">Data provided by TMDB</div>
+      </footer>
+    </div>
   </div>
 
   <!-- DETAIL PAGE -->
@@ -1191,12 +1200,14 @@
       </div>
     </div>
 
-    <footer class="site-footer">
-      <svg class="footer-heart" viewBox="0 0 39 33" xmlns="http://www.w3.org/2000/svg"><path d="M33.5026 0H21.8699V5.41289H17.125V0H5.49745V5.41289H0V16.8694H5.49745V22.2848H10.9924V27.7002H16.4235V33H22.5561V27.7002H28.0051V22.2848H33.5026V16.8694H39V5.41289H33.5026V0Z" fill="currentColor"/></svg>
-      <div class="footer-title"><span class="serif">Movies</span> with <span class="serif">Mom</span></div>
-      <div class="footer-tagline">Made with <span class="serif">love</span>, for movie nights with <span class="serif">mom</span>.</div>
-      <div class="footer-credit">Data provided by TMDB</div>
-    </footer>
+    <div class="site-footer-wrap">
+      <footer class="site-footer">
+        <svg class="footer-heart" viewBox="0 0 39 33" xmlns="http://www.w3.org/2000/svg"><path d="M33.5026 0H21.8699V5.41289H17.125V0H5.49745V5.41289H0V16.8694H5.49745V22.2848H10.9924V27.7002H16.4235V33H22.5561V27.7002H28.0051V22.2848H33.5026V16.8694H39V5.41289H33.5026V0Z" fill="currentColor"/></svg>
+        <div class="footer-title"><span class="serif">Movies</span> with <span class="serif">Mom</span></div>
+        <div class="footer-tagline">Made with <span class="serif">love</span>, for movie nights with <span class="serif">mom</span>.</div>
+        <div class="footer-credit">Data provided by TMDB</div>
+      </footer>
+    </div>
   </div>
 
   <!-- SUGGEST PAGE -->
