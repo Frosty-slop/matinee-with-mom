@@ -971,12 +971,12 @@
       .suggest-search-cell .suggest-btn { padding: 14px 20px; }
     }
     /* Entrance animations */
-    .fade-in-right {
+    .fade-in-up {
       opacity: 0;
-      transform: translateX(20px);
+      transform: translateY(20px);
       transition: opacity 0.35s ease, transform 0.35s ease;
     }
-    .fade-in-right.visible { opacity: 1; transform: translateX(0); }
+    .fade-in-up.visible { opacity: 1; transform: translateY(0); }
 
     /* Reduced motion */
     @media (prefers-reduced-motion: reduce) {
@@ -1788,7 +1788,7 @@
       if (!grid) return;
       var cards = grid.querySelectorAll('.poster-card');
       cards.forEach(function(card, i) {
-        card.classList.add('fade-in-right');
+        card.classList.add('fade-in-up');
         setTimeout(function() { card.classList.add('visible'); }, i * 80);
       });
     }
@@ -1800,7 +1800,7 @@
       new MutationObserver(function(mutations) {
         var hasNewCards = mutations.some(function(m) {
           return Array.from(m.addedNodes).some(function(n) {
-            return n.classList && n.classList.contains('poster-card') && !n.classList.contains('fade-in-right');
+            return n.classList && n.classList.contains('poster-card') && !n.classList.contains('fade-in-up');
           });
         });
         if (hasNewCards) staggerPosters(gridId);
